@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  profile_id: 1
+  school_id: 1
+  college_subject_id: 1
+  gpa: 1
+  number_of_recommendations: 1
+  graduation_date: 2013-04-10
+
+two:
+  profile_id: 1
+  school_id: 1
+  college_subject_id: 1
+  gpa: 1
+  number_of_recommendations: 1
+  graduation_date: 2013-04-10

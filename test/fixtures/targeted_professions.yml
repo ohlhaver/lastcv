@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  profile_id: 1
+  profession_id: 1
+  min_yearly_salary: 1
+  min_hourly_salary: 1
+
+two:
+  profile_id: 1
+  profession_id: 1
+  min_yearly_salary: 1
+  min_hourly_salary: 1

@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  applicant_id: 1
+  earliest_start_date: 2013-04-10
+  full_time: false
+  part_time: false
+  max_part_time_hours: 1
+  min_part_time_hours: 1
+  sat_math: 1
+  sat_critical_reading: 1
+  sat_writing: 1
+  sat_total_old: 1
+  sat_total_new: 1
+  act_english: 1
+  act_math: 1
+  act_reading: 1
+  act_science: 1
+  act_composite: 1
+  gmat: 1
+  lsat: 1
+  min_yearly_salary: 1
+  min_hourly_salary: 1
+  highschool_name: MyString
+  ranking_in_highschool: 1
+  percentile_in_highschool: 1
+  recommendations_in_highschool: 1
+
+two:
+  applicant_id: 1
+  earliest_start_date: 2013-04-10
+  full_time: false
+  part_time: false
+  max_part_time_hours: 1
+  min_part_time_hours: 1
+  sat_math: 1
+  sat_critical_reading: 1
+  sat_writing: 1
+  sat_total_old: 1
+  sat_total_new: 1
+  act_english: 1
+  act_math: 1
+  act_reading: 1
+  act_science: 1
+  act_composite: 1
+  gmat: 1
+  lsat: 1
+  min_yearly_salary: 1
+  min_hourly_salary: 1
+  highschool_name: MyString
+  ranking_in_highschool: 1
+  percentile_in_highschool: 1
+  recommendations_in_highschool: 1

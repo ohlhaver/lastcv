@@ -1,0 +1,95 @@
+<%= simple_form_for(@profile) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+<b>What jobs are you interested in?</b><br><br>
+  	<%= f.association :professions, as: :check_boxes %>
+  	<%= f.input :earliest_start_date %>
+  	<%= f.input :full_time %>
+  	<%= f.input :part_time %>
+  	<%= f.input :general_min_yearly_salary%>
+	<%= f.input :general_min_hourly_salary %>
+	<%= f.input :max_part_time_hours %>
+	<%= f.input :min_part_time_hours %>
+	<%= f.association :a_cities, as: :check_boxes %>
+	<%= f.association :p_cities, as: :check_boxes %>
+	
+<br><br>
+<b>Which of these languages can you speak and write like a native? </b>
+<%= f.association :languages, as: :check_boxes %>
+<br><br>
+
+<b> What were your last two jobs? </b>
+	<%= f.association :latest_job_company %>
+	<%= f.association :latest_job_profession %>
+	<%= f.association :latest_job_position %>
+	<%= f.input :latest_job_salary %>
+	<%= f.input :latest_job_number_of_recommendations %>
+	<%= f.input :latest_job_start_date %>
+	<%= f.input :latest_job_end_date %>
+	<%= f.input :latest_job_current %>
+	<%= f.input :latest_job_project_keywords %>
+	<br>
+	<%= f.association :previous_job_company %>
+	<%= f.association :previous_job_profession %>
+	<%= f.association :previous_job_position %>
+	<%= f.input :previous_job_salary %>
+	<%= f.input :previous_job_number_of_recommendations %>
+	<%= f.input :previous_job_start_date %>
+	<%= f.input :previous_job_end_date %>
+	<%= f.input :previous_job_project_keywords %>
+
+<br><br>
+<b>	Your education </b>
+	<%= f.association :postgrad_institution %>
+	<%= f.association :postgrad_subject %>
+	<%= f.input :postgrad_gpa %>
+	<%= f.input :postgrad_number_of_recommendations %>
+	<br>
+	<%= f.association :grad_institution %>
+	<%= f.association :grad_subject %>
+	<%= f.input :grad_gpa %>
+	<%= f.input :grad_number_of_recommendations %>
+	<br>
+		<%= f.association :undergrad_institution %>
+	<%= f.association :undergrad_subject %>
+	<%= f.input :undergrad_gpa %>
+	<%= f.input :undergrad_number_of_recommendations %>
+	<br>
+
+	<%= f.input :highschool_name %>
+	<%= f.input :ranking_in_highschool %>
+	<%= f.input :percentile_in_highschool %>
+	<%= f.input :recommendations_in_highschool %>
+
+
+<br><br>
+
+<b> Your test scores </b>
+
+
+	<%= f.input :sat_math %>
+	<%= f.input :sat_critical_reading %>
+	<%= f.input :sat_writing %>
+	<%= f.input :act_english %>
+	<%= f.input :act_math %>
+	<%= f.input :act_reading %>
+	<%= f.input :act_science %>
+	<%= f.input :gmat %>
+	<%= f.input :lsat %>
+	<%= f.input :cfa %>
+
+
+
+
+
+
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+
