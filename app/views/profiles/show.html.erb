@@ -1,5 +1,96 @@
-<p id="notice"><%= notice %></p>
 
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>
+<p id="notice"><%= notice %></p>
+
+<h4><u>Targeted job</u></h4>
+<b>Professions:</b>
+  	<% @profile.professions.each do |profession| %>
+  		<%= profession.name %>,
+  	<%end%> 		
+<br><b> Earliest start date: </b>
+  	<%= @profile.earliest_start_date.to_s %>
+<br><b> Min. annual salary: </b>  	
+  	<%= @profile.general_min_yearly_salary %> USD
+<br><b>Acceptable cities:</b>
+  	<% @profile.a_cities.each do |a| %>
+  		<%= a.name %>,
+  	<%end%>
+<br><b>Permitted cities:</b>
+  	<% @profile.p_cities.each do |p| %>
+  		<%= p.name %><br>
+  	<%end%>
+<br>
+<h4><u>Job history</u></h4>	
+<b><% if @profile.latest_job_current == true%>Current job<%else%>Last job:<%end%></b> <%= @profile.latest_job_start_date %> till <% if @profile.latest_job_current == true%> now<%else%><%= @profile.latest_job_end_date %>.<%end%><br>
+	<%= @profile.latest_job_profession.name %>,
+	<%= @profile.latest_job_company.name %>,
+	<%= @profile.latest_job_position.name %>
+	<% if @profile.latest_job_salary %><br>Annual salary: <%= @profile.latest_job_salary %> USD<%end%>
+	<% if @profile.latest_job_number_of_recommendations %><br># recommendations: <%= @profile.latest_job_number_of_recommendations %><%end%>
+	<%  if @profile.latest_job_project_keywords != ""%>
+	<br>Project keywords: <%= @profile.latest_job_project_keywords %> <%end%>
+
+<br><br><b>Previous job</b> <%= @profile.previous_job_start_date %> till <%= @profile.previous_job_end_date %><br>
+	<%= @profile.previous_job_profession.name %>,
+	<%= @profile.previous_job_company.name %>,
+	<%= @profile.previous_job_position.name %>
+	<% if @profile.previous_job_salary %><br>Annual salary: <%= @profile.previous_job_salary %> USD <%end%>
+	<% if @profile.previous_job_number_of_recommendations %><br># recommendations: <%= @profile.previous_job_number_of_recommendations %><br> <%end%>
+	<%  if @profile.previous_job_project_keywords != ""%>
+	<br>Project keywords: <%= @profile.previous_job_project_keywords %> <%end%>
+	<br>
+
+<h4><u>Education</u></h4>	
+<% if @profile.cfa == true %><b><%= "CFA charterholder: "%></b>Yes <%end%>
+
+<% if @profile.postgrad_institution %>
+<br><br>
+<b>	Postgraduate degree: </b>
+	<br><%= @profile.postgrad_institution.name%>
+	<br><%= @profile.postgrad_subject.name %>
+	<br>GPA: <%= @profile.postgrad_gpa %>
+	<% if @profile.postgrad_number_of_recommendations %> <br># recommendations: <%=@profile.postgrad_number_of_recommendations%><%end%>
+<%end%>
+
+<% if @profile.grad_institution %>
+<br><br>
+<b>	Graduate degree:</b>
+	<br><%= @profile.grad_institution.name %>
+	<br><%= @profile.grad_subject.name %>
+	<br>GPA:<%= @profile.grad_gpa %>
+	<% if @profile.grad_number_of_recommendations %> <br># recommendations: <%=@profile.grad_number_of_recommendations%><%end%>
+<%end%>
+<% if @profile.undergrad_institution %>
+<br><br>
+	<b>	Undergraduate degree:</b>
+	<br><%= @profile.undergrad_institution.name %>
+	<br>Major: <%= @profile.undergrad_subject.name %>
+	<br>GPA: <%= @profile.undergrad_gpa %>
+	<% if @profile.undergrad_number_of_recommendations %> <br># recommendations: <%=@profile.undergrad_number_of_recommendations%><%end%>
+<%end%>
+<br><br>
+	<b>	Highschool degree:</b>
+
+	<br><%= @profile.highschool_name %>
+	<% if @profile.ranking_in_highschool %><br>Ranking in highschool: <%= @profile.ranking_in_highschool %><%end%>
+	<% if @profile.percentile_in_highschool %><br>Percentile in highschool: <%= @profile.percentile_in_highschool %><%end%>
+	<% if @profile.recommendations_in_highschool %><br># recommendations: <%= @profile.recommendations_in_highschool %>	<%end%>
+<br><br>
+<h4><u>Test scores</u></h4>	
+	<% if @profile.sat_math %><%= "SAT math: " + @profile.sat_math.to_s %><br><%end%>
+	<% if @profile.sat_critical_reading %><%= "SAT critical reading: " + @profile.sat_critical_reading.to_s  %><br><%end%>
+	<% if @profile.sat_writing %><%= "SAT writing: " + @profile.sat_writing.to_s  %><br><%end%>
+	<% if @profile.act_english %><%= "ACT English: " + @profile.act_english.to_s %><br><%end%>
+	<% if @profile.act_math %><%= "ACT math: " + @profile.act_math.to_s %><br><%end%>
+	<% if @profile.act_reading %><%= "ACT reading: " + @profile.act_reading.to_s %><br><%end%>
+	<% if @profile.act_science %><%= "ACT science: " + @profile.act_science.to_s %><br><%end%>
+	<% if @profile.gmat %><%= "GMAT: " + @profile.gmat.to_s %><br><%end%>
+	<% if @profile.lsat %><%= "LSAT: " + @profile.lsat.to_s %><br><%end%>
+<br>
+<h4><u>Native language skills</u></h4>	
+<% @profile.languages.each do |l| %>
+	<%= l.name %>,
+<%end%>
+<br><br>

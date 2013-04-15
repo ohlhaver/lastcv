@@ -3,83 +3,89 @@
 
   <div class="form-inputs">
 <b>What jobs are you interested in?</b><br><br>
-  	<%= f.association :professions, as: :check_boxes %>
+  	<%= f.association :professions, as: :check_boxes, label: 'Professions are you interested in' %>
   	<%= f.input :earliest_start_date %>
-  	<%= f.input :full_time %>
-  	<%= f.input :part_time %>
-  	<%= f.input :general_min_yearly_salary%>
-	<%= f.input :general_min_hourly_salary %>
-	<%= f.input :max_part_time_hours %>
-	<%= f.input :min_part_time_hours %>
-	<%= f.association :a_cities, as: :check_boxes %>
-	<%= f.association :p_cities, as: :check_boxes %>
+  	<%= f.input :general_min_yearly_salary, label: 'Your minimum yearly salary (USD)', placeholder: 'e.g. "65000"'%>
+	<%= f.association :a_cities, as: :check_boxes, label: 'Cities you would be willing to move to' %>
+	<%= f.association :p_cities, as: :check_boxes, label: 'Cities you are legally permitted to work in' %>
+	
+<br>
+<b> Your current or last job </b>
+<br><br>
+	<%= f.association :latest_job_profession, label: 'Profession', prompt: "Select profession" %>
+	<%= f.association :latest_job_company, label: 'Company', prompt: "Select company" %>
+	<%= f.association :latest_job_position, label: 'Position', prompt: "Select position" %>
+	<%= f.input :latest_job_salary, label: 'Yearly salary (USD)', placeholder: 'e.g. "65000"' %>
+	<%= f.input :latest_job_number_of_recommendations, label: 'Number of recommendations', placeholder: 'e.g. "5"' %>
+	<%= f.input :latest_job_start_date, label: 'Start date' %>
+	<%= f.input :latest_job_end_date, label: 'End date' %>
+	<%= f.input :latest_job_current, label: false, inline_label: 'I\'m currently holding this job (overwrites the end date)' %>
+	<%= f.input :latest_job_project_keywords, label: 'Noteworthy projects', placeholder: 'comma separated keywords' %>
+	<br>
+	<b> Your job before your current or last job </b><br><br>
+	<%= f.association :previous_job_profession, label: 'Profession', prompt: "Select profession" %>
+	<%= f.association :previous_job_company, label: 'Company', prompt: "Select company" %>
+	<%= f.association :previous_job_position, label: 'Position', prompt: "Select position" %>
+	<%= f.input :previous_job_salary, label: 'Yearly salary (USD)', placeholder: 'e.g. "65000"' %>
+	<%= f.input :previous_job_number_of_recommendations, label: 'Number of recommendations', placeholder: 'e.g. "5"' %>
+	<%= f.input :previous_job_start_date, label: 'Start date' %>
+	<%= f.input :previous_job_end_date, label: 'End date' %>
+	<%= f.input :previous_job_project_keywords, label: 'Noteworthy projects', placeholder: 'comma separated keywords' %>
+
+<br><br>
+<b>	Postgraduate education </b>
+<br><br>
+
+	<%= f.association :postgrad_institution, label: 'Postgraduate institution', prompt: "Select institution/university" %>
+	<%= f.association :postgrad_subject, label: 'Postgraduate subject', prompt: "Select subject" %>
+	<%= f.input :postgrad_gpa, label: 'Postgraduate GPA', placeholder: 'e.g. "3.65"' %>
+	<%= f.input :postgrad_number_of_recommendations, label: 'Number of recommendations from professors', placeholder: 'e.g. "5"'%>
+	<br>
+<b>	Graduate education </b>
+<br><br>
+	<%= f.association :grad_institution, label: 'Graduate institution', prompt: "Select institution/university" %>
+	<%= f.association :grad_subject, label: 'Graduate subject', prompt: "Select subject" %>
+	<%= f.input :grad_gpa, label: 'Graduate GPA', placeholder: 'e.g. "3.65"' %>
+	<%= f.input :grad_number_of_recommendations, label: 'Number of recommendations from professors', placeholder: 'e.g. "5"' %>
+	<br>
+	<b>	Undergraduate/college education </b>
+<br><br>
+		<%= f.association :undergrad_institution, label: 'Undergraduate institution/college', prompt: "Select institution/university" %>
+	<%= f.association :undergrad_subject, label: 'Undergraduate/College major', prompt: "Select major" %>
+	<%= f.input :undergrad_gpa, label: 'Undergraduate/College GPA', placeholder: 'e.g. "3.65"' %>
+	<%= f.input :undergrad_number_of_recommendations, label: 'Number of recommendations from professors', placeholder: 'e.g. "5"' %>
+	<br>
+	<b>	Highschool degree</b>
+<br><br>
+	<%= f.input :highschool_name, label: 'Highschool name' %>
+	<%= f.input :ranking_in_highschool, label: 'Your ranking in highschool', placeholder: 'e.g. "12"' %>
+	<%= f.input :percentile_in_highschool, label: 'Your percentile in highschool (%)', placeholder: 'e.g. "15"' %>
+	<%= f.input :recommendations_in_highschool, label: 'Number of recommendations by teachers', placeholder: 'e.g. "5"' %>
+
+
+<br><br>
+<b> Credentials </b>
+<br><br>
+	<%= f.input :cfa, label: 'Are you a CFA charterholder?' %>
+
+<br><br>
+<b> Test scores </b>
+<br><br>
+	<%= f.input :sat_math, label: 'SAT math', placeholder: 'e.g. "515"' %>
+	<%= f.input :sat_critical_reading, label: 'SAT critical reading', placeholder: 'e.g. "501"' %>
+	<%= f.input :sat_writing, label: 'SAT writing', placeholder: 'e.g. "493"' %>
+	<%= f.input :act_english, label: 'ACT English', placeholder: 'e.g. "18"' %>
+	<%= f.input :act_math, label: 'ACT math', placeholder: 'e.g. "22"' %>
+	<%= f.input :act_reading, label: 'ACT reading', placeholder: 'e.g. "21"' %>
+	<%= f.input :act_science, label: 'ACT science', placeholder: 'e.g. "24"' %>
+	<%= f.input :gmat, label: 'GMAT', placeholder: 'e.g. "540"' %>
+	<%= f.input :lsat, label: 'LSAT', placeholder: 'e.g. "151"' %>
 	
 <br><br>
-<b>Which of these languages can you speak and write like a native? </b>
+<b>Which of these languages can you speak, read and write like a native? </b>
+<br><br>
 <%= f.association :languages, as: :check_boxes %>
 <br><br>
-
-<b> What were your last two jobs? </b>
-	<%= f.association :latest_job_company %>
-	<%= f.association :latest_job_profession %>
-	<%= f.association :latest_job_position %>
-	<%= f.input :latest_job_salary %>
-	<%= f.input :latest_job_number_of_recommendations %>
-	<%= f.input :latest_job_start_date %>
-	<%= f.input :latest_job_end_date %>
-	<%= f.input :latest_job_current %>
-	<%= f.input :latest_job_project_keywords %>
-	<br>
-	<%= f.association :previous_job_company %>
-	<%= f.association :previous_job_profession %>
-	<%= f.association :previous_job_position %>
-	<%= f.input :previous_job_salary %>
-	<%= f.input :previous_job_number_of_recommendations %>
-	<%= f.input :previous_job_start_date %>
-	<%= f.input :previous_job_end_date %>
-	<%= f.input :previous_job_project_keywords %>
-
-<br><br>
-<b>	Your education </b>
-	<%= f.association :postgrad_institution %>
-	<%= f.association :postgrad_subject %>
-	<%= f.input :postgrad_gpa %>
-	<%= f.input :postgrad_number_of_recommendations %>
-	<br>
-	<%= f.association :grad_institution %>
-	<%= f.association :grad_subject %>
-	<%= f.input :grad_gpa %>
-	<%= f.input :grad_number_of_recommendations %>
-	<br>
-		<%= f.association :undergrad_institution %>
-	<%= f.association :undergrad_subject %>
-	<%= f.input :undergrad_gpa %>
-	<%= f.input :undergrad_number_of_recommendations %>
-	<br>
-
-	<%= f.input :highschool_name %>
-	<%= f.input :ranking_in_highschool %>
-	<%= f.input :percentile_in_highschool %>
-	<%= f.input :recommendations_in_highschool %>
-
-
-<br><br>
-
-<b> Your test scores </b>
-
-
-	<%= f.input :sat_math %>
-	<%= f.input :sat_critical_reading %>
-	<%= f.input :sat_writing %>
-	<%= f.input :act_english %>
-	<%= f.input :act_math %>
-	<%= f.input :act_reading %>
-	<%= f.input :act_science %>
-	<%= f.input :gmat %>
-	<%= f.input :lsat %>
-	<%= f.input :cfa %>
-
-
 
 
 
