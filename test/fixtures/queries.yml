@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  search_term: MyString
+  cfa: false
+  earliest_availability: 2013-04-20
+  min_salary: 1
+  targeted_profession_id: 1
+  min_degree: 1
+  subject_id: 1
+  min_gpa: 1.5
+  min_institution_tier_id: 1
+  past_profession_id: 1
+  past_company_id: 1
+  min_working_years: 1.5
+  min_highest_position_id: 1
+  min_highest_salary: 1
+  min_company_tier_id: 1
+
+two:
+  search_term: MyString
+  cfa: false
+  earliest_availability: 2013-04-20
+  min_salary: 1
+  targeted_profession_id: 1
+  min_degree: 1
+  subject_id: 1
+  min_gpa: 1.5
+  min_institution_tier_id: 1
+  past_profession_id: 1
+  past_company_id: 1
+  min_working_years: 1.5
+  min_highest_position_id: 1
+  min_highest_salary: 1
+  min_company_tier_id: 1

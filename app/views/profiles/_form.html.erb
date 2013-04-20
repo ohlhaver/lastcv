@@ -35,7 +35,7 @@
 <br><br>
 <b>	Postgraduate education </b>
 <br><br>
-
+	<%= f.input :postgrad_degree, label: false, inline_label: 'I hold a postgraduate degree.' %>
 	<%= f.association :postgrad_institution, label: 'Postgraduate institution', prompt: "Select institution/university" %>
 	<%= f.association :postgrad_subject, label: 'Postgraduate subject', prompt: "Select subject" %>
 	<%= f.input :postgrad_gpa, label: 'Postgraduate GPA', placeholder: 'e.g. "3.65"' %>
@@ -43,6 +43,7 @@
 	<br>
 <b>	Graduate education </b>
 <br><br>
+	<%= f.input :grad_degree, label: false, inline_label: 'I hold a graduate degree.' %>
 	<%= f.association :grad_institution, label: 'Graduate institution', prompt: "Select institution/university" %>
 	<%= f.association :grad_subject, label: 'Graduate subject', prompt: "Select subject" %>
 	<%= f.input :grad_gpa, label: 'Graduate GPA', placeholder: 'e.g. "3.65"' %>
@@ -50,6 +51,7 @@
 	<br>
 	<b>	Undergraduate/college education </b>
 <br><br>
+	<%= f.input :undergrad_degree, label: false, inline_label: 'I hold an undergraduate degree.' %>
 		<%= f.association :undergrad_institution, label: 'Undergraduate institution/college', prompt: "Select institution/university" %>
 	<%= f.association :undergrad_subject, label: 'Undergraduate/College major', prompt: "Select major" %>
 	<%= f.input :undergrad_gpa, label: 'Undergraduate/College GPA', placeholder: 'e.g. "3.65"' %>
@@ -57,6 +59,7 @@
 	<br>
 	<b>	Highschool degree</b>
 <br><br>
+	<%= f.input :highschool_diploma, label: false, inline_label: 'I have a highschool diploma.' %>
 	<%= f.input :highschool_name, label: 'Highschool name' %>
 	<%= f.input :ranking_in_highschool, label: 'Your ranking in highschool', placeholder: 'e.g. "12"' %>
 	<%= f.input :percentile_in_highschool, label: 'Your percentile in highschool (%)', placeholder: 'e.g. "15"' %>

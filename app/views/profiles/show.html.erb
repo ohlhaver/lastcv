@@ -1,9 +1,5 @@
-
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
 <p id="notice"><%= notice %></p>
-
+Last updated: <%= time_ago_in_words(@profile.updated_at)%> ago 
 <h4><u>Targeted job</u></h4>
 <b>Professions:</b>
   	<% @profile.professions.each do |profession| %>
@@ -22,54 +18,57 @@
   		<%= p.name %><br>
   	<%end%>
 <br>
-<h4><u>Job history</u></h4>	
+<h4><u>Job history</u></h4>
+<% if @profile.latest_job_profession %>	
 <b><% if @profile.latest_job_current == true%>Current job<%else%>Last job:<%end%></b> <%= @profile.latest_job_start_date %> till <% if @profile.latest_job_current == true%> now<%else%><%= @profile.latest_job_end_date %>.<%end%><br>
-	<%= @profile.latest_job_profession.name %>,
-	<%= @profile.latest_job_company.name %>,
-	<%= @profile.latest_job_position.name %>
+	<%= @profile.latest_job_profession.name if @profile.latest_job_profession %>,
+	<%= @profile.latest_job_company.name if @profile.latest_job_company %>,
+	<%= @profile.latest_job_position.name if @profile.latest_job_position %>
 	<% if @profile.latest_job_salary %><br>Annual salary: <%= @profile.latest_job_salary %> USD<%end%>
 	<% if @profile.latest_job_number_of_recommendations %><br># recommendations: <%= @profile.latest_job_number_of_recommendations %><%end%>
 	<%  if @profile.latest_job_project_keywords != ""%>
 	<br>Project keywords: <%= @profile.latest_job_project_keywords %> <%end%>
-
+<%end%>
+<% if @profile.previous_job_profession %>
 <br><br><b>Previous job</b> <%= @profile.previous_job_start_date %> till <%= @profile.previous_job_end_date %><br>
-	<%= @profile.previous_job_profession.name %>,
-	<%= @profile.previous_job_company.name %>,
-	<%= @profile.previous_job_position.name %>
+	<%= @profile.previous_job_profession.name if @profile.previous_job_profession %>,
+	<%= @profile.previous_job_company.name if @profile.previous_job_company%>,
+	<%= @profile.previous_job_position.name if @profile.previous_job_position %>
 	<% if @profile.previous_job_salary %><br>Annual salary: <%= @profile.previous_job_salary %> USD <%end%>
 	<% if @profile.previous_job_number_of_recommendations %><br># recommendations: <%= @profile.previous_job_number_of_recommendations %><br> <%end%>
 	<%  if @profile.previous_job_project_keywords != ""%>
 	<br>Project keywords: <%= @profile.previous_job_project_keywords %> <%end%>
 	<br>
-
+<%end%>
 <h4><u>Education</u></h4>	
 <% if @profile.cfa == true %><b><%= "CFA charterholder: "%></b>Yes <%end%>
 
-<% if @profile.postgrad_institution %>
+<% if @profile.postgrad_degree == true %>
 <br><br>
 <b>	Postgraduate degree: </b>
-	<br><%= @profile.postgrad_institution.name%>
-	<br><%= @profile.postgrad_subject.name %>
+	<br><%= @profile.postgrad_institution.name if @profile.postgrad_institution %>
+	<br><%= @profile.postgrad_subject.name if @profile.postgrad_subject %>
 	<br>GPA: <%= @profile.postgrad_gpa %>
 	<% if @profile.postgrad_number_of_recommendations %> <br># recommendations: <%=@profile.postgrad_number_of_recommendations%><%end%>
 <%end%>
 
-<% if @profile.grad_institution %>
+<% if @profile.grad_degree == true %>
 <br><br>
 <b>	Graduate degree:</b>
-	<br><%= @profile.grad_institution.name %>
-	<br><%= @profile.grad_subject.name %>
+	<br><%= @profile.grad_institution.name if @profile.grad_institution %>
+	<br><%= @profile.grad_subject.name if @profile.grad_subject  %>
 	<br>GPA:<%= @profile.grad_gpa %>
 	<% if @profile.grad_number_of_recommendations %> <br># recommendations: <%=@profile.grad_number_of_recommendations%><%end%>
 <%end%>
-<% if @profile.undergrad_institution %>
+<% if @profile.undergrad_degree == true %>
 <br><br>
 	<b>	Undergraduate degree:</b>
-	<br><%= @profile.undergrad_institution.name %>
-	<br>Major: <%= @profile.undergrad_subject.name %>
+	<br><%= @profile.undergrad_institution.name if @profile.undergrad_institution%>
+	<br>Major: <%= @profile.undergrad_subject.name if @profile.undergrad_subject%>
 	<br>GPA: <%= @profile.undergrad_gpa %>
 	<% if @profile.undergrad_number_of_recommendations %> <br># recommendations: <%=@profile.undergrad_number_of_recommendations%><%end%>
 <%end%>
+<% if @profile.highschool_diploma == true %>
 <br><br>
 	<b>	Highschool degree:</b>
 
@@ -77,7 +76,9 @@
 	<% if @profile.ranking_in_highschool %><br>Ranking in highschool: <%= @profile.ranking_in_highschool %><%end%>
 	<% if @profile.percentile_in_highschool %><br>Percentile in highschool: <%= @profile.percentile_in_highschool %><%end%>
 	<% if @profile.recommendations_in_highschool %><br># recommendations: <%= @profile.recommendations_in_highschool %>	<%end%>
+
 <br><br>
+<%end%>
 <h4><u>Test scores</u></h4>	
 	<% if @profile.sat_math %><%= "SAT math: " + @profile.sat_math.to_s %><br><%end%>
 	<% if @profile.sat_critical_reading %><%= "SAT critical reading: " + @profile.sat_critical_reading.to_s  %><br><%end%>
@@ -88,9 +89,11 @@
 	<% if @profile.act_science %><%= "ACT science: " + @profile.act_science.to_s %><br><%end%>
 	<% if @profile.gmat %><%= "GMAT: " + @profile.gmat.to_s %><br><%end%>
 	<% if @profile.lsat %><%= "LSAT: " + @profile.lsat.to_s %><br><%end%>
-<br>
+
 <h4><u>Native language skills</u></h4>	
 <% @profile.languages.each do |l| %>
 	<%= l.name %>,
 <%end%>
 <br><br>
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>

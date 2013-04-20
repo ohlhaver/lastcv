@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411143521) do
+ActiveRecord::Schema.define(:version => 20130420233426) do
 
   create_table "acceptable_cities", :force => true do |t|
     t.integer  "profile_id"
@@ -75,14 +75,28 @@ ActiveRecord::Schema.define(:version => 20130411143521) do
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.integer  "value"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "company_tier_id"
+  end
+
+  create_table "company_tiers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "institution_tiers", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "institutions", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.integer  "institution_tier_id"
   end
 
   create_table "languages", :force => true do |t|
@@ -193,6 +207,31 @@ ActiveRecord::Schema.define(:version => 20130411143521) do
     t.date     "previous_job_start_date"
     t.date     "previous_job_end_date"
     t.string   "previous_job_project_keywords"
+    t.boolean  "postgrad_degree"
+    t.boolean  "grad_degree"
+    t.boolean  "undergrad_degree"
+    t.boolean  "highschool_diploma"
+    t.integer  "education_level"
+  end
+
+  create_table "queries", :force => true do |t|
+    t.string   "search_term"
+    t.boolean  "cfa"
+    t.date     "latest_availability"
+    t.integer  "max_salary"
+    t.integer  "targeted_profession_id"
+    t.integer  "min_degree"
+    t.integer  "subject_id"
+    t.float    "min_gpa"
+    t.integer  "min_institution_tier_id"
+    t.integer  "past_profession_id"
+    t.integer  "past_company_id"
+    t.float    "min_working_years"
+    t.integer  "min_highest_position_id"
+    t.integer  "min_highest_salary"
+    t.integer  "min_company_tier_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "school_types", :force => true do |t|

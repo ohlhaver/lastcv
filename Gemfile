@@ -42,3 +42,5 @@ gem "meta_search",    '>= 1.1.0.pre'
 gem 'simple_form'
 
 gem 'bootstrap-sass', '~> 2.3.1.0'
+
+gem 'rails3-jquery-autocomplete'

@@ -1,21 +1,26 @@
-<h1>Listing profiles</h1>
+<h2>Listing profiles</h2>
+<div class ="span4">
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @profiles.each do |profile| %>
-  <tr>
-    <td><%= link_to profile.id, profile %></td>
-    <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
-    <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+</div> 
+<div class ="span8">
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th>Objective</th>
+      <th>Latest company</th>
+      <th>Latest position</th>
+      <th>Latest salary</th>
+      <th>Degree</th>
+      <th>Last update</th>
+      <th>Actions</th>
+      
+    </tr>
+  </thead>
+    <tbody>
+      <%= render @profiles %>
+    </tbody>
 </table>
 
-<br />
 
 <%= link_to 'New Profile', new_profile_path %>
+</div> 
