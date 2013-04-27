@@ -10,7 +10,7 @@ class Profile < ActiveRecord::Base
   :silicon_valley, :work_permit, :notice_period, :current_platform_ids, :current_skill_ids, :latest_job_contract, 
   :latest_job_annual_salary, :latest_job_hourly_salary, :previous_platform_ids, :previous_skill_ids, :previous_job_contract, 
   :previous_job_annual_salary, :previous_job_hourly_salary, :latest_job_company_name, :latest_job_company_size, :previous_job_company_name, 
-  :previous_job_company_size, :postgrad_number_of_recommendations, :ios_apps
+  :previous_job_company_size, :postgrad_number_of_recommendations, :ios_apps, :references, :confirmed
 
 
   has_many :profile_languages
@@ -56,6 +56,23 @@ class Profile < ActiveRecord::Base
         self.save
       end
    end
+
+  def skills
+    return (current_skills + previous_skills).uniq
+  end
+
+  def platforms
+    return (current_platforms + previous_platforms).uniq
+  end
+
+  def highest_hourly_salary 
+      return [latest_job_hourly_salary, previous_job_hourly_salary].max
+  end
+
+
+  def highest_annual_salary
+      return [latest_job_annual_salary, previous_job_annual_salary].max
+  end
 
 
 
