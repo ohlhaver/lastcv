@@ -1,25 +1,29 @@
 class Profile < ActiveRecord::Base
-  attr_accessible :act_composite, :act_english, :act_math, :act_reading, :act_science, :applicant_id, :earliest_start_date, 
-  :full_time, :gmat, :highschool_name, :lsat, :max_part_time_hours, :min_hourly_salary, :min_part_time_hours, :min_yearly_salary, 
-  :part_time, :percentile_in_highschool, :ranking_in_highschool, :recommendations_in_highschool, :sat_critical_reading, :sat_math,
+  attr_accessible :act_composite, :act_english, :act_math, :act_reading, :act_science, :applicant_id, 
+  :full_time, :highschool_name, :max_part_time_hours, :min_hourly_salary, :min_part_time_hours, :part_time, 
+  :percentile_in_highschool, :ranking_in_highschool, :sat_critical_reading, :sat_math,
   :sat_total_new, :sat_total_old, :sat_writing, :profession_ids, :cfa, :general_min_yearly_salary, :general_min_hourly_salary, 
-  :a_city_ids, :p_city_ids, :latest_job_profession_id, :latest_job_company_id, :latest_job_position_id, :latest_job_salary, 
-  :latest_job_number_of_recommendations, :latest_job_start_date, :latest_job_end_date, :latest_job_current, :latest_job_project_keywords, 
-  :previous_job_profession_id, :previous_job_company_id, :previous_job_position_id, :previous_job_salary, 
-  :previous_job_number_of_recommendations, :previous_job_start_date, :previous_job_end_date, :previous_job_project_keywords, 
-  :postgrad_institution_id, :postgrad_subject_id, :postgrad_gpa, :postgrad_number_of_recommendations, :grad_institution_id, :grad_subject_id, 
-  :grad_gpa, :grad_number_of_recommendations, :undergrad_institution_id, :undergrad_subject_id, :undergrad_gpa, 
-  :undergrad_number_of_recommendations, :language_ids, :postgrad_degree, :grad_degree, :undergrad_degree, :highschool_diploma
+  :latest_job_company_id, :latest_job_position_id, 
+  :latest_job_start_date, :latest_job_end_date, :latest_job_current, :previous_job_position_id, :previous_job_start_date, :previous_job_end_date, 
+  :postgrad_institution_id, :postgrad_subject_id, :postgrad_gpa, :grad_institution_id, :grad_subject_id, 
+  :grad_gpa, :undergrad_institution_id, :undergrad_subject_id, :undergrad_gpa, :language_ids, :postgrad_degree, :grad_degree, :undergrad_degree, :highschool_diploma,
+  :silicon_valley, :work_permit, :notice_period, :current_platform_ids, :current_skill_ids, :latest_job_contract, 
+  :latest_job_annual_salary, :latest_job_hourly_salary, :previous_platform_ids, :previous_skill_ids, :previous_job_contract, 
+  :previous_job_annual_salary, :previous_job_hourly_salary, :latest_job_company_name, :latest_job_company_size, :previous_job_company_name, 
+  :previous_job_company_size, :postgrad_number_of_recommendations, :ios_apps
 
-  has_many :targeted_professions
-  has_many :professions, through: :targeted_professions
+
   has_many :profile_languages
   has_many :languages, through: :profile_languages
+  has_many :current_job_platforms
+  has_many :previous_job_platforms
+  has_many :current_job_skills
+  has_many :previous_job_skills
 
-  has_many :acceptable_cities
-  has_many :permitted_cities
-  has_many :a_cities, through: :acceptable_cities, source: :city
-  has_many :p_cities, through: :permitted_cities, source: :city
+  has_many :current_platforms, through: :current_job_platforms, source: :platform
+  has_many :current_skills, through: :current_job_skills, source: :skill
+  has_many :previous_platforms, through: :previous_job_platforms, source: :platform
+  has_many :previous_skills, through: :previous_job_skills, source: :skill
 
 
   belongs_to :undergrad_institution, class_name: "Institution"
@@ -28,13 +32,9 @@ class Profile < ActiveRecord::Base
   belongs_to :grad_subject, class_name: "Subject"
   belongs_to :postgrad_institution, class_name: "Institution"
   belongs_to :postgrad_subject, class_name: "Subject"
-
-  belongs_to :latest_job_company, class_name: "Company"
-  belongs_to :latest_job_profession, class_name: "Profession"
   belongs_to :latest_job_position, class_name: "Position"
-  belongs_to :previous_job_company, class_name: "Company"
-  belongs_to :previous_job_profession, class_name: "Profession"
   belongs_to :previous_job_position, class_name: "Position"
+
 
   after_save :generate_education_level
 

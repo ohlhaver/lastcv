@@ -2,6 +2,16 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
+    
+    if session[:query_id]
+      @query = Query.find(session[:query_id])
+    else
+      @query = Query.create!
+      session[:query_id] = @query.id
+  
+    end
+
+
     @profiles = Profile.all
 
     respond_to do |format|

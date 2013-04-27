@@ -1,0 +1,28 @@
+<%= simple_form_for(@query) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+  	<%= f.input :search_term, label: "Search term" %>
+  	<%= f.input :cfa, label: "CFA?" %>
+  	<%= f.input :latest_availability %>
+
+  	<%= f.input :max_salary %>
+  	<%= f.association :targeted_profession %>
+  	<%= f.input :min_degree %>
+  	<%= f.association :subject %>
+  	<%= f.input :min_gpa %>
+  	<%= f.association :min_institution_tier %>
+  	<%= f.association :past_profession %>
+  	<%= f.association :past_company %>
+  	<%= f.input :min_working_years %>
+  	<%= f.association :min_highest_position %>
+  	<%= f.input :min_highest_salary %>
+  	<%= f.association :min_company_tier %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  profession_id: 1
-  position_id: 1
-
-two:
-  profession_id: 1
-  position_id: 1

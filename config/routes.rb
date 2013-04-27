@@ -1,6 +1,6 @@
 Lastcv::Application.routes.draw do
   
-
+  resources :queries
   resources :profiles
 
   get "profiles/new"
