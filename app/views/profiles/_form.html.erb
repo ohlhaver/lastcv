@@ -3,44 +3,44 @@
 
   <div class="form-inputs">
 <b>You job status</b><br><br>
-	<%= f.input :silicon_valley, label: "Are you interested in full-time positions as an iOS developer in Silicon Valley?", inline_label: 'Yes, I am interested' %>
+	<%= f.input :silicon_valley, label: "Are you interested in full-time positions as an iOS developer in Silicon Valley?", inline_label: 'Yes' %>
 	<%= f.input :work_permit, label: 'Your are permitted to work in the US?', inline_label: 'Yes, I am a citizen, resident, greencard or work-visa holder.' %>
-	<%= f.input :general_min_yearly_salary, label: 'Your minimum annual salary (USD)', placeholder: 'e.g. "65000"'%>
-
+	<%= f.input :general_min_yearly_salary, label: 'Your minimum desired annual salary (USD)', placeholder: 'e.g. "65000"'%>
   	<%= f.input :notice_period, label: 'How quickly could you start (in weeks)?', placeholder: 'e.g. "3"'%>
  
 <br>
 <b> Your iOS apps </b>
 <br><br> 
-<%= f.input :ios_apps, label: 'Number of iOS apps published in the app-store that you built yourself, not in a team' %>
+<%= f.input :ios_apps, label: 'Number of iOS apps published in the app-store that you built yourself, not in a team', placeholder: 'e.g. "5"' %>
+<%= f.input :ios_years, label: 'Number of year of experience programming iOS apps', placeholder: 'e.g. "2.5"' %>
 <br>
 <b> Your current or last job at which you built a mobile app </b>
 <br><br>
 	<%= f.input :latest_job_company_name, label: 'Company name (optional)' %>
 	<%= f.input :latest_job_company_size, collection: [["myself only",1], ["2-10",2], ["11-50", 3],["51-200", 4],["201-500", 5],["501-1,000", 6],["1,001-5,000", 7],["5,001-10,000", 8],["10,001+",9]], prompt: "Select number of employees", label: 'Company size' %>
-
+	<%= f.association :latest_job_position, label: 'Position', prompt: "Select position" %>
+	<%= f.input :latest_job_team_size, label: 'Number of people you led (if you were Team Lead or CTO)', placeholder: 'e.g. "5"' %>
 	<%= f.association :current_platforms, as: :check_boxes, label: 'Mobile platform' %>
 	<%= f.association :current_skills, as: :check_boxes, label: 'Skills applied by you' %>
-	<%= f.input :latest_job_contract, label: 'Full-time or part-time?', collection: [["Full-time",1], ["Part-time",2]], prompt: "Select contract" %>
-	<%= f.input :latest_job_annual_salary, label: 'Annual salary (USD) if full-time', placeholder: 'e.g. "65000"' %>
-	<%= f.input :latest_job_hourly_salary, label: 'Hourly salary (USD) if part-time', placeholder: 'e.g. "50"' %>
-	<%= f.association :latest_job_position, label: 'Position', prompt: "Select position" %>
 	<%= f.input :latest_job_start_date, label: 'Start date' %>
 	<%= f.input :latest_job_end_date, label: 'End date' %>
 	<%= f.input :latest_job_current, label: false, inline_label: 'I\'m currently holding this job (overwrites the end date)' %>
+	<%= f.input :latest_job_contract, collection: [["Full-time",1], ["Part-time",2]], prompt: "Select contract", label: 'Full-time or part-time?' %>
+	<%= f.input :latest_job_annual_salary, label: 'Annual salary (USD) if full-time', placeholder: 'e.g. "65000"' %>
+	<%= f.input :latest_job_hourly_salary, label: 'Hourly salary (USD) if part-time', placeholder: 'e.g. "50"' %>
 	<br>
 	<b> Your job before your current or last job at which you built a mobile app </b><br><br>
 	<%= f.input :previous_job_company_name, label: 'Company name (optional)' %>
 	<%= f.input :previous_job_company_size, collection: [["myself only",1], ["2-10",2], ["11-50", 3],["51-200", 4],["201-500", 5],["501-1,000", 6],["1,001-5,000", 7],["5,001-10,000", 8],["10,001+",9]], prompt: "Select number of employees", label: 'Company size' %>
-	
+	<%= f.association :previous_job_position, label: 'Position', prompt: "Select position" %>
+	<%= f.input :previous_job_team_size, label: 'Number of people you led (if you were Team Lead or CTO)', placeholder: 'e.g. "5"' %>
 	<%= f.association :previous_platforms, as: :check_boxes, label: 'Mobile platform' %>
 	<%= f.association :previous_skills, as: :check_boxes, label: 'Skills applied by you' %>
-	<%= f.input :latest_job_contract, label: 'Full-time or part-time?', collection: [["Full-time",1], ["Part-time",2]], prompt: "Select contract" %>
-	<%= f.input :previous_job_annual_salary, label: 'Annual salary (USD) if full-time', placeholder: 'e.g. "65000"' %>
-	<%= f.input :previous_job_hourly_salary, label: 'Hourly salary (USD) if part-time', placeholder: 'e.g. "50"' %>
-	<%= f.association :previous_job_position, label: 'Position', prompt: "Select position" %>
 	<%= f.input :previous_job_start_date, label: 'Start date' %>
 	<%= f.input :previous_job_end_date, label: 'End date' %>
+	<%= f.input :previous_job_contract, collection: [["Full-time",1], ["Part-time",2]], prompt: "Select contract" %>
+	<%= f.input :previous_job_annual_salary, label: 'Annual salary (USD) if full-time', placeholder: 'e.g. "65000"' %>
+	<%= f.input :previous_job_hourly_salary, label: 'Hourly salary (USD) if part-time', placeholder: 'e.g. "50"' %>
 
 <br><br>
 <b> Standardized test scores </b>
@@ -76,13 +76,11 @@
 	<%= f.input :postgrad_gpa, label: 'Postgraduate GPA', placeholder: 'e.g. "3.65"' %>
 	<br>
 
-
 <br>
 <b>	Confirm accuracy </b>
 <br><br>
 
-<%= f.input :confirmed, label: false, inline_label: 'I hereby confirm that all my responses above are 100% accurate.' %>	
-<%= f.input :references, label: false, inline_label: 'I am able to provide reference material for any of the responses above if needed.' %>	
+<%= f.input :confirmed, label: false, inline_label: 'I hereby confirm that all my responses above are 100% true and accurate and that I am able to provide reference material for any of the responses if needed.' %>	
   </div>
 
   <div class="form-actions">

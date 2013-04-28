@@ -3,15 +3,15 @@ class Profile < ActiveRecord::Base
   :full_time, :highschool_name, :max_part_time_hours, :min_hourly_salary, :min_part_time_hours, :part_time, 
   :percentile_in_highschool, :ranking_in_highschool, :sat_critical_reading, :sat_math,
   :sat_total_new, :sat_total_old, :sat_writing, :profession_ids, :cfa, :general_min_yearly_salary, :general_min_hourly_salary, 
-  :latest_job_company_id, :latest_job_position_id, 
-  :latest_job_start_date, :latest_job_end_date, :latest_job_current, :previous_job_position_id, :previous_job_start_date, :previous_job_end_date, 
+  :latest_job_company_id, :latest_job_position_id, :latest_job_start_date, :latest_job_end_date, :latest_job_current, 
+  :previous_job_position_id, :previous_job_start_date, :previous_job_end_date, 
   :postgrad_institution_id, :postgrad_subject_id, :postgrad_gpa, :grad_institution_id, :grad_subject_id, 
-  :grad_gpa, :undergrad_institution_id, :undergrad_subject_id, :undergrad_gpa, :language_ids, :postgrad_degree, :grad_degree, :undergrad_degree, :highschool_diploma,
-  :silicon_valley, :work_permit, :notice_period, :current_platform_ids, :current_skill_ids, :latest_job_contract, 
+  :grad_gpa, :undergrad_institution_id, :undergrad_subject_id, :undergrad_gpa, :language_ids, :postgrad_degree, :grad_degree,
+  :undergrad_degree, :highschool_diploma, :silicon_valley, :work_permit, :notice_period, :current_platform_ids, :current_skill_ids, :latest_job_contract, 
   :latest_job_annual_salary, :latest_job_hourly_salary, :previous_platform_ids, :previous_skill_ids, :previous_job_contract, 
   :previous_job_annual_salary, :previous_job_hourly_salary, :latest_job_company_name, :latest_job_company_size, :previous_job_company_name, 
-  :previous_job_company_size, :postgrad_number_of_recommendations, :ios_apps, :references, :confirmed
-
+  :previous_job_company_size, :postgrad_number_of_recommendations, :ios_apps, :references, :confirmed, 
+  :latest_job_team_size, :previous_job_team_size, :ios_years
 
   has_many :profile_languages
   has_many :languages, through: :profile_languages
@@ -35,8 +35,13 @@ class Profile < ActiveRecord::Base
   belongs_to :latest_job_position, class_name: "Position"
   belongs_to :previous_job_position, class_name: "Position"
 
-
   after_save :generate_education_level
+
+  validates_presence_of :silicon_valley, :notice_period, :general_min_yearly_salary, :confirmed, :ios_years
+
+
+
+
 
   def generate_education_level
       el = self.education_level

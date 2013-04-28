@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427171045) do
+ActiveRecord::Schema.define(:version => 20130428184705) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -200,26 +200,24 @@ ActiveRecord::Schema.define(:version => 20130427171045) do
     t.integer  "windows_apps"
     t.boolean  "confirmed"
     t.boolean  "references"
+    t.integer  "latest_job_team_size"
+    t.integer  "previous_job_team_size"
+    t.float    "ios_years"
   end
 
   create_table "queries", :force => true do |t|
     t.string   "search_term"
-    t.boolean  "cfa"
-    t.date     "latest_availability"
     t.integer  "max_salary"
-    t.integer  "targeted_profession_id"
     t.integer  "min_degree"
     t.integer  "subject_id"
     t.float    "min_gpa"
-    t.integer  "min_institution_tier_id"
-    t.integer  "past_profession_id"
-    t.integer  "past_company_id"
-    t.float    "min_working_years"
     t.integer  "min_highest_position_id"
     t.integer  "min_highest_salary"
-    t.integer  "min_company_tier_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+    t.integer  "max_notice_period"
+    t.boolean  "top_schools"
+    t.float    "min_years"
   end
 
   create_table "skills", :force => true do |t|

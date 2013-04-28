@@ -4,21 +4,19 @@
   <div class="form-inputs">
 
   	<%= f.input :search_term, label: "Search term" %>
-  	<%= f.input :cfa, label: "CFA?" %>
-  	<%= f.input :latest_availability %>
-
+  	<%= f.input :max_notice_period %>
   	<%= f.input :max_salary %>
-  	<%= f.association :targeted_profession %>
-  	<%= f.input :min_degree %>
+    <%= f.input :min_years %>
+    <%= f.association :min_highest_position %>
+    <%= f.input :min_highest_salary %>
+  	<%= f.input :min_degree, collection: [["Undergraduate/College",2], ["Graduate",3], ["Postgraduate", 4]], prompt: "Select minimum degree", label: 'Minimum degree' %>
+
+
   	<%= f.association :subject %>
   	<%= f.input :min_gpa %>
-  	<%= f.association :min_institution_tier %>
-  	<%= f.association :past_profession %>
-  	<%= f.association :past_company %>
-  	<%= f.input :min_working_years %>
-  	<%= f.association :min_highest_position %>
-  	<%= f.input :min_highest_salary %>
-  	<%= f.association :min_company_tier %>
+  	<%= f.input :top_schools %>
+
+
 
   </div>
 

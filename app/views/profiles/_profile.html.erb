@@ -1,23 +1,24 @@
 <tr onclick="location.href='<%=profile_path(profile)%>';" style="cursor:pointer">
 	<td>
-		<% profile.professions.each do |profession| %>
-		  		<%= profession.name %>,
-		  	<%end%> 
-	</td>		
-	<td>
-		<%= profile.latest_job_company.name if profile.latest_job_company %>
-	</td>
-	<td>
-
 		<%= profile.latest_job_position.name if profile.latest_job_position %>
 	</td>
-	<td>
-		<% if profile.latest_job_salary %><%= profile.latest_job_salary %> USD<%end%>
-	</td>
-	<td>
 
-		<%= display_education_level(profile.education_level) %>
+	<td>
+		<% profile.platforms.each do |platform| %>
+		  		<%= platform.name %>,
+		<%end%> 
 	</td>
+	<td>
+		<%= profile.ios_years %>
+	</td>		
+	<td>
+		<%= display_education_level(profile.education_level) %>
+	</td>		
+	<td>
+		<%= profile.general_min_yearly_salary %>
+	</td>
+
+
 	<td>
 		<%= time_ago_in_words(profile.updated_at)%> ago 
 	</td>
