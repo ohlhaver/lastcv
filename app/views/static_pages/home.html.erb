@@ -1,0 +1,9 @@
+<% if current_candidate %>
+	<% if current_candidate.invitations %>
+	Contact requests for you:<br><br>
+	<%= render current_candidate.invitations %>
+	<% else %>
+	No requests yet.
+	<% end %>
+<% end %>
+

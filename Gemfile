@@ -40,7 +40,8 @@ gem 'jquery-rails'
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 gem 'simple_form'
-
 gem 'bootstrap-sass', '~> 2.3.1.0'
-
 gem 'rails3-jquery-autocomplete'
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+gem 'omniauth-facebook', '1.4.0'

@@ -34,4 +34,7 @@ Lastcv::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  ENV['FACEBOOK_APP_ID'] = '379615408814733'
+  ENV['FACEBOOK_SECRET'] = '46c1b12f4eba5640559063625d0c85ca'
 end

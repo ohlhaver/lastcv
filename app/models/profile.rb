@@ -13,18 +13,17 @@ class Profile < ActiveRecord::Base
   :previous_job_company_size, :postgrad_number_of_recommendations, :ios_apps, :references, :confirmed, 
   :latest_job_team_size, :previous_job_team_size, :ios_years
 
+  has_one :candidate
   has_many :profile_languages
   has_many :languages, through: :profile_languages
   has_many :current_job_platforms
   has_many :previous_job_platforms
   has_many :current_job_skills
   has_many :previous_job_skills
-
   has_many :current_platforms, through: :current_job_platforms, source: :platform
   has_many :current_skills, through: :current_job_skills, source: :skill
   has_many :previous_platforms, through: :previous_job_platforms, source: :platform
   has_many :previous_skills, through: :previous_job_skills, source: :skill
-
 
   belongs_to :undergrad_institution, class_name: "Institution"
   belongs_to :undergrad_subject, class_name: "Subject"
@@ -38,10 +37,6 @@ class Profile < ActiveRecord::Base
   after_save :generate_education_level
 
   validates_presence_of :silicon_valley, :notice_period, :general_min_yearly_salary, :confirmed, :ios_years
-
-
-
-
 
   def generate_education_level
       el = self.education_level

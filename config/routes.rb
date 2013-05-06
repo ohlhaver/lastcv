@@ -1,14 +1,37 @@
 Lastcv::Application.routes.draw do
   
+  get "static_pages/home"
+
+  get "static_pages/about"
+
+  get "static_pages/contact"
+
+  get "static_pages/faq"
+
+  get "sessions/new"
+  resources :users
+  resources :sessions
   resources :queries
   resources :profiles
-
+  resources :invitations
   get "profiles/new"
-
   get "profiles/create"
+  
+  resources :profiles do
+    member do
+      get :confirm, :invite
+    end
+  end
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+
+  get 'edit', to: 'users#edit', as: 'edit'
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: 'sessions#new', as: 'login'
+  get 'logout', to: 'sessions#destroy', as: 'logout'
+
+  match 'auth/:provider/callback', to: 'sessions#candidate_create'
+  match 'auth/failure', to: redirect('/')
+  match 'signout', to: 'sessions#candidate_destroy', as: 'signout'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -59,11 +82,13 @@ Lastcv::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => "static_pages#home"
 
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+    devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 end

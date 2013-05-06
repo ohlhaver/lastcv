@@ -1,5 +1,8 @@
-<%= link_to "Request contact details from this candidate", :id => @profile.id, :action => "confirm"  %>
-
+<h3>Are you sure you want to request this candidate's contact details?<br>
+	If the candidate approves you will receive the candidates full name, facebook id, and email address and you will be charged US$ 4.95</h3>
+	<br><br>
+	<%= link_to "Confirm request", :action => "invite" %>
+<br><br><br>
 <p id="notice"><%= notice %></p>
 Last updated: <%= time_ago_in_words(@profile.updated_at)%> ago 
 <h4><u>Job status</u></h4>
@@ -79,5 +82,3 @@ Last updated: <%= time_ago_in_words(@profile.updated_at)%> ago
 	<% if @profile.act_reading %><%= "ACT reading: " + @profile.act_reading.to_s %><br><%end%>
 	<% if @profile.act_science %><%= "ACT science: " + @profile.act_science.to_s %><br><%end%>
 <br><br>
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>

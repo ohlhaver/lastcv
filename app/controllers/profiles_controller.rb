@@ -1,4 +1,9 @@
 class ProfilesController < ApplicationController
+  before_filter :authorize_user, only: [:confirm, :invite]
+  before_filter :first_profile, only: [:create, :new]
+  before_filter :authorize_candidate, only: [:create, :new]
+  before_filter :correct_candidate, only: [:edit, :update, :destroy]
+
   # GET /profiles
   # GET /profiles.json
   def index
@@ -12,7 +17,7 @@ class ProfilesController < ApplicationController
     end
 
 
-    @profiles = Profile.all
+    @profiles = Profile.all.select {|i| i.candidate }
 
     respond_to do |format|
       format.html # index.html.erb
@@ -50,15 +55,17 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(params[:profile])
-
     respond_to do |format|
       if @profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render json: @profile, status: :created, location: @profile }
+        current_candidate.profile_id = @profile.id #unless current_candidate.profile
+        current_candidate.save!
       else
         format.html { render action: "new" }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
+
     end
   end
 
@@ -89,4 +96,23 @@ class ProfilesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def confirm
+    @profile = Profile.find(params[:id])
+        respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @profile }
+  end
+
+  def invite
+    @profile = Profile.find(params[:id])
+    invitation = Invitation.new
+      invitation.user_id = current_user.id
+      invitation.candidate_id = @profile.candidate.id
+    invitation.save
+    redirect_to @profile, :notice => "Candidate has been invited."
+  end
+
+  end
+
 end
