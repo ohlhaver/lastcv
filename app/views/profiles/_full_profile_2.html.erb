@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+<h4><u>Anonymous profile</u></h4>
+Last updated: <b><%= time_ago_in_words(@profile.updated_at)%> ago </b>
+<h5><u>Job status</u></h5>
+ Notice period: 
+  <b>	<%= @profile.notice_period.to_s %> week(s) </b>
+<br> Min. desired annual salary:  	
+  	<b><%= @profile.general_min_yearly_salary %> USD </b>
+<br>
+U.S. work permit: <b><% if @profile.work_permit == true %>Yes<%else%>No<% end %></b>
+<br>
+Number of self-built iOS apps in the app store:
+<b><%= @profile.ios_apps.to_s %></b>
+
+
+<h5><u>Job history</u></h5>
+
+<% if @profile.current_platforms %>
+<% if @profile.latest_job_current == true%>Current job<%else%>Last job:<%end%>
+<b><%= @profile.latest_job_start_date %> till <% if @profile.latest_job_current == true%> now<%else%><%= @profile.latest_job_end_date %>.<%end%></b>
+<br>
+<% if @profile.latest_job_company_name != "" %> Company name: <b><%= @profile.latest_job_company_name %></b><br><% end %>
+<% if @profile.latest_job_company_size %> Company size: <b><%= number_of_employees(@profile.latest_job_company_size) %> employees</b> <% end %>
+<br>
+Contract: <b><%= contract(@profile.latest_job_contract) %></b>
+<br>
+<% if @profile.latest_job_position %>Position: <b><%= @profile.latest_job_position.name %></b><% end %>
+<br>
+<% if @profile.latest_job_team_size %>Team size: <b><%= @profile.latest_job_team_size %></b><% end %>
+
+
+<br>
+Platforms:
+	<b><% @profile.current_platforms.each do |platform| %>
+  		<%= platform.name %>,
+  	<%end%> </b>
+<br>
+Employed skills:
+  	<b><% @profile.current_skills.each do |skill| %>
+  		<%= skill.name %>,
+  	<%end%> </b>
+	<% if @profile.latest_job_annual_salary %><br>Annual salary: <b><%= @profile.latest_job_annual_salary %> USD</b><%end%>
+	<% if @profile.latest_job_hourly_salary %><br>Hourly salary: <b><%= @profile.latest_job_hourly_salary %> USD</b><%end%>
+<%end%>
+
+
+<h5><u>Education</u></h5>
+
+<% if @profile.undergrad_degree == true %>
+		Undergraduate degree:
+	<br><b><%= @profile.undergrad_institution.name if @profile.undergrad_institution%></b>
+	<br>Major: <b><%= @profile.undergrad_subject.name if @profile.undergrad_subject%></b>
+	<br>GPA: <b><%= @profile.undergrad_gpa %></b>
+	<br><br>
+<%end%>
+
+<% if @profile.grad_degree == true %>
+	Graduate degree:
+	<br><b><%= @profile.grad_institution.name if @profile.grad_institution %></b>
+	<br><b><%= @profile.grad_subject.name if @profile.grad_subject  %></b>
+	<br>GPA:<b><%= @profile.grad_gpa %></b>
+	<br><br>
+<%end%>
+
+<% if @profile.postgrad_degree == true %>
+	Postgraduate degree:
+	<br><b><%= @profile.postgrad_institution.name if @profile.postgrad_institution %></b>
+	<br><b><%= @profile.postgrad_subject.name if @profile.postgrad_subject %></b>
+	<br>GPA: <b><%= @profile.postgrad_gpa %></b>
+	<br><br>
+<%end%>
+<h5><u>Standardized test scores</u></h5>	
+	<% if @profile.sat_math %><%= "SAT math: " + @profile.sat_math.to_s %><br><%end%>
+	<% if @profile.sat_critical_reading %><%= "SAT critical reading: " + @profile.sat_critical_reading.to_s  %><br><%end%>
+	<% if @profile.sat_writing %><%= "SAT writing: " + @profile.sat_writing.to_s  %><br><%end%>
+	<% if @profile.act_english %><%= "ACT English: " + @profile.act_english.to_s %><br><%end%>
+	<% if @profile.act_math %><%= "ACT math: " + @profile.act_math.to_s %><br><%end%>
+	<% if @profile.act_reading %><%= "ACT reading: " + @profile.act_reading.to_s %><br><%end%>
+	<% if @profile.act_science %><%= "ACT science: " + @profile.act_science.to_s %><br><%end%>
+<br><br>

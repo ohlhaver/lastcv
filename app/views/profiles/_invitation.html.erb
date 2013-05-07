@@ -5,7 +5,7 @@
 
 	<td>
 		<% invitation.candidate.profile.platforms.each do |platform| %>
-		  		<%= platform.name %>,
+		  		<%= platform.name %> 
 		<%end%> 
 	</td>
 	<td>
@@ -14,12 +14,4 @@
 	<td>
 		<%= display_education_level(invitation.candidate.profile.education_level) %>
 	</td>		
-	<td>
-		<%= invitation.candidate.profile.general_min_yearly_salary %>
-	</td>
-
-
-	<td>
-		<%= time_ago_in_words(invitation.candidate.profile.updated_at)%> ago 
-	</td>
   </tr>

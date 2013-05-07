@@ -1,15 +1,17 @@
 <table class="table table-striped table-hover">
     <thead>
     <tr>
-
+      <th>Name</th>
       <th>Latest position</th>
       <th>Platform</th>
       <th>Experience in years</th>
       <th>Degree</th>
+ 
+
       
     </tr>
   </thead>
     <tbody>
-      <%= render :partial => 'profiles/invitation', :collection => @invitations %>
+      <%= render :partial => 'profiles/accepted_invitation', :collection => @invitations %>
     </tbody>
 </table>

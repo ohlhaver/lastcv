@@ -9,33 +9,37 @@
 <body>
 	<div class="container">
 		<div class="row">
-  			<div class="span12">
-        <h2><%= link_to "BriefCV", root_path %></h2>  
-        Recruiter:
-          <% if current_user %>
-            Logged in as <strong><%= current_user.email %></strong>.
-            <%= link_to "Log Out", logout_path %> or 
-            <%= link_to "Edit", edit_user_path(current_user) %>
-          <% else %>
-            <%= link_to "Sign Up", signup_path %> or
-            <%= link_to "Log In", login_path %>
-          <% end %>
-          <br><br>
-        Candidate:
-        <% if current_candidate %>
-          Signed in as <strong><%= current_candidate.name %></strong>
-          <%= link_to "Sign out", signout_path, id: "sign_out" %>
+  			<div class="span2">
+          <h2><%= link_to "BriefCV", root_path %></h2>
+        </div>
+        <div class="span6">  
           <br>
-          <% if current_candidate.profile %>
-            <%= link_to 'Edit your BriefCV', edit_profile_path(current_candidate.profile) %>
-            <%else%>
-            <%= link_to 'Create your BriefCV (your 100% anonymous profile)', new_profile_path %>
-          <%end%>
-        <% else %>
-          <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-        <% end %>
-        <br><br>
-  				<%= yield %>
+          
+          <% if current_candidate %>
+            Candidate: Signed in as <strong><%= current_candidate.name %></strong>
+            <%= link_to "Sign out", signout_path, id: "sign_out" %>
+            <br>
+            <% if current_candidate.profile %>
+              <%= link_to 'Edit your BriefCV', edit_profile_path(current_candidate.profile) %>
+              <%else%>
+              <%= link_to 'Create your BriefCV (your 100% anonymous profile)', new_profile_path %>
+            <%end%>
+          <% elsif current_user %>
+             Recruiter: Logged in as <strong><%= current_user.email %></strong>.
+              <%= link_to "Log Out", logout_path %> or 
+              <%= link_to "Edit", edit_user_path(current_user) %>
+          <% else %>
+          Candidate: <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> |
+          Recruiter:
+              <%= link_to "Sign Up", signup_path %> or
+              <%= link_to "Log In", login_path %>
+            <% end %>
+            <br><br>
+          
+          <br><br>
+        </div>
+        <div class="span12">
+    				<%= yield %>
   			</div>
  		</div>
 	</div>

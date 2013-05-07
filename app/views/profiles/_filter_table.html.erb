@@ -1,10 +1,12 @@
-<h4>Search and filter profiles:</h4>
-<br>
+<div class="row">
+<div class ="span8">
+	<h3>iOS hackers open for new full-time challenges</h3>
+	<br>
+  <%= render 'profiles/table' %>
+</div> 
 <div class ="span3">
+	<h3>Search and filter</h3>
+	<br>
   <%= render 'queries/form' %>
 </div> 
-<div class ="span8">
-  <%= render 'profiles/table' %>
-
-<%= link_to 'New Profile', new_profile_path %>
-</div> 
+</div>

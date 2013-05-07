@@ -6,9 +6,11 @@ class InvitationsController < ApplicationController
 
 	def accept
 		@invitation = Invitation.find(params[:id])
-		approval = Approval.new
-		approval.invitation_id = @invitation.id
-		approval.save
+		unless @invitation.approval
+			approval = Approval.new
+			approval.invitation_id = @invitation.id
+			approval.save
+		end
 		redirect_to @invitation
 	end
 

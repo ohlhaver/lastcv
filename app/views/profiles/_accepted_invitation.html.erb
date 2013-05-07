@@ -1,0 +1,21 @@
+<tr onclick="location.href='<%=profile_path(accepted_invitation.candidate.profile)%>';" style="cursor:pointer">
+	<td>
+		<%= accepted_invitation.candidate.name %>
+	</td>
+	<td>
+		<%= accepted_invitation.candidate.profile.latest_job_position.name if accepted_invitation.candidate.profile.latest_job_position %>
+	</td>
+
+	<td>
+		<% accepted_invitation.candidate.profile.platforms.each do |platform| %>
+		  		<%= platform.name %> 
+		<%end%> 
+	</td>
+	<td>
+		<%= accepted_invitation.candidate.profile.ios_years %>
+	</td>		
+	<td>
+		<%= display_education_level(accepted_invitation.candidate.profile.education_level) %>
+	</td>		
+
+  </tr>
