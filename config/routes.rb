@@ -20,6 +20,13 @@ Lastcv::Application.routes.draw do
   resources :profiles do
     member do
       get :confirm, :invite
+      post :confirm, :invite
+    end
+  end
+
+  resources :invitations do
+    member do
+      post :accept
     end
   end
 

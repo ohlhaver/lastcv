@@ -1,0 +1,6 @@
+<h4><u>Contact details</u></h4>
+Name: <b> <%= @profile.candidate.name %></b>
+<br>
+Email: <b> <%= @profile.candidate.email %></b>
+<br>
+Facebook id: <b> <%= link_to "https://www.facebook.com/" + @profile.candidate.uid, "https://www.facebook.com/" + @profile.candidate.uid  %></b>

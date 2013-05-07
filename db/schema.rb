@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506025740) do
+ActiveRecord::Schema.define(:version => 20130506185235) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -55,6 +55,12 @@ ActiveRecord::Schema.define(:version => 20130506025740) do
     t.string   "skype_id"
     t.string   "linked_in_url"
     t.integer  "profile_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "approvals", :force => true do |t|
+    t.integer  "invitation_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

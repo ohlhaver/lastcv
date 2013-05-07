@@ -106,11 +106,14 @@ class ProfilesController < ApplicationController
 
   def invite
     @profile = Profile.find(params[:id])
-    invitation = Invitation.new
-      invitation.user_id = current_user.id
-      invitation.candidate_id = @profile.candidate.id
-    invitation.save
-    redirect_to @profile, :notice => "Candidate has been invited."
+    unless find_invitation(@profile)
+      invitation = Invitation.new
+        invitation.user_id = current_user.id
+        invitation.candidate_id = @profile.candidate.id
+      invitation.save
+    end
+      redirect_to @profile, :notice => "Candidate has been invited."
+    
   end
 
   end

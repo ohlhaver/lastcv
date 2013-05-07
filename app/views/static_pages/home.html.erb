@@ -1,9 +1,26 @@
 <% if current_candidate %>
-	<% if current_candidate.invitations %>
+	<% if current_candidate.invitations.any? %>
 	Contact requests for you:<br><br>
 	<%= render current_candidate.invitations %>
+	<h5> If you accept a request, your name, email address, and Facebook url <br>will be submitted to the respective recruiter. </h5>
 	<% else %>
 	No requests yet.
 	<% end %>
 <% end %>
+
+<% if current_user %>
+	<% if @approved_invitations.any? %>
+	<h4>Your accepted requests:</h4>
+	<% @invitations = @approved_invitations %>
+		<%= render "profiles/invitations_table" %>
+	<% end %> 
+
+	<% if @open_invitations.any? %>
+	<h4>Your open requests:</h4>
+	<% @invitations = @open_invitations %>
+		<%= render "profiles/invitations_table" %>
+	<% end %>
+	<%= render "profiles/filter_table"%>
+<% end %>
+
 

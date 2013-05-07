@@ -1,4 +1,26 @@
-<h4>Invitation</h4>
+<h4>Request for your contact details</h4>
 
-<b>Company:</b>
-<%= @invitation.user.company_name %>
+
+Company:
+<b><%= @invitation.user.company_name %>
+<% if @invitation.user.verified == true %>
+(verified by BriefCV)
+<%end%>
+</b>
+<br>
+Company website:
+<b><%= @invitation.user.website %></b>
+<br>
+Created:
+<b><%= @invitation.created_at.to_s %></b>
+<br>
+<br><br>
+<% if @invitation.approval %>
+	<b>You accepted this request at <%= @invitation.approval.created_at.to_s %></b>
+<%else%>
+	<%= button_to "Accept this request", :action => "accept" %>
+	<h5> If you accept, your name, email address, and Facebook url will be submitted to <%= @invitation.user.company_name %>. </h5>
+<%end%>
+<br><br><br>
+
+

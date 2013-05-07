@@ -27,9 +27,9 @@
           <%= link_to "Sign out", signout_path, id: "sign_out" %>
           <br>
           <% if current_candidate.profile %>
-            <%= link_to 'Edit profile', edit_profile_path(current_candidate.profile) %>
+            <%= link_to 'Edit your BriefCV', edit_profile_path(current_candidate.profile) %>
             <%else%>
-            <%= link_to 'Create profile', new_profile_path %>
+            <%= link_to 'Create your BriefCV (your 100% anonymous profile)', new_profile_path %>
           <%end%>
         <% else %>
           <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>

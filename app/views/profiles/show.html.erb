@@ -1,8 +1,24 @@
-<%= link_to "Request contact details from this candidate", :id => @profile.id, :action => "confirm"  %>
+<% if current_user %>
+	<% if find_invitation(@profile) %>
+
+	<b>You requested contact details from this candidate at <%= find_invitation(@profile).created_at.to_s %></b>
+	<% if find_invitation(@profile).approval %>
+	<br><br>
+	<b>Congratulations! This candidate gave you access to her/his contact details at <%= find_invitation(@profile).approval.created_at.to_s %></b>
+	<br><br>
+	<%= render "profiles/details" %>
+	<%end%>
+	<% else %>
+	<%= button_to "Request contact details from this candidate", :id => @profile.id, :action => "confirm"  %>
+	<% end %>
+<% end %>
+
+
 
 <p id="notice"><%= notice %></p>
+<h4><u>Anonymous profile</u></h4>
 Last updated: <%= time_ago_in_words(@profile.updated_at)%> ago 
-<h4><u>Job status</u></h4>
+<h5><u>Job status</u></h5>
 <b> Notice period: </b>
   	<%= @profile.notice_period.to_s %> week(s)
 <br><b> Min. desired annual salary: </b>  	
@@ -14,7 +30,7 @@ Last updated: <%= time_ago_in_words(@profile.updated_at)%> ago
 <%= @profile.ios_apps.to_s %>
 
 
-<h4><u>Job history</u></h4>
+<h5><u>Job history</u></h5>
 
 <% if @profile.current_platforms %>
 <b><% if @profile.latest_job_current == true%>Current job<%else%>Last job:<%end%></b>
@@ -45,7 +61,7 @@ Last updated: <%= time_ago_in_words(@profile.updated_at)%> ago
 <%end%>
 
 
-<h4><u>Education</u></h4>
+<h5><u>Education</u></h5>
 
 <% if @profile.undergrad_degree == true %>
 	<b>	Undergraduate degree:</b>
@@ -70,7 +86,7 @@ Last updated: <%= time_ago_in_words(@profile.updated_at)%> ago
 	<br>GPA: <%= @profile.postgrad_gpa %>
 	<br><br>
 <%end%>
-<h4><u>Standardized test scores</u></h4>	
+<h5><u>Standardized test scores</u></h5>	
 	<% if @profile.sat_math %><%= "SAT math: " + @profile.sat_math.to_s %><br><%end%>
 	<% if @profile.sat_critical_reading %><%= "SAT critical reading: " + @profile.sat_critical_reading.to_s  %><br><%end%>
 	<% if @profile.sat_writing %><%= "SAT writing: " + @profile.sat_writing.to_s  %><br><%end%>

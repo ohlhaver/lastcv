@@ -40,6 +40,12 @@ private
       redirect_to root_path, alert: "Not authorized" unless current_candidate && current_candidate.profile == @profile
     end
 
+    def invited_candidate
+    	@invitation = Invitation.find(params[:id])
+    	redirect_to root_path, alert: "Not authorized" unless current_candidate && @invitation.candidate == current_candidate
+    end
+
+
     def redirect_back_or(default)
    		redirect_to(session[:return_to] || default)
    	 	session.delete(:return_to)
@@ -48,6 +54,13 @@ private
 	def store_location
 	  	session[:return_to] = request.url
 	end
+
+	def find_invitation(profile)
+		if current_user
+		 invitation = Invitation.find_by_user_id_and_candidate_id(current_user.id,profile.candidate.id)
+		end
+	end
+	helper_method :find_invitation
 
 
 

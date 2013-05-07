@@ -1,7 +1,7 @@
-<h3>Are you sure you want to request this candidate's contact details?<br>
-	If the candidate approves you will receive the candidates full name, facebook id, and email address and you will be charged US$ 4.95</h3>
+<h4>Are you sure you want to request this candidate's contact details?<br>
+	If the candidate approves you will receive the candidates full name, facebook id, and email address and you will be charged US$ 4.95</h4>
 	<br><br>
-	<%= link_to "Confirm request", :action => "invite" %>
+	<%= button_to "Confirm request", :action => "invite" %>
 <br><br><br>
 <p id="notice"><%= notice %></p>
 Last updated: <%= time_ago_in_words(@profile.updated_at)%> ago 
