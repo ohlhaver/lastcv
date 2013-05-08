@@ -1,8 +1,14 @@
-<%= link_to invitation.user.company_name + "- " + invitation.created_at.to_s, invitation %>
-<% if invitation.approval %>
-	(you accepted)
-<% else %>
-	<%= button_to "Accept", :controller => "invitations", :action => "accept", :id => invitation.id %>
-<% end %>
+<tr onclick="location.href='<%=invitation_path(invitation)%>';" style="cursor:pointer">
+      		
 
-<br>
+<td><%= link_to invitation.user.company_name, invitation %></td>
+<td><%= time_ago_in_words(invitation.created_at) + " ago" %></td>
+<td>
+	<% if invitation.approval %>
+		<b>you accepted</b>
+	<% else %>
+		<%= button_to "Accept", :controller => "invitations", :action => "accept", :id => invitation.id %>
+	<% end %>
+</td>
+
+</tr>

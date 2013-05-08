@@ -20,7 +20,8 @@
             <%= link_to "Sign out", signout_path, id: "sign_out" %>
             <br>
             <% if current_candidate.profile %>
-              <%= link_to 'Edit your BriefCV', edit_profile_path(current_candidate.profile) %>
+              <%= link_to 'Edit your BriefCV', edit_profile_path(current_candidate.profile) %> | 
+              <%= link_to 'View', current_candidate.profile %>
               <%else%>
               <%= link_to 'Create your BriefCV (your 100% anonymous profile)', new_profile_path %>
             <%end%>
@@ -41,8 +42,17 @@
         <div class="span12">
     				<%= yield %>
   			</div>
+        <footer>
+        <div class="span12">
+          <br><br>
+          BriefCV © 2013
+          <br><br>
+        </div>
+        </footer>
  		</div>
 	</div>
+
+
 
 
 

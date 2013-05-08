@@ -1,14 +1,16 @@
-<% if current_user && find_invitation(@profile) %>
+<% unless current_candidate %>
+	<% if current_user && find_invitation(@profile) %>
 
-		<% if find_invitation(@profile).approval %>
-			<b>Congratulations! This candidate gave you access to her/his contact details at <%= find_invitation(@profile).approval.created_at.to_s %></b>
-			<br><br>
-			<%= render "profiles/details" %><br><br>
-		<%else%>
-		<b>You requested contact details from this candidate at <%= find_invitation(@profile).created_at.to_s %></b>
-		<%end%>
-<%else%>
-		<%= button_to "Request contact details from this candidate", :id => @profile.id, :action => "confirm"  %>
+			<% if find_invitation(@profile).approval %>
+				<b>Congratulations! This candidate gave you access to her/his contact details <%= time_ago_in_words(find_invitation(@profile).approval.created_at)%> ago.</b>
+				<br><br>
+				<%= render "profiles/details" %><br><br>
+			<%else%>
+			<b>You requested contact details from this candidate <%= time_ago_in_words(find_invitation(@profile).created_at)%> ago.</b>
+			<%end%>
+	<%else%>
+			<%= button_to "Request contact details from this candidate", :id => @profile.id, :action => "confirm"  %>
+	<% end %>
 <% end %>
 
 <%= render "full_profile" %>

@@ -1,22 +1,30 @@
 <% if current_candidate %>
 	<% if current_candidate.invitations.any? %>
-	Contact requests for you:<br><br>
-	<%= render current_candidate.invitations %>
-	<% else %>
-	No requests yet.
+	<div class="row">
+		<div class ="span6">
+			<h4>Contact requests for you</h4><br>
+			<table class="table table-striped table-hover">
+		    	<tbody>
+					<%= render current_candidate.invitations %>
+				</tbody>
+			</table>
+			<% else %>
+			No requests yet.
+		</div>
+	</div>
 	<% end %>
 <% end %>
 
 <% if current_user %>
 	<% if @approved_invitations.any? %>
-	<h4>Your accepted requests:</h4>
+	<h4>Your accepted requests</h4>
 	<% @invitations = @approved_invitations %>
 		<%= render "profiles/accepted_invitations_table" %>
 		<br>
 	<% end %> 
 
 	<% if @open_invitations.any? %>
-	<h4>Your open requests:</h4>
+	<h4>Your open requests</h4>
 	<% @invitations = @open_invitations %>
 		<%= render "profiles/invitations_table" %>
 	<% end %>
