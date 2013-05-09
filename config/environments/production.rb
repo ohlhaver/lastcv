@@ -64,6 +64,6 @@ Lastcv::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
-  ENV['FACEBOOK_APP_ID'] = '379615408814733'
-  ENV['FACEBOOK_SECRET'] = '46c1b12f4eba5640559063625d0c85ca'
+  ENV['FACEBOOK_APP_ID'] = '358362214275346'
+  ENV['FACEBOOK_SECRET'] = '4f3198826d033b4c7e544ddf9f1524ef'
 end
