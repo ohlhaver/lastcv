@@ -6,6 +6,7 @@ private
 
 	def current_query
 	  @current_query ||= Query.find(session[:query_id]) if session[:query_id]
+		rescue
 	end
 	helper_method :current_query
 

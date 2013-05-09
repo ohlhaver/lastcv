@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
   	#@candidate_invitations = current_candidate.invitations if current_candidate
-  	if session[:query_id]
-      @query = Query.find(session[:query_id])
+  	if current_query
+      @query = current_query
     else
       @query = Query.create!
       session[:query_id] = @query.id

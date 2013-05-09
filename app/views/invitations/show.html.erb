@@ -19,7 +19,7 @@ Created:
 	<b>You accepted this request <%= time_ago_in_words(@invitation.approval.created_at)%> ago.</b>
 <%else%>
 	<%= button_to "Accept this request", :action => "accept" %>
-	<h5> If you accept, your name, email address, and Facebook url will be submitted to <%= @invitation.user.company_name %>. </h5>
+	<h5> If you accept, your name, email address, and Facebook url will be submitted to the contact person at <%= @invitation.user.company_name %>. </h5>
 <%end%>
 <br><br><br>
 

@@ -148,12 +148,6 @@ ActiveRecord::Schema.define(:version => 20130506185235) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "professions", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "profile_languages", :force => true do |t|
     t.integer  "language_id"
     t.integer  "profile_id"
