@@ -38,7 +38,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   # GET /profiles/new.json
   def new
-    @profile = Profile.new
+    @profile = Profile.new unless current_candidate.profile
 
     respond_to do |format|
       format.html # new.html.erb

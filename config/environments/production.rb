@@ -49,7 +49,19 @@ Lastcv::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => "polar-scrubland-3781.herokuapp.com/" }
+
+  ActionMailer::Base.smtp_settings = {
+  :address        => 'smtp.sendgrid.net',
+  :port           => 587,
+  :authentication => :plain,
+  :user_name      => 'app15585103@heroku.com',
+  :password       => '6tinkcup',
+  :domain         => 'heroku.com',
+  :enable_starttls_auto => true
+}
 
   # Enable threaded mode
   # config.threadsafe!

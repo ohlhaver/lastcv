@@ -3,4 +3,10 @@ class Invitation < ActiveRecord::Base
   belongs_to :user
   belongs_to :candidate
   has_one :approval
+  after_create :email_invitation
+
+  def email_invitation
+  	CandidateMailer.invitation(self).deliver
+  end
+
 end

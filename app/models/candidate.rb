@@ -2,6 +2,11 @@ class Candidate < ActiveRecord::Base
   attr_accessible :address, :email, :linkedin_url, :name, :oauth_expires_at, :oauth_token, :phone, :profile_id, :provider, :skype_id, :uid
   belongs_to :profile
   has_many :invitations
+  after_create :email_welcome
+
+  def email_welcome
+  	CandidateMailer.signup(self).deliver
+  end
 
   	def self.from_omniauth(auth)
 	  where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

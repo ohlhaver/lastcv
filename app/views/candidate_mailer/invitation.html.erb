@@ -1,0 +1,33 @@
+<h4>Request for your contact details</h4>
+
+
+Company:
+<b><%= @invitation.user.company_name %>
+<% if @invitation.user.verified == true %>
+(verified by BriefCV)
+<%end%>
+</b>
+<br>
+Company website:
+<b><%= @invitation.user.website %></b>
+<br>
+Created:
+<b><%= time_ago_in_words(@invitation.created_at) %> ago</b>
+<br>
+<br><br>
+<% if @invitation.approval %>
+	<b>You accepted this request <%= time_ago_in_words(@invitation.approval.created_at)%> ago.</b>
+<%else%>
+	<%= link_to "Accept this request", accept_invitation_url(@invitation) %>
+	<h5> If you accept, your name, email address, and Facebook url will be submitted to the contact person at <%= @invitation.user.company_name %>. </h5>
+<%end%>
+
+
+ <%= link_to "View all request for you", root_url %>.
+
+<br><br><br>
+Yours,
+<br><br>
+The BriefCV Team
+
+
