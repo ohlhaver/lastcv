@@ -10,7 +10,7 @@ Facebook id: <b> <%= link_to "https://www.facebook.com/" + @candidate.uid, "http
 
 <b><u>Profile summary</u></b>
 <br>
-Last/current position: <%= @profile.latest_job_position.name if @profile.latest_job_position %>
+Last/current position: <b><%= @profile.latest_job_position.name if @profile.latest_job_position %></b>
 <br>
 Platforms: 
 <b><% @profile.platforms.each do |platform| %>

@@ -27,6 +27,7 @@ Lastcv::Application.routes.draw do
   resources :invitations do
     member do
       post :accept
+      get :accept
     end
   end
 
