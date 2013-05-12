@@ -78,4 +78,7 @@ Lastcv::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   ENV['FACEBOOK_APP_ID'] = '358362214275346'
   ENV['FACEBOOK_SECRET'] = '4f3198826d033b4c7e544ddf9f1524ef'
+
+  ENV['SECRET_KEY'] = 'sk_test_gKB6CGksiXE5eip4QOvFh4QY'
+  ENV['PUBLISHABLE_KEY'] = 'pk_test_LiK0p3bokSPpeLRYCxZD7xV4'
 end

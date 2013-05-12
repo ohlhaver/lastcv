@@ -53,3 +53,4 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'omniauth-facebook', '1.4.0'
 gem 'delayed_job_active_record'
+gem 'stripe'

@@ -1,7 +1,17 @@
 <h4>Are you sure you want to request this candidate's contact details?</h4>
-	<b>If the candidate approves you will receive the candidates full name,<br> facebook id, and email address and you will be charged US$ 4.95
+	<b>If the candidate approves you will receive the candidates full name,<br> facebook id, and email address and your credit card will be charged US$ 4.95
 <br><br>
+<% if current_user.customer_id %>
 <%= button_to "Confirm request", :action => "invite" %>
+<%else%>
+<%= simple_form_for(current_user) do |f| %>
+  <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          ></script>
+  <%= f.hidden_field :profile_id, :value =>  @profile.id %>
+
+<%end%>
+<%end%>
 
 You will get the full amount refunded if any of the information in the anonymous profile<br> turns out to be false.</b>
 <br><br>

@@ -49,4 +49,7 @@ Lastcv::Application.configure do
 
   ENV['FACEBOOK_APP_ID'] = '379615408814733'
   ENV['FACEBOOK_SECRET'] = '46c1b12f4eba5640559063625d0c85ca'
+
+  ENV['SECRET_KEY'] = 'sk_test_gKB6CGksiXE5eip4QOvFh4QY'
+  ENV['PUBLISHABLE_KEY'] = 'pk_test_LiK0p3bokSPpeLRYCxZD7xV4'
 end

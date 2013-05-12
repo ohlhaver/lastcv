@@ -98,6 +98,7 @@ class ProfilesController < ApplicationController
   end
 
   def confirm
+    store_location
     @profile = Profile.find(params[:id])
         respond_to do |format|
       format.html # show.html.erb

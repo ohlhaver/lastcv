@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+    store_location
   	#@candidate_invitations = current_candidate.invitations if current_candidate
   	if current_query
       @query = current_query
