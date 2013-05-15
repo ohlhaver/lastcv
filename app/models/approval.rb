@@ -1,19 +1,17 @@
 class Approval < ActiveRecord::Base
   attr_accessible :invitation_id
   belongs_to :invitation
-  after_create :email_approval
-  after_create :charge_customer
+  after_create :charge_and_email_approval
 
-  	def email_approval
-  		UserMailer.approval(self).deliver
+  def charge_and_email_approval
+      customer_id = invitation.user.customer_id
+      charge = Stripe::Charge.create(:amount   => 495, :currency => "usd",:customer => customer_id)
+      if charge.paid == true
+        self.paid = true
+        self.save
+  		  UserMailer.approval(self).deliver 
+        UserMailer.receipt(self).deliver
+      end
  	end
 
- 	def charge_customer
- 		customer_id = invitation.user.customer_id
-		  Stripe::Charge.create(
-		  :amount   => 495, # $15.00 this time
-		  :currency => "usd",
-		  :customer => customer_id
-		)
-  	end
 end

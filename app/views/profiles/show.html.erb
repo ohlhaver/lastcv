@@ -4,7 +4,11 @@
 			<% if find_invitation(@profile).approval %>
 				<b>Congratulations! This candidate gave you access to her/his contact details <%= time_ago_in_words(find_invitation(@profile).approval.created_at)%> ago.</b>
 				<br><br>
+				<% if find_invitation(@profile).approval.paid == true %>
 				<%= render "profiles/details" %><br><br>
+				<%else%>
+				Unfortunately we were unable to charge your credit card.<br> Please get in touch with out customer service to resubmit your payment details <br> in order to receive the candidate's contact details! <br><br>
+				<%end%>
 			<%else%>
 			<b>You requested contact details from this candidate <%= time_ago_in_words(find_invitation(@profile).created_at)%> ago.</b>
 			<%end%>

@@ -1,0 +1,24 @@
+Dear <%= @user.contact_person %>:
+<br>
+<br>
+<br>
+This is a receipt for your approved request for contact details for profile id:<%= @profile.id %>. 
+<br>This is only a receipt, no payment is due. 
+<br>If you have any questions, please contact us anytime at support@tapcv.com. 
+<b>Thank you for your business!
+<br>
+<br>
+<br>
+TapCV RECEIPT $4.95
+<br><br>
+For account: <%= @user.contact_person %>, <%= @user.email %>
+<br><br>
+Paid on date: <%= @approval.created_at %>
+<br><br>
+--------------------------------------------------------------
+<br><br>
+Approved request for profile id:<%= @profile.id %>                                      $4.95
+<br><br>
+--------------------------------------------------------------
+<br><br>
+Total Charged:                                         $4.95

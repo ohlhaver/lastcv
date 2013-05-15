@@ -1,5 +1,5 @@
 class CandidateMailer < ActionMailer::Base
-  default from: "\"BriefCV\" <update@briefcv.com>"
+  default from: "\"TapCV\" <update@TapCV.com>"
 
 
   def invitation(invitation)
@@ -12,7 +12,7 @@ class CandidateMailer < ActionMailer::Base
 
   def signup(candidate)
   	@candidate = candidate
-  	@subject = "Welcome to BriefCV"
+  	@subject = "Welcome to TapCV"
   	mail :to => @candidate.email, :subject => @subject
 
   end

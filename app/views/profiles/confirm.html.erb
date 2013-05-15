@@ -1,18 +1,43 @@
-<h4>Are you sure you want to request this candidate's contact details?</h4>
-	<b>If the candidate approves you will receive the candidates full name,<br> facebook id, and email address and your credit card will be charged US$ 4.95
+<h4>Please confirm your request!</h4>
+	<b>If the candidate approves, your credit card will be charged $4.95 USD <br> and you will receive the candidate's full name, facebook id, and email address.
 <br><br>
 <% if current_user.customer_id %>
 <%= button_to "Confirm request", :action => "invite" %>
+
 <%else%>
 <%= simple_form_for(current_user) do |f| %>
-  <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          ></script>
+
+
+
+  <script src="https://checkout.stripe.com/v2/checkout.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+
+  <button id="customButton">Confirm request</button>
+
+  <script>
+    $('#customButton').click(function(){
+      var token = function(res){
+        var $input = $('<input type=hidden name=stripeToken />').val(res.id);
+        $('form').append($input).submit();
+      };
+
+      StripeCheckout.open({
+        key:         "<%= Rails.configuration.stripe[:publishable_key] %>",
+        name:        'Submit your payment details',
+        description: 'You will get charged $4.95 USD if the candidate accepts your request.',
+        panelLabel:  'Submit',
+        token:       token
+      });
+
+      return false;
+    });
+  </script>
+
   <%= f.hidden_field :profile_id, :value =>  @profile.id %>
 
 <%end%>
 <%end%>
 
-You will get the full amount refunded if any of the information in the anonymous profile<br> turns out to be false.</b>
+We offer a full refund if any of the information in the candidate's profile<br> turns out to be false.</b>
 <br><br>
 <%= render "full_profile" %>

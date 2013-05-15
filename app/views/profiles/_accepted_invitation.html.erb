@@ -1,6 +1,6 @@
 <tr onclick="location.href='<%=profile_path(accepted_invitation.candidate.profile)%>';" style="cursor:pointer">
 	<td>
-		<%= accepted_invitation.candidate.name %>
+		<% if accepted_invitation.approval.paid == true %><%= accepted_invitation.candidate.name %><%else%> Payment failed <%end%>
 	</td>
 	<td>
 		<%= accepted_invitation.candidate.profile.latest_job_position.name if accepted_invitation.candidate.profile.latest_job_position %>

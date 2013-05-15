@@ -1,11 +1,11 @@
 class UserMailer < ActionMailer::Base
 	add_template_helper(ProfilesHelper)
-  default from: "\"BriefCV\" <update@briefcv.com>"
+  default from: "\"TapCV\" <update@TapCV.com>"
 
 
   def signup(user)
   	@user = user
-  	@subject = "Welcome to BriefCV"
+  	@subject = "Welcome to TapCV"
   	mail :to => @user.email, :subject => @subject
   end
 
@@ -24,6 +24,14 @@ class UserMailer < ActionMailer::Base
   	@user = user
   	@subject = "User " + @user.id.to_s + " needs to be verified"
   	mail :to => "ohlhaver@gmail.com", :subject => @subject
+  end
+
+  def receipt(approval)
+    @approval = approval
+    @user = @approval.invitation.user
+    @profile = @approval.invitation.candidate.profile
+    @subject = "[TapCV] Payment Receipt"
+    mail :to => @user.email, :subject => @subject
   end
 
 end
