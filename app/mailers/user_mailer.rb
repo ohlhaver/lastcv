@@ -26,8 +26,9 @@ class UserMailer < ActionMailer::Base
   	mail :to => "ohlhaver@gmail.com", :subject => @subject
   end
 
-  def receipt(approval)
+  def receipt(approval, amount)
     @approval = approval
+    @amount = amount
     @user = @approval.invitation.user
     @profile = @approval.invitation.candidate.profile
     @subject = "[TapCV] Payment Receipt"

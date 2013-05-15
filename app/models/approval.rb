@@ -9,8 +9,9 @@ class Approval < ActiveRecord::Base
       if charge.paid == true
         self.paid = true
         self.save
-  		  UserMailer.approval(self).deliver 
-        UserMailer.receipt(self).deliver
+  		  UserMailer.approval(self).deliver
+        amount = charge.amount.fdiv(100) 
+        UserMailer.receipt(self, amount).deliver
       end
  	end
 
