@@ -1,10 +1,14 @@
 <h4>Please confirm your request!</h4>
-	<b>If the candidate approves, your credit card will be charged $4.95 USD <br> and you will receive the candidate's full name, facebook id, and email address.
-<br><br>
+	
 <% if current_user.customer_id %>
+If the candidate approves, your credit card ( <%= @cu.active_card.type%>, ending in <%= @cu.active_card.last4 %> | <%= link_to "use different card", edit_user_path(current_user)%> )<br>
+will be charged <b>$4.95 USD</b> and you will receive the candidate's <br>full name, facebook id, and email address.
+<br><br>
 <%= button_to "Confirm request", :action => "invite" %>
 
 <%else%>
+If the candidate approves, you will be charged <b>$4.95 USD</b> <br> and you will receive the candidate's full name, facebook id, and email address.
+<br><br>
 <%= simple_form_for(current_user) do |f| %>
 
 
@@ -24,7 +28,7 @@
       StripeCheckout.open({
         key:         "<%= Rails.configuration.stripe[:publishable_key] %>",
         name:        'Submit your payment details',
-        description: 'You will get charged $4.95 USD if the candidate accepts your request.',
+        description: 'You will get charged $4.95 USD only if the candidate accepts your request.',
         panelLabel:  'Submit',
         token:       token
       });
@@ -38,6 +42,6 @@
 <%end%>
 <%end%>
 
-We offer a full refund if any of the information in the candidate's profile<br> turns out to be false.</b>
+We offer a <b>full refund</b> if any of the information in the candidate's profile<br> turns out to be false.</b>
 <br><br>
 <%= render "full_profile" %>

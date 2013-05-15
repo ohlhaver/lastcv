@@ -100,6 +100,7 @@ class ProfilesController < ApplicationController
   def confirm
     store_location
     @profile = Profile.find(params[:id])
+    @cu = Stripe::Customer.retrieve(current_user.customer_id) if current_user.customer_id
         respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @profile }
@@ -113,7 +114,7 @@ class ProfilesController < ApplicationController
         invitation.candidate_id = @profile.candidate.id
       invitation.save
     end
-      redirect_to @profile, :notice => "Candidate has been invited."
+      redirect_to @profile, :notice => "Your request has been submitted to the candidate."
     
   end
 

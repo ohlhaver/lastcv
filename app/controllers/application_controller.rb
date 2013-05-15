@@ -17,7 +17,7 @@ private
 
 	def authorize_user
 		store_location
-	  redirect_to login_url, alert: "Not authorized" if current_user.nil?
+	  redirect_to login_url, alert: "Please log in or sign up!" if current_user.nil?
 	end
 
 
