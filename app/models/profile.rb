@@ -1,4 +1,5 @@
 class Profile < ActiveRecord::Base
+
   attr_accessible :act_composite, :act_english, :act_math, :act_reading, :act_science, :applicant_id, 
   :full_time, :highschool_name, :max_part_time_hours, :min_hourly_salary, :min_part_time_hours, :part_time, 
   :percentile_in_highschool, :ranking_in_highschool, :sat_critical_reading, :sat_math,
@@ -11,8 +12,9 @@ class Profile < ActiveRecord::Base
   :latest_job_annual_salary, :latest_job_hourly_salary, :previous_platform_ids, :previous_skill_ids, :previous_job_contract, 
   :previous_job_annual_salary, :previous_job_hourly_salary, :latest_job_company_name, :latest_job_company_size, :previous_job_company_name, 
   :previous_job_company_size, :postgrad_number_of_recommendations, :ios_apps, :references, :confirmed, 
-  :latest_job_team_size, :previous_job_team_size, :ios_years
-
+  :latest_job_team_size, :previous_job_team_size, :ios_years, :jobs_attributes
+  
+  has_many :jobs
   has_one :candidate
   has_many :profile_languages
   has_many :languages, through: :profile_languages
@@ -33,6 +35,8 @@ class Profile < ActiveRecord::Base
   belongs_to :postgrad_subject, class_name: "Subject"
   belongs_to :latest_job_position, class_name: "Position"
   belongs_to :previous_job_position, class_name: "Position"
+
+  accepts_nested_attributes_for :jobs, :allow_destroy => true
 
   after_save :generate_education_level
 
@@ -73,7 +77,5 @@ class Profile < ActiveRecord::Base
   def highest_annual_salary
       return [latest_job_annual_salary, previous_job_annual_salary].max
   end
-
-
 
 end

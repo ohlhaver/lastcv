@@ -16,7 +16,7 @@
 
       StripeCheckout.open({
         key:         "<%= Rails.configuration.stripe[:publishable_key] %>",
-        name:        'Enter your payment details',
+        name:        'Update your payment details',
         description: 'You will get charged $4.95 USD when a candidate accepts a request by you.',
         panelLabel:  'Save',
         token:       token

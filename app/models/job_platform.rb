@@ -1,3 +1,3 @@
 class JobPlatform < ActiveRecord::Base
-  attr_accessible :last_job, :platform_id, :previous_job, :profile_id
+  attr_accessible :job_id, :platform_id
 end

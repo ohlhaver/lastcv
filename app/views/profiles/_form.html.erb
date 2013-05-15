@@ -1,4 +1,4 @@
-<%= simple_form_for(@profile, :html => {:class => 'form-horizontal'}) do |f| %>
+<%= simple_nested_form_for(@profile, :html => {:class => 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -14,6 +14,14 @@
 <%= f.input :ios_apps, label: 'Number of iOS apps published in the app-store that you built yourself, not in a team', placeholder: 'e.g. "5"' %>
 <%= f.input :ios_years, label: 'Number of year of experience programming iOS apps', placeholder: 'e.g. "2.5"' %>
 <br>
+<%= f.fields_for :jobs do |job_form| %>
+  <%= job_form.text_field :company_name, label: 'Company name (optional)' %>
+  <%= job_form.link_to_remove "Remove this job" %>
+<% end %>
+<p><%= f.link_to_add "Add a job", :jobs %></p>
+
+
+
 <b> Your current or last job at which you built a mobile app </b>
 <br><br>
 	<%= f.input :latest_job_company_name, label: 'Company name (optional)' %>
@@ -52,7 +60,6 @@
 	<%= f.input :act_math, label: 'ACT math', placeholder: 'e.g. "22"' %>
 	<%= f.input :act_reading, label: 'ACT reading', placeholder: 'e.g. "21"' %>
 	<%= f.input :act_science, label: 'ACT science', placeholder: 'e.g. "24"' %>
-
 <br><br>
 	<b>	Undergraduate/college education </b>
 <br><br>
