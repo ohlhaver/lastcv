@@ -25,8 +25,17 @@ class UsersController < ApplicationController
   		@user = User.find(params[:id])
 	  if @user.update_attributes(params[:user])
 	  	if params[:stripeToken] != nil
-	  		create_customer(@user) 
-	  		redirect_to :controller => "profiles", :action => "invite", :id => @user.profile_id
+	  		if @user.customer_id == nil
+		  		create_customer(@user)
+		  		if @user.profile_id 
+		  			redirect_to :controller => "profiles", :action => "invite", :id => @user.profile_id
+		  		else
+		  			redirect_to root_url, notice: "Your payment details have been saved."
+		  		end
+		  	else
+		  		update_customer(@user)
+		  		redirect_to root_url, notice: "Your payment details have been updated."
+		  	end
 	  	else
 	    redirect_to root_url, notice: "Your profile has been updated."
 		end
@@ -50,6 +59,19 @@ class UsersController < ApplicationController
 	  	redirect_back_or(root_url)
 		
 	end
+
+	def update_customer(user)
+		cu = Stripe::Customer.retrieve(user.customer_id)
+		cu.card  = params[:stripeToken]
+		cu.save
+
+		rescue Stripe::CardError => e
+		flash[:error] = e.message
+	  	redirect_back_or(root_url)
+		
+	end
+
+
 end
 
 
