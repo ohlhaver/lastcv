@@ -1,224 +1,159 @@
 <div class="row">
 <div class ="span6">
 <p id="notice"><%= notice %></p>
-<h4>Anonymous TapCV</h4>
-<b>Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
-<br><br>  
+<h4>TapCV</h4>
+Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
+<br><br>
+<div class ="module"></div>  
 <h5>Job status</h5>
 <table class="table table-striped">
 
     <tbody>
     	<tr>
-      		<td><b> Notice period: </b></td>
+      		<td> Notice period: </b></td>
   			<td><%= @profile.notice_period.to_s %> week(s) </td>
   		</tr>
   		<tr>
-			<td><b> Min. desired annual salary: </b></td>	
+			<td> Min. desired annual salary: </b></td>	
   			<td>	<%= @profile.general_min_yearly_salary %> USD</td>
   		</tr>
 
 		<tr>
-			<td><b>U.S. work permit: </b></td>
+			<td>U.S. work permit: </b></td>
 			<td><% if @profile.work_permit == true %>Yes<%else%>No<% end %></td>
 		</tr>
 		<tr>
-			<td><b>Number of self-built iOS apps in the app store: </b></td>
+			<td>Number of self-built iOS apps in the app store: </b></td>
 			<td><%= @profile.ios_apps.to_s %></td>
 		</tr>
 	</tbody>
 </table>
-<h5>Job history</h5>
-<table class="table table-striped">
-  	<% if @profile.current_platforms %>
-		<tbody>
-				<tr>
-					<td><b><% if @profile.latest_job_current == true%>
-					
-					Current job<%else%>Last job:<%end%></b></td>
-					
+<% if @profile.jobs.any? %>
+	<div class ="module"></div>
+	<h5>Work experience</h5>
+		<% @profile.jobs.each do |job| %>
+				<table class="table table-striped">
+				  	<% if job.platforms %>
+						<tbody>
+							<% if job.position %>
+								<tr>
+									<td><b>Position:</b></td>
+									<td><b><%= job.position.name %></b></td>
+								</tr>
+							<% end %>
+							<tr>
+									<td>Platforms:</b></td>
+									<td><% job.platforms.each do |platform| %>
+					  					<%= platform.name %>,
+					  				<%end%></td>
+					  			</tr> 
 
-					<td><%= @profile.latest_job_start_date %> till <% if @profile.latest_job_current == true%> now<%else%><%= @profile.latest_job_end_date %>.<%end%></td>
-				</tr>
+								<tr>
+									<td>Employed skills:</b></td>
+						  			<td><% job.skills.each do |skill| %>
+						  			<%= skill.name %>,
+						  			<%end%></td>
+						  		</tr>
+							<% if job.company_name != "" %>
+								<tr>
+									<td> Company name: </b></td>
+									<td><%= job.company_name %></td>
+								</tr>
+							<% end %>
 
-			<% if @profile.latest_job_company_name != "" %>
-				<tr>
-					<td> <b>Company name: </b></td>
-					<td><%= @profile.latest_job_company_name %></td>
-				</tr>
-			<% end %>
+							<% if job.company_size %> 
+								<tr>
+									<td>Company size: </b></td>
+									<td><%= number_of_employees(job.company_size) %> employees </td>
+								</tr>
+							<% end %>
+							<% if job.team_size %>
+								<tr>
+									<td>Team size:</td>
+									<td></b><%= job.team_size %></td>
+								</tr>
+							<% end %>
+													<tr>
+								<td>Contract:</b></td>
+								<td><%= contract(job.contract) %></td>
+							</tr>
+							<% if job.annual_salary %>
+								<tr>
+									<td>Annual salary:</b></td>
+									<td> <%= job.annual_salary %> USD</td>
+								</tr>
+							<%end%>
+							
+							<% if job.hourly_salary %>
+								<tr>
+									<td>Hourly salary:</b></td>
+									<td><%= job.hourly_salary %> USD</td>
+								</tr>
+							<%end%>
+								<tr>
+									<td>Time period</td>
+									
 
-			<% if @profile.latest_job_company_size %> 
-				<tr>
-					<td><b>Company size: </b></td>
-					<td><%= number_of_employees(@profile.latest_job_company_size) %> employees </td>
-				</tr>
-			<% end %>
+									<td><%= job.start_date %> till <% if job.current == true%> now<%else%><%= job.end_date %><%end%></td>
+								</tr>
 
-			<tr>
-				<td><b>Contract:</b></td>
-				<td><%= contract(@profile.latest_job_contract) %></td>
-			</tr>
-
-			<% if @profile.latest_job_position %>
-				<tr>
-					<td><b>Position:</td>
-					<td></b><%= @profile.latest_job_position.name %></td>
-				</tr>
-			<% end %>
-
-
-			<% if @profile.latest_job_team_size %>
-				<tr>
-					<td><b>Team size:</td>
-					<td></b><%= @profile.latest_job_team_size %></td>
-				</tr>
-			<% end %>
-
-
-			<tr>
-				<td><b>Platforms:</b></td>
-				<td><% @profile.current_platforms.each do |platform| %>
-	  				<%= platform.name %>,
-	  				<%end%></td>
-	  		</tr> 
-
-			<tr>
-				<td><b>Employed skills:</b></td>
-	  			<td><% @profile.current_skills.each do |skill| %>
-	  			<%= skill.name %>,
-	  			<%end%></td>
-	  		</tr>
-
-			<% if @profile.latest_job_annual_salary %>
-				<tr>
-					<td><b>Annual salary:</b></td>
-					<td> <%= @profile.latest_job_annual_salary %> USD</td>
-				</tr>
-			<%end%>
-			
-			<% if @profile.latest_job_hourly_salary %>
-				<tr>
-					<td><b>Hourly salary:</b></td>
-					<td><%= @profile.latest_job_hourly_salary %> USD</td>
-				</tr>
-			<%end%>
-		</tbody>
-	<%end%>
-</table>
-
-<h5>Education</h5>
+							
 
 
-<% if @profile.undergrad_degree == true %>
-<table class="table table-striped">
-	<tbody>
-	    	<tr>
-	      		<td><b>	Undergraduate degree:</b></b>
-				<td><%= @profile.undergrad_institution.name if @profile.undergrad_institution%></td>
-			</tr>
-			<tr>
-				<td>Major:</td>
-				<td><%= @profile.undergrad_subject.name if @profile.undergrad_subject%></td>
-			</tr>
-			<tr>
-				<td>GPA:</td> 
-				<td><%= @profile.undergrad_gpa %></td>
-			</tr>
-	</tbody>
-</table>
+						</tbody>
+					<%end%>
+				</table>
+				<% unless job == @profile.jobs.last %><div class ="slim_module"></div><%end%>
+		<%end%>
 <%end%>
+<% if @profile.degrees.any? %>
+	<div class ="module"></div>
+	<h5>Education</h5>
+		<% @profile.degrees.each do |degree| %>
 
-<% if @profile.grad_degree == true %>
-<table class="table table-striped">
-	<tbody>
-	    	<tr>
-	      		<td><b>	Graduate degree:</b></td>
-	      		<td><%= @profile.grad_institution.name if @profile.grad_institution %></td>
-	      	</tr>
-			<tr>
-				<td>Subject</td>
-				<td><%= @profile.grad_subject.name if @profile.grad_subject  %></td>
-			</tr>
-			<tr>
-				<td>GPA:</td>
-				<td><%= @profile.grad_gpa %></td>
-			</tr>
-	</tbody>
-</table>
+
+				<table class="table table-striped">
+					<tbody>
+							<tr>
+					      		<td><b>Degree:</b>
+								<td><b><%= display_education_level(degree.level) %></td>
+							</tr>
+							<tr>
+								<td>School/University:</b></td>
+								<td><%= degree.school_name %></b></td>
+							</tr>
+
+
+							<tr>
+								<td>Subject/Major:</td>
+								<td><%= degree.subject.name if degree.subject %></td>
+							</tr>
+							<tr>
+								<td>GPA:</td> 
+								<td><%= degree.gpa %></td>
+							</tr>
+					</tbody>
+				</table>
+				<% unless degree == @profile.degrees.last %><div class ="slim_module"></div><%end%>
+
+
+		<%end%>
+<%end%>		
+
+<% if @profile.test_scores.any? %>
+		<div class ="module"></div>
+		<h5>Standardized test scores</h5>
+
+		<table class="table table-striped">
+			<tbody>
+				<% @profile.test_scores.each do |test_score| %>
+			    		<tr>
+				      		<td><%= test_score_name(test_score.test_type) %> </td>
+				      		<td><%= test_score.score %></td>
+			      		</tr>
+			     <% end %>
+			</tbody>
+		</table>
 <%end%>
-
-<% if @profile.postgrad_degree == true %>
-<table class="table table-striped">
-	<tbody>
-	    	<tr>
-	      		<td><b>	Postgraduate degree: </b>
-				<td><%= @profile.postgrad_institution.name if @profile.postgrad_institution %></td>
-			</tr>
-			<tr>
-				<td>Subject</td>
-				<td><%= @profile.postgrad_subject.name if @profile.postgrad_subject %></td>
-			</tr>
-			<tr>
-				<td>GPA:</td>
-				<td><%= @profile.postgrad_gpa %></td>
-			</tr>
-	</tbody>
-</table>
-
-<%end%>
-<h5>Standardized test scores</h5>
-<table class="table table-striped">
-	<tbody>
-	    	<% if @profile.sat_math %>
-	    		<tr>
-		      		<td>SAT math </td>
-		      		<td><%= @profile.sat_math.to_s %></td>
-	      		</tr>
-	      	<%end%>
-	      		
-	<% if @profile.sat_critical_reading %>
-		<tr>
-		    <td>SAT critical reading</td> 
-		    <td><%=  @profile.sat_critical_reading.to_s  %></td>
-		</tr>
-	<%end%>
-
-	<% if @profile.sat_writing %>
-		<tr>		
-			<td>SAT writing</td> 
-			<td><%=  @profile.sat_writing.to_s  %></td>
-		</tr>
-	<%end%>
-
-	<% if @profile.act_english %>
-		<tr>
-			<td>ACT English</td>
-			<td> <%=  @profile.act_english.to_s %></td>
-		</tr>
-	<%end%>
-
-	<% if @profile.act_math %>
-		<tr>			
-			<td>ACT math</td>
-			<td><%= @profile.act_math.to_s %></td>
-		</tr>
-	<%end%>
-
-	<% if @profile.act_reading %>
-		<tr>
-			<td>ACT reading</td>
-			<td><%= @profile.act_reading.to_s %></td>
-		</tr>
-	<%end%>
-
-	<% if @profile.act_science %>
-		<tr>
-			<td>ACT science</td>
-			<td><%= @profile.act_science.to_s %></td>
-		</tr>
-	<%end%>
-	</tbody>
-</table>
-
 </div>
 </div>

@@ -1,4 +1,4 @@
-Lastcv::Application.routes.draw do
+Tapcv::Application.routes.draw do
   
   get "static_pages/home"
 

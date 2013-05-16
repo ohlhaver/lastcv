@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Lastcv::Application.load_tasks
+Tapcv::Application.load_tasks

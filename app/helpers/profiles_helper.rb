@@ -7,12 +7,35 @@ module ProfilesHelper
 			return "Graduate"
 		elsif el == 2
 			return "College"
-		elsif el == 0
+		elsif el == 1
+			return "Highschool"	
+		elsif el == 0 
 			return ""
 		end
 
 
 	end
+
+	def test_score_name(type_id)
+		if type_id == 1
+			return "SAT math"
+		elsif type_id == 2
+			return "SAT critical reading"
+		elsif type_id == 3
+			return "SAT writing"
+		elsif type_id == 4
+			return "ACT English"
+		elsif type_id == 5
+			return "ACT math"
+		elsif type_id == 6
+			return "ACT reading"
+		elsif type_id == 7
+			return "ACT science"
+		else
+			return ""
+		end
+	end
+			
 
 	def number_of_employees(company_size)
 		if company_size == 1
