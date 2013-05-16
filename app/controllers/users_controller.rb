@@ -19,6 +19,7 @@ class UsersController < ApplicationController
 
     def edit
   		@user = User.find(params[:id])
+  		@cu = Stripe::Customer.retrieve(current_user.customer_id) if current_user.customer_id
 	end
 
 	def update

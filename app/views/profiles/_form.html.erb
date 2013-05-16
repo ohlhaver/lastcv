@@ -42,7 +42,7 @@
 		<div class ="module"></div>
 		<b>Education</b><br><br>
 		<%= f.simple_fields_for :degrees do |degree_form| %>
-		  	<%= degree_form.input :level, collection: [["Highschool",1], ["College/Undergraduate",2], ["Master/Graduate",3], ["Postgraduate/PhD",3]], prompt: "Select degree", label: 'Degree' %>
+		  	<%= degree_form.input :level, collection: [["Highschool",1], ["College/Undergraduate",2], ["Master/Graduate",3], ["Postgraduate/PhD",4]], prompt: "Select degree", label: 'Degree' %>
 		<%= degree_form.input :school_name, label: "School/college/university", placeholder: 'e.g. "University of California, Berkeley"'  %>
 		<%= degree_form.association :subject, prompt: "Select suject", label: "Your major/main subject" %>
 		<%= degree_form.input :gpa, label: "Your GPA", placeholder: 'e.g. "3.65"' %>

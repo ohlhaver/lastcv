@@ -3,13 +3,12 @@
 		<% if accepted_invitation.approval.paid == true %><%= accepted_invitation.candidate.name %><%else%> Payment failed <%end%>
 	</td>
 	<td>
-		<%= accepted_invitation.candidate.profile.latest_job_position.name if accepted_invitation.candidate.profile.latest_job_position %>
+		<%= accepted_invitation.candidate.profile.jobs.first.position.name if accepted_invitation.candidate.profile.jobs.first %>
 	</td>
 
 	<td>
-		<% accepted_invitation.candidate.profile.platforms.each do |platform| %>
-		  		<%= platform.name %> 
-		<%end%> 
+	
+		<%= accepted_invitation.candidate.profile.platforms.map(&:name).join(", ") %>
 	</td>
 	<td>
 		<%= accepted_invitation.candidate.profile.ios_years %>

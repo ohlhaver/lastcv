@@ -2,9 +2,13 @@
   <script src="https://checkout.stripe.com/v2/checkout.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
   <% if current_user.customer_id != nil %>
-    <button id="customButton">Change payment details</button>
+    <b>Your current payment method:</b><br>
+    <%= @cu.active_card.type%>, ending in <%= @cu.active_card.last4 %><br><br>
+
+    <button id="customButton">Change payment method</button><br>
+
   <% else %>
-    <button id="customButton">Enter payment details</button>
+    <button id="customButton">Enter payment method</button>
   <% end %>
 
   <script>
@@ -16,7 +20,7 @@
 
       StripeCheckout.open({
         key:         "<%= Rails.configuration.stripe[:publishable_key] %>",
-        name:        'Update your payment details',
+        name:        'Update your payment method',
         description: 'You will get charged $4.95 USD when a candidate accepts a request by you.',
         panelLabel:  'Save',
         token:       token

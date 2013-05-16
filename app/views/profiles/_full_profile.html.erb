@@ -43,16 +43,12 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 							<% end %>
 							<tr>
 									<td>Platforms:</b></td>
-									<td><% job.platforms.each do |platform| %>
-					  					<%= platform.name %>,
-					  				<%end%></td>
+									<td><%= job.platforms.map(&:name).join(", ")%></td>
 					  			</tr> 
 
 								<tr>
 									<td>Employed skills:</b></td>
-						  			<td><% job.skills.each do |skill| %>
-						  			<%= skill.name %>,
-						  			<%end%></td>
+						  			<td><%= job.skills.map(&:name).join(", ")%></td>
 						  		</tr>
 							<% if job.company_name != "" %>
 								<tr>

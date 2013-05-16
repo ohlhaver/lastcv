@@ -48,16 +48,9 @@ class Profile < ActiveRecord::Base
 
   def generate_education_level
       el = self.education_level
-      if postgrad_degree == true
-        self.education_level = 4
-      elsif grad_degree == true
-        self.education_level = 3
-      elsif undergrad_degree == true
-        self.education_level = 2 
-      elsif highschool_diploma == true
-        self.education_level = 1
-      else
-        self.education_level = 0
+      self.education_level = 0
+      degrees.each do |degree|
+        self.education_level = degree.level if degree.level > self.education_level
       end
 
       if self.education_level != el
@@ -70,7 +63,12 @@ class Profile < ActiveRecord::Base
   end
 
   def platforms
-    return (current_platforms + previous_platforms).uniq
+    platforms =[]
+    jobs.each do |job|
+      platforms += job.platforms
+    end
+
+    return platforms.uniq
   end
 
   def highest_hourly_salary 
