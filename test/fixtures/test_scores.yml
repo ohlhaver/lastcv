@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  score: 1
+  type: 1
+  profile_id: 1
+
+two:
+  score: 1
+  type: 1
+  profile_id: 1

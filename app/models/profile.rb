@@ -12,9 +12,11 @@ class Profile < ActiveRecord::Base
   :latest_job_annual_salary, :latest_job_hourly_salary, :previous_platform_ids, :previous_skill_ids, :previous_job_contract, 
   :previous_job_annual_salary, :previous_job_hourly_salary, :latest_job_company_name, :latest_job_company_size, :previous_job_company_name, 
   :previous_job_company_size, :postgrad_number_of_recommendations, :ios_apps, :references, :confirmed, 
-  :latest_job_team_size, :previous_job_team_size, :ios_years, :jobs_attributes
+  :latest_job_team_size, :previous_job_team_size, :ios_years, :jobs_attributes, :degrees_attributes, :test_scores_attributes
   
   has_many :jobs
+  has_many :degrees
+  has_many :test_scores
   has_one :candidate
   has_many :profile_languages
   has_many :languages, through: :profile_languages
@@ -37,6 +39,8 @@ class Profile < ActiveRecord::Base
   belongs_to :previous_job_position, class_name: "Position"
 
   accepts_nested_attributes_for :jobs, :allow_destroy => true
+  accepts_nested_attributes_for :degrees, :allow_destroy => true
+  accepts_nested_attributes_for :test_scores, :allow_destroy => true
 
   after_save :generate_education_level
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130515222812) do
+ActiveRecord::Schema.define(:version => 20130516041100) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -94,6 +94,16 @@ ActiveRecord::Schema.define(:version => 20130515222812) do
     t.integer  "skill_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "degrees", :force => true do |t|
+    t.string   "school_name"
+    t.integer  "subject_id"
+    t.float    "gpa"
+    t.integer  "level"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "profile_id"
   end
 
   create_table "institution_tiers", :force => true do |t|
@@ -285,6 +295,14 @@ ActiveRecord::Schema.define(:version => 20130515222812) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "test_scores", :force => true do |t|
+    t.integer  "score"
+    t.integer  "profile_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "test_type"
   end
 
   create_table "users", :force => true do |t|
