@@ -8,16 +8,20 @@ class ProfilesController < ApplicationController
   # GET /profiles.json
   def index
     
-    if session[:query_id]
-      @query = Query.find(session[:query_id])
+      if current_query
+        @query = current_query
+      else
+        @query = Query.create!
+        session[:query_id] = @query.id
+    
+      end
+
+
+    if current_query && current_query.search_term != nil
+      @profiles = Profile.search current_query.search_term
     else
-      @query = Query.create!
-      session[:query_id] = @query.id
-  
+      @profiles = Profile.all.select {|i| i.candidate }
     end
-
-
-    @profiles = Profile.all.select {|i| i.candidate }
 
     respond_to do |format|
       format.html # index.html.erb

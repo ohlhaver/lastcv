@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130516041100) do
+ActiveRecord::Schema.define(:version => 20130517025522) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -203,71 +203,21 @@ ActiveRecord::Schema.define(:version => 20130516041100) do
     t.boolean  "part_time"
     t.integer  "max_part_time_hours"
     t.integer  "min_part_time_hours"
-    t.integer  "sat_math"
-    t.integer  "sat_critical_reading"
-    t.integer  "sat_writing"
-    t.integer  "sat_total_old"
-    t.integer  "sat_total_new"
-    t.integer  "act_english"
-    t.integer  "act_math"
-    t.integer  "act_reading"
-    t.integer  "act_science"
-    t.integer  "act_composite"
     t.integer  "general_min_yearly_salary"
     t.integer  "general_min_hourly_salary"
-    t.string   "highschool_name"
-    t.integer  "ranking_in_highschool"
-    t.integer  "percentile_in_highschool"
-    t.integer  "recommendations_in_highschool"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
-    t.integer  "undergrad_institution_id"
-    t.integer  "undergrad_subject_id"
-    t.float    "undergrad_gpa"
-    t.integer  "grad_institution_id"
-    t.integer  "grad_subject_id"
-    t.float    "grad_gpa"
-    t.integer  "postgrad_institution_id"
-    t.integer  "postgrad_subject_id"
-    t.float    "postgrad_gpa"
-    t.integer  "undergrad_number_of_recommendations"
-    t.integer  "grad_number_of_recommendations"
-    t.integer  "postgrad_number_of_recommendations"
-    t.integer  "latest_job_position_id"
-    t.date     "latest_job_start_date"
-    t.date     "latest_job_end_date"
-    t.boolean  "latest_job_current"
-    t.integer  "previous_job_position_id"
-    t.date     "previous_job_start_date"
-    t.date     "previous_job_end_date"
-    t.boolean  "postgrad_degree"
-    t.boolean  "grad_degree"
-    t.boolean  "undergrad_degree"
-    t.boolean  "highschool_diploma"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "education_level"
     t.boolean  "silicon_valley"
     t.integer  "notice_period"
     t.boolean  "work_permit"
-    t.integer  "latest_job_contract"
-    t.integer  "previous_job_contract"
-    t.integer  "latest_job_hourly_salary"
-    t.integer  "previous_job_hourly_salary"
-    t.integer  "latest_job_annual_salary"
-    t.integer  "previous_job_annual_salary"
-    t.integer  "latest_job_people_led"
-    t.integer  "previous_job_people_led"
-    t.integer  "latest_job_company_size"
-    t.integer  "previous_job_company_size"
-    t.string   "latest_job_company_name"
-    t.string   "previous_job_company_name"
     t.integer  "android_apps"
     t.integer  "ios_apps"
     t.integer  "windows_apps"
     t.boolean  "confirmed"
     t.boolean  "references"
-    t.integer  "latest_job_team_size"
-    t.integer  "previous_job_team_size"
     t.float    "ios_years"
+    t.integer  "highest_position_id"
   end
 
   create_table "queries", :force => true do |t|

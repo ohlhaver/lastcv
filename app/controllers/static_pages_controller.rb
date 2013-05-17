@@ -2,15 +2,24 @@ class StaticPagesController < ApplicationController
   def home
     store_location
   	#@candidate_invitations = current_candidate.invitations if current_candidate
-  	if current_query
-      @query = current_query
-    else
-      @query = Query.create!
-      session[:query_id] = @query.id
-  
+  	unless current_candidate
+          if current_query
+            @query = current_query
+          else
+            @query = Query.create!
+            session[:query_id] = @query.id
+        
+          end
+
+
+        if current_query && current_query.search_term != nil
+          @profiles = Profile.search current_query.search_term
+        else
+          @profiles = Profile.all.select {|i| i.candidate }
+        end
+    
     end
 
-    @profiles = Profile.all.select {|i| i.candidate }
     if current_user
 	    @open_invitations = current_user.invitations.select {|i| i.approval == nil }
 

@@ -1,7 +1,7 @@
 class Query < ActiveRecord::Base
   attr_accessible :min_degree, :min_gpa, :min_highest_position_id, 
   :min_highest_salary, :min_salary, :search_term, :subject_id, :latest_availability, :max_salary, :max_notice_period, 
-  :top_schools
+  :top_schools, :min_years
   belongs_to :targeted_profession, class_name: "Profession"
   belongs_to :past_profession, class_name: "Profession"
   belongs_to :past_company, class_name: "Company"

@@ -43,8 +43,19 @@ class Profile < ActiveRecord::Base
   accepts_nested_attributes_for :test_scores, :allow_destroy => true
 
   after_save :generate_education_level
-
+  after_save :generate_highest_position_id
   validates_presence_of :silicon_valley, :notice_period, :general_min_yearly_salary, :confirmed, :ios_years
+
+  define_index do
+    indexes jobs.position.name, :as => :jobs_position_name
+    indexes jobs.platforms.name, :as => :jobs_platforms_name
+    indexes jobs.skills.name, :as => :jobs_skills_name
+    indexes jobs.company_name, :as => :jobs_company_name
+    indexes degrees.school_name, :as => :degress_school_name
+    indexes degrees.subject.name, :as => :degrees_subject_name
+  end
+
+
 
   def generate_education_level
       el = self.education_level
@@ -57,6 +68,28 @@ class Profile < ActiveRecord::Base
         self.save
       end
    end
+
+  def generate_highest_position_id
+    
+      hp = self.highest_position_id
+      if jobs.any?
+
+        self.highest_position_id = jobs.first.position_id
+        jobs.each do |job|
+
+          self.highest_position_id = job.position_id unless job.position.value < Position.find(self.highest_position_id).value
+        end
+      else
+
+      self.highest_position_id = nil
+      end
+
+      if self.highest_position_id != hp
+        self.save
+      end
+    
+
+  end
 
   def skills
     return (current_skills + previous_skills).uniq
