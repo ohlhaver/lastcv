@@ -1,6 +1,6 @@
 <tr onclick="location.href='<%=profile_path(profile)%>';" style="cursor:pointer">
 	<td>
-		<%= profile.jobs.first.position.name if profile.jobs.first %>
+		<%= profile.highest_position.name if profile.jobs.first %>
 	</td>
 
 	<td>

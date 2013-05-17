@@ -18,25 +18,7 @@ class Profile < ActiveRecord::Base
   has_many :degrees
   has_many :test_scores
   has_one :candidate
-  has_many :profile_languages
-  has_many :languages, through: :profile_languages
-  has_many :current_job_platforms
-  has_many :previous_job_platforms
-  has_many :current_job_skills
-  has_many :previous_job_skills
-  has_many :current_platforms, through: :current_job_platforms, source: :platform
-  has_many :current_skills, through: :current_job_skills, source: :skill
-  has_many :previous_platforms, through: :previous_job_platforms, source: :platform
-  has_many :previous_skills, through: :previous_job_skills, source: :skill
-
-  belongs_to :undergrad_institution, class_name: "Institution"
-  belongs_to :undergrad_subject, class_name: "Subject"
-  belongs_to :grad_institution, class_name: "Institution"
-  belongs_to :grad_subject, class_name: "Subject"
-  belongs_to :postgrad_institution, class_name: "Institution"
-  belongs_to :postgrad_subject, class_name: "Subject"
-  belongs_to :latest_job_position, class_name: "Position"
-  belongs_to :previous_job_position, class_name: "Position"
+  belongs_to :highest_position, class_name: "Position"
 
   accepts_nested_attributes_for :jobs, :allow_destroy => true
   accepts_nested_attributes_for :degrees, :allow_destroy => true

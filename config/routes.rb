@@ -31,6 +31,13 @@ Tapcv::Application.routes.draw do
     end
   end
 
+  resources :queries do
+    member do
+      get :reset
+      post :reset
+    end
+  end
+
 
   get 'edit', to: 'users#edit', as: 'edit'
   get 'signup', to: 'users#new', as: 'signup'

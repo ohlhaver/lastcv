@@ -10,6 +10,17 @@ private
 	end
 	helper_method :current_query
 
+	def set_query
+		if current_query
+        @query = current_query
+      else
+        @query = Query.create!
+        session[:query_id] = @query.id
+    
+      end
+      return @query
+	end
+
 	def current_user
 	  @current_user ||= User.find(session[:user_id]) if session[:user_id]
 	end

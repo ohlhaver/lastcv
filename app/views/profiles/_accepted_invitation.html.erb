@@ -3,7 +3,7 @@
 		<% if accepted_invitation.approval.paid == true %><%= accepted_invitation.candidate.name %><%else%> Payment failed <%end%>
 	</td>
 	<td>
-		<%= accepted_invitation.candidate.profile.jobs.first.position.name if accepted_invitation.candidate.profile.jobs.first %>
+		<%= accepted_invitation.candidate.profile.highest_position.name if accepted_invitation.candidate.profile.jobs.first %>
 	</td>
 
 	<td>

@@ -80,4 +80,18 @@ class QueriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def reset
+    @query = Query.find(params[:id])
+    @query.search_term = nil
+    @query.max_salary = nil
+    @query.max_notice_period = nil
+    @query.min_highest_position_id = nil
+    @query.min_degree = nil
+    @query.save
+    redirect_to profiles_path, :notice => "Your query has been reset."
+  end
+
+
+
 end
