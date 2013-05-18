@@ -66,4 +66,18 @@ module ProfilesHelper
 			return "part-time"
 		end
 	end
+
+	def status(profile)
+		invitation = find_invitation(profile)
+		if invitation
+			if invitation.approval
+				"request approved"
+				
+			else
+				"request sent"
+			end
+		else
+			"-"
+		end
+	end
 end
