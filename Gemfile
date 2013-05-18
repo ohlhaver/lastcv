@@ -56,3 +56,4 @@ gem 'delayed_job_active_record'
 gem 'stripe'
 gem "nested_form"
 gem 'thinking-sphinx', '~> 2.0.14'
+gem 'flying-sphinx',   '0.8.4'
