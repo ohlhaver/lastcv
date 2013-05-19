@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 		  		if e
 		  			redirect_to edit_user_path(@user)
 		  		else
-		  		redirect_to edit_user_path(@user), notice: "Your payment details have been updated."
+		  			redirect_to edit_user_path(@user), notice: "Your payment details have been updated."
 		  		end
 		  	end
 	  	else
@@ -65,6 +65,7 @@ class UsersController < ApplicationController
   	)
 		user.customer_id = customer.id
 		user.save
+		return nil
 
 		rescue Stripe::CardError => e
 		flash[:error] = e.message
@@ -76,6 +77,7 @@ class UsersController < ApplicationController
 		cu = Stripe::Customer.retrieve(user.customer_id)
 		cu.card  = params[:stripeToken]
 		cu.save
+		return nil
 
 		rescue Stripe::CardError => e
 		flash[:error] = e.message
