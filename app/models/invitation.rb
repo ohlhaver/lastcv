@@ -6,7 +6,7 @@ class Invitation < ActiveRecord::Base
   after_create :email_invitation
 
   def email_invitation
-  	CandidateMailer.invitation(self).deliver
+  	CandidateMailer.delay.invitation(self)
   end
 
 end

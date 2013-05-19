@@ -12,16 +12,16 @@ class Approval < ActiveRecord::Base
       if charge && charge.paid == true
         self.paid = true
         self.save
-  		  UserMailer.approval(self).deliver
+  		  UserMailer.delay.approval(self)
         amount = charge.amount.fdiv(100) 
-        UserMailer.receipt(self, amount).deliver
+        UserMailer.delay.receipt(self, amount)
       end
  	end
 
   def charge_method(customer_id)
     charge = Stripe::Charge.create(:amount   => 495, :currency => "usd",:customer => customer_id)
       rescue Stripe::CardError => e
-      UserMailer.payment_failure(self,e).deliver  
+      UserMailer.delay.payment_failure(self,e)  
       return charge
   end
 

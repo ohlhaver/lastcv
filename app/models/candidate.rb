@@ -5,7 +5,7 @@ class Candidate < ActiveRecord::Base
   after_create :email_welcome
 
   def email_welcome
-  	CandidateMailer.signup(self).deliver
+  	CandidateMailer.delay.signup(self)
   end
 
   	def self.from_omniauth(auth)

@@ -11,11 +11,11 @@ class User < ActiveRecord::Base
   after_create :email_admin
 
   def email_welcome
-  	UserMailer.signup(self).deliver
+  	UserMailer.delay.signup(self)
   end
 
   def email_admin
-  	UserMailer.verify(self).deliver
+  	UserMailer.delay.verify(self)
   end
 
 end
