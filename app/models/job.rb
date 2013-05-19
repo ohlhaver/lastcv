@@ -7,5 +7,5 @@ class Job < ActiveRecord::Base
   has_many :skills, through: :job_skills, source: :skill
   has_many :job_platforms
   has_many :platforms, through: :job_platforms, source: :platform
-
+  validates_presence_of :company_size, :position_id
 end

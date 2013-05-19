@@ -1,0 +1,14 @@
+Dear <%= @user.contact_person %>:
+<br>
+<br>
+Congratulations! Your request for contact details for profile id: <%= @profile.id %> (<%= link_to "view full profile", profile_url(@profile) %>) was approved by the candidate.
+<br><br>
+<b>Unfortunately, however, your payment of USD $<%= @amount %> failed due to the following reason:
+<br>
+ <%= @error %>.</b>
+<br><br>
+<%= link_to "Click here to update your payment details.", edit_user_url(@user) %>
+<br><br>
+Yours,
+<br><br>
+The TapCV Team 

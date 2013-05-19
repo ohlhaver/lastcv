@@ -31,6 +31,10 @@ private
 	  redirect_to login_url, alert: "Please log in or sign up!" if current_user.nil?
 	end
 
+	def correct_user
+      @user = User.find(params[:id])
+      redirect_to root_path, alert: "Not authorized" unless current_user && current_user == @user
+    end
 
 
 	def current_candidate
@@ -47,7 +51,7 @@ private
 		redirect_to root_path if current_candidate && current_candidate.profile
 	end
 
-	def correct_candidate
+	def correct_candidate	
       @profile = Profile.find(params[:id])
       redirect_to root_path, alert: "Not authorized" unless current_candidate && current_candidate.profile == @profile
     end

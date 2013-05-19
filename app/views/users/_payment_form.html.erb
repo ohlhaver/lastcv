@@ -3,7 +3,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
   <% if current_user.customer_id != nil %>
     <b>Your current payment method:</b><br>
+    <% if @cu && @cu.active_card %>
     <%= @cu.active_card.type%>, ending in <%= @cu.active_card.last4 %><br><br>
+    <%else %>
+    No valid credit card.
+    <%end%>
 
     <button id="customButton">Change payment method</button><br>
 

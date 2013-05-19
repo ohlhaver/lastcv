@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
 	def candidate_create
     	candidate = Candidate.from_omniauth(env["omniauth.auth"])
     	session[:candidate_id] = candidate.id
-    	redirect_to :root
+    	redirect_back_or(root_url)
   	end
 
   	def candidate_destroy

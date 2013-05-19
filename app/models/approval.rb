@@ -5,8 +5,11 @@ class Approval < ActiveRecord::Base
 
   def charge_and_email_approval
       customer_id = invitation.user.customer_id
-      charge = Stripe::Charge.create(:amount   => 495, :currency => "usd",:customer => customer_id)
-      if charge.paid == true
+      charge = charge_method(customer_id)
+      
+      #return
+      #flash[:error] = e.message
+      if charge && charge.paid == true
         self.paid = true
         self.save
   		  UserMailer.approval(self).deliver
@@ -14,5 +17,12 @@ class Approval < ActiveRecord::Base
         UserMailer.receipt(self, amount).deliver
       end
  	end
+
+  def charge_method(customer_id)
+    charge = Stripe::Charge.create(:amount   => 495, :currency => "usd",:customer => customer_id)
+      rescue Stripe::CardError => e
+      UserMailer.payment_failure(self,e).deliver  
+      return charge
+  end
 
 end

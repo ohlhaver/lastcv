@@ -20,6 +20,16 @@ class UserMailer < ActionMailer::Base
    	mail :to => @user.email, :subject => @subject
   end
 
+  def payment_failure(approval, error)
+    @approval = approval
+    @amount = "4.95"
+    @user = @approval.invitation.user
+    @profile = @approval.invitation.candidate.profile
+    @error = error.message
+    @subject = "Payment failed"
+    mail :to => @user.email, :subject => @subject
+  end
+
   def verify(user)
   	@user = user
   	@subject = "User " + @user.id.to_s + " needs to be verified"

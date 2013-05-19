@@ -1,5 +1,5 @@
 class InvitationsController < ApplicationController
-	before_filter :invited_candidate, only: [:show, :accept]
+	before_filter :authorize_candidate, only: [:show, :accept]
 	def show
 		@invitation = Invitation.find(params[:id])
 	end

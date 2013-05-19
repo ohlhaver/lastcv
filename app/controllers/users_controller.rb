@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	before_filter :correct_user, only: [:edit, :update, :destroy]
+
 	def new
   		@user = User.new
 	end
@@ -7,10 +9,6 @@ class UsersController < ApplicationController
   		@user = User.new(params[:user])
 	  if @user.save
 	    session[:user_id] = @user.id
-
-	    
-
-
 	    redirect_back_or(root_url)
 	  else
 	    render "new"
@@ -27,15 +25,30 @@ class UsersController < ApplicationController
 	  if @user.update_attributes(params[:user])
 	  	if params[:stripeToken] != nil
 	  		if @user.customer_id == nil
-		  		create_customer(@user)
+		  		e = create_customer(@user)
 		  		if @user.profile_id 
-		  			redirect_to :controller => "profiles", :action => "invite", :id => @user.profile_id
+		  			if e
+		  				redirect_back_or profile_path(@user.profile_id)
+		  			else
+		  				redirect_to :controller => "profiles", :action => "invite", :id => @user.profile_id
+		  			end
+
+		  			
 		  		else
-		  			redirect_to root_url, notice: "Your payment details have been saved."
+		  		    if e
+		  				redirect_to edit_user_path(@user)
+		  			else
+		  				redirect_to root_url, notice: "Your payment details have been saved."
+		  			end
+		  			
 		  		end
 		  	else
-		  		update_customer(@user)
-		  		redirect_to root_url, notice: "Your payment details have been updated."
+		  		e = update_customer(@user)
+		  		if e
+		  			redirect_to edit_user_path(@user)
+		  		else
+		  		redirect_to edit_user_path(@user), notice: "Your payment details have been updated."
+		  		end
 		  	end
 	  	else
 	    redirect_to root_url, notice: "Your profile has been updated."
@@ -53,11 +66,9 @@ class UsersController < ApplicationController
 		user.customer_id = customer.id
 		user.save
 
-
-
 		rescue Stripe::CardError => e
 		flash[:error] = e.message
-	  	redirect_back_or(root_url)
+	  	return e
 		
 	end
 
@@ -68,7 +79,7 @@ class UsersController < ApplicationController
 
 		rescue Stripe::CardError => e
 		flash[:error] = e.message
-	  	redirect_back_or(root_url)
+	  	return e
 		
 	end
 
