@@ -14,11 +14,14 @@
 			<b>You requested contact details from this candidate <%= time_ago_in_words(find_invitation(@profile).created_at)%> ago.</b>
 			<%end%>
 	<%else%>
-			<%= button_to "Request contact details from this candidate", :id => @profile.id, :action => "confirm"  %>
+			<br><br><%= button_to "Request contact details from this candidate", {:id => @profile.id, :action => "confirm"}, {:class => "btn btn-large btn-primary"} %>
 	<% end %>
 <% end %>
 
 <%= render "full_profile" %>
+<% unless current_candidate %>
+<% unless ( current_user && find_invitation(@profile)) %>
 <br>
-
-
+<br><%= button_to "Request contact details from this candidate", {:id => @profile.id, :action => "confirm"}, {:class => "btn btn-large btn-primary"} %>
+<%end%>
+<%end%>

@@ -13,6 +13,7 @@ class ProfilesController < ApplicationController
 
 
     @profiles = current_query.get_profiles
+    @profiles = Kaminari.paginate_array(@profiles).page(params[:page]).per(10)
 
     
 

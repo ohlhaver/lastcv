@@ -27,6 +27,7 @@ class Query < ActiveRecord::Base
         @profiles = @profiles.select {|i| i.notice_period != nil && i.notice_period <= max_notice_period } if max_notice_period
 
         @profiles = @profiles.sort_by(&:updated_at).reverse
+
         return @profiles  
       end
 end
