@@ -69,11 +69,11 @@
 <b>	Confirm accuracy </b>
 <br><br>
 
-<%= f.input :confirmed, label: false, inline_label: 'I hereby confirm that all my responses above are 100% true and accurate and that I am able to provide reference material for any of the responses if needed.' %>	
+<%= f.input :confirmed, label: false, inline_label: 'All my responses above are 100% true and I am able to provide reference material if needed.' %>	
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, "Save", :class => "btn btn-large btn-primary" %>
   </div>
 <% end %>
 

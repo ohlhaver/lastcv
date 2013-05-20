@@ -1,6 +1,10 @@
 <div class="row">
 <div class ="span6">
+	<% if correct_candidate? == true %>
+	<h4>Your 100% anonymous TapCV</h4>
+	<%else%>
 <h4>TapCV</h4>
+<%end%>
 Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 <br><br>
 <div class ="module"></div>  

@@ -8,10 +8,28 @@
 					<%= render current_candidate.invitations %>
 				</tbody>
 			</table>
-			<% else %>
-			No requests yet.
 		</div>
 	</div>
+	<% else %>
+		<% if current_candidate.profile %>
+			<h4>You don't have any requests yet.</h4>
+			<br>
+    <%= link_to 'Update your TapCV', edit_profile_path(current_candidate.profile), 
+                                class: "btn btn-large btn-primary" %>
+		<%else%>
+		<div class="center hero-unit">
+		
+     <h1>
+      Create your anonymous TapCV</h1> <h2> You are in control over who sees your contact details:<br> Only people whose request you explicitly approve will see your identity. </h2>
+    
+    <br>
+    <%= link_to 'Create my TapCV', new_profile_path, 
+                                class: "btn btn-large btn-primary" %>
+
+  </div>
+
+		<%end%>
+
 	<% end %>
 <% end %>
 
@@ -32,7 +50,19 @@
 <% end %>
 
 <% unless current_candidate %>
-	<%= render "profiles/filter_table"%>
+	<% unless current_user %>
+	<div class="center hero-unit">
+		<h1>Jobseekers:</h1>
+     <h2>
+      Create your anonymous TapCV in 30 seconds<br> and get contacted by recruiters!
+    </h2>
+    <br>
+    <%= link_to "Login anonymously via Facebook!", "/auth/facebook", id: "sign_in", 
+                                class: "btn btn-large btn-primary" %>
+
+  </div>
+  <%end%>
+	<%= render "profiles/filter_table"%>	
 <% end %>
 
 

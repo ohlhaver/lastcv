@@ -57,6 +57,16 @@ private
       redirect_to root_path, alert: "Not authorized" unless current_candidate && current_candidate.profile == @profile
     end
 
+    def correct_candidate?
+    	@profile = Profile.find(params[:id])
+    	if current_candidate && current_candidate.profile == @profile
+    		return true
+    	else
+    		return false
+    	end
+    end
+    helper_method :correct_candidate?
+
     def invited_candidate
     	@invitation = Invitation.find(params[:id])
     	redirect_to root_path, alert: "Not authorized" unless current_candidate && @invitation.candidate == current_candidate
