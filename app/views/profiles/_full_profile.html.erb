@@ -18,7 +18,7 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
   		</tr>
   		<tr>
 			<td> Min. desired annual salary: </b></td>	
-  			<td>	<%= @profile.general_min_yearly_salary %> USD</td>
+  			<td>	<%= @profile.general_min_yearly_salary %>,000 USD</td>
   		</tr>
 
 		<tr>
@@ -79,7 +79,7 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 							<% if job.annual_salary %>
 								<tr>
 									<td>Annual salary:</b></td>
-									<td> <%= job.annual_salary %> USD</td>
+									<td> <%= job.annual_salary %>,000 USD</td>
 								</tr>
 							<%end%>
 							
