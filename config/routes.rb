@@ -1,5 +1,7 @@
 Tapcv::Application.routes.draw do
   
+  get "password_resets/new"
+
   get "static_pages/home"
 
   get "static_pages/about"
@@ -14,6 +16,7 @@ Tapcv::Application.routes.draw do
   resources :queries
   resources :profiles
   resources :invitations
+  resources :password_resets
   get "profiles/new"
   get "profiles/create"
   

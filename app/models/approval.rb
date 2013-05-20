@@ -4,7 +4,7 @@ class Approval < ActiveRecord::Base
   after_create :charge_and_email_approval
 
    def charge_and_email_approval
-      self.delay.charge_and_email_approval
+      self.delay.charge_and_email_approval_method
    end
 
   def charge_and_email_approval_method
