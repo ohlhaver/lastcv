@@ -3,7 +3,11 @@ class Approval < ActiveRecord::Base
   belongs_to :invitation
   after_create :charge_and_email_approval
 
-  def charge_and_email_approval
+   def charge_and_email_approval
+      self.delay.charge_and_email_approval
+   end
+
+  def charge_and_email_approval_method
       customer_id = invitation.user.customer_id
       charge = charge_method(customer_id)
       
