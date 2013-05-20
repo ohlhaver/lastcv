@@ -44,7 +44,7 @@
 		<%= f.simple_fields_for :degrees do |degree_form| %>
 		  	<%= degree_form.input :level, collection: [["Highschool",1], ["College/Undergraduate",2], ["Master/Graduate",3], ["Postgraduate/PhD",4]], prompt: "Select degree", label: 'Degree' %>
 		<%= degree_form.input :school_name, label: "School/college/university", placeholder: 'e.g. "University of California, Berkeley"'  %>
-		<%= degree_form.association :subject, prompt: "Select suject", label: "Your major/main subject" %>
+		<%= degree_form.association :subject, collection: Subject.order('name'), prompt: "Select subject", label: "Your major/main subject" %>
 		<%= degree_form.input :gpa, label: "Your GPA", placeholder: 'e.g. "3,65"' %>
 
 		  	<%= degree_form.link_to_remove "[-] Remove the above degree" %>
