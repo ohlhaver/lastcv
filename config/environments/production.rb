@@ -63,6 +63,11 @@ Tapcv::Application.configure do
   :enable_starttls_auto => true
 }
 
+config.middleware.use ExceptionNotifier,
+  :email_prefix => "[Exception] ",
+  :sender_address => %{"Exception Notifier" <noreply@TapCV.com>},
+  :exception_recipients => %w{ohlhaver@gmail.com}
+
   # Enable threaded mode
   # config.threadsafe!
 
@@ -81,4 +86,6 @@ Tapcv::Application.configure do
 
   ENV['SECRET_KEY'] = 'sk_test_gKB6CGksiXE5eip4QOvFh4QY'
   ENV['PUBLISHABLE_KEY'] = 'pk_test_LiK0p3bokSPpeLRYCxZD7xV4'
+
+
 end
