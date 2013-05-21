@@ -14,7 +14,7 @@
 		<% if current_candidate.profile %>
 			<h4>You don't have any requests yet.</h4>
 			<br>
-    <%= link_to 'Update your TapCV', edit_profile_path(current_candidate.profile), 
+    <%= link_to 'Update your anonymous CV', edit_profile_path(current_candidate.profile), 
                                 class: "btn btn-large btn-primary" %>
 		<%else%>
 		<div class="center hero-unit">
@@ -60,7 +60,7 @@
 			      Post your CV anonymously and get recruited.
 			    </h2>
 				    <br>
-				    <%= link_to "Login  via Facebook (but stay anonymous)", "/auth/facebook", id: "sign_in", 
+				    <%= link_to "Login via Facebook", "/auth/facebook", id: "sign_in", 
 				                                class: "btn btn-large btn-primary" %>
 
 					<br>
@@ -71,7 +71,7 @@
   	<div class="center hero-unit">
 				<h1>Companies</h1>
 			     <h2>
-			      Find highly qualified iOS hackers that you wouldn't find anyhwere else!
+			      Find qualified iOS hackers you wouldn't find anyhwere else!
 			    </h2>
 				    <br>
 				    <%= link_to "Signup", signup_path, id: "sign_in", 
