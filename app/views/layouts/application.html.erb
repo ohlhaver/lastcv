@@ -29,10 +29,10 @@
             | <%= link_to "Sign out", signout_path, id: "sign_out" %>
             <br>
             <% if current_candidate.profile %>
-              <%= link_to 'Edit your TapCV', edit_profile_path(current_candidate.profile) %> | 
+              <%= link_to 'Edit your CV', edit_profile_path(current_candidate.profile) %> | 
               <%= link_to 'View', current_candidate.profile %>
               <%else%>
-              <%= link_to 'Create your TapCV', new_profile_path %>
+              <%= link_to 'Post your CV', new_profile_path %>
             <%end%>
           <% elsif current_user %>
              Recruiter: Logged in as <strong><%= current_user.email %></strong>.

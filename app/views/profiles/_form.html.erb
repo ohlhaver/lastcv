@@ -6,14 +6,14 @@
 		<b>You job status</b><br><br>
 			<%= f.input :silicon_valley, label: "Targeted job", inline_label: 'I am interested in full-time positions as an iOS developer in Silicon Valley and open for interviews for jobs that meet my salary requirements.' %>
 			<%= f.input :work_permit, label: 'Permit', inline_label: 'I am currently permitted to work in the US.' %>
-			<%= f.input :general_min_yearly_salary, label: 'Min annual salary (in thousands of USD)', placeholder: 'e.g. "65"', hint: 'Your minimum desired annual salary (in thousands of USD)' %>
+			<%= f.input :general_min_yearly_salary, label: 'Minimum annual salary', placeholder: 'e.g. "65000"', hint: 'Your minimum desired annual salary (in USD)' %>
 		  	<%= f.input :notice_period, label: 'Notice period', placeholder: 'e.g. "3"', hint: 'How quickly could you start (in weeks)?'%>
 		 
 		<div class ="module"></div>
 		<b> Your iOS apps </b>
 		<br><br> 
 		<%= f.input :ios_apps, label: 'Apps in the app-store', hint: 'Number of iOS apps that you built yourself, not in a team.' %>
-		<%= f.input :ios_years, label: 'Experience (in years)', placeholder: 'e.g. "2.5"', hint: 'Number of years programming iOS apps' %>
+		<%= f.input :ios_years, label: 'Experience', placeholder: 'e.g. "2.5"', hint: 'How long have you been programming iOS apps (in years)?' %>
 		<div class ="module"></div>
 		<b>Work experience (start with your last/current job)</b><br><br>
 
@@ -29,8 +29,8 @@
 		  	<%= job_form.input :end_date, label: 'End date' %>
 		  	<%= job_form.input :current, label: false, inline_label: 'I\'m currently holding this job (overwrites the end date)' %>
 		  	<%= job_form.input :contract, collection: [["Full-time",1], ["Part-time",2]], prompt: "Select contract", label: 'Full-time or part-time?' %>
-		  	<%= job_form.input :annual_salary, label: 'Annual salary if full-time', placeholder: 'e.g. "65"', hint: 'Annual salary (in thousands of USD)' %>
-		  	<%= job_form.input :hourly_salary, label: 'Hourly salary if part-time', placeholder: 'e.g. "50"', hint: 'Hourly salary (USD)' %>
+		  	<%= job_form.input :annual_salary, label: 'Annual salary if full-time', placeholder: 'e.g. "65000"', hint: 'Annual salary (in USD)' %>
+		  	<%= job_form.input :hourly_salary, label: 'Hourly salary if part-time', placeholder: 'e.g. "50"', hint: 'Hourly salary (in USD)' %>
 		  	<h4><%= job_form.link_to_remove "[-] Remove the above work experience" %></h4>
 		  	<br><br>
 		<div class ="slim_module"></div>

@@ -1,7 +1,7 @@
 <div class="row">
 <div class ="span6">
 	<% if correct_candidate? == true %>
-	<h4>Your 100% anonymous TapCV</h4>
+	<h4>Your anonymous CV</h4>
 	<%else%>
 <h4>TapCV</h4>
 <%end%>
@@ -18,7 +18,7 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
   		</tr>
   		<tr>
 			<td> Min. desired annual salary: </b></td>	
-  			<td>	<%= @profile.general_min_yearly_salary %>,000 USD</td>
+  			<td>	<%= @profile.general_min_yearly_salary %> USD</td>
   		</tr>
 
 		<tr>
@@ -79,7 +79,7 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 							<% if job.annual_salary %>
 								<tr>
 									<td>Annual salary:</b></td>
-									<td> <%= job.annual_salary %>,000 USD</td>
+									<td> <%= job.annual_salary %> USD</td>
 								</tr>
 							<%end%>
 							

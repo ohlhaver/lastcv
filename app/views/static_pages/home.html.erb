@@ -20,7 +20,7 @@
 		<div class="center hero-unit">
 		
      <h2>
-      Create your 100% anonymous TapCV now!</h2>
+      Create your anonymous TapCV now!</h2>
       <h3>Your identity remains completely hidden.
       </h3>
     
@@ -53,16 +53,16 @@
 <% unless current_candidate %>
 	<% unless current_user %>
 	<div class="center hero-unit">
-		<h1>Jobseekers:</h1>
+		<h1>Jobseekers</h1>
      <h2>
-      Create your anonymous TapCV in 30 seconds<br> and get contacted by recruiters!
+      Post your CV anonymously and get recruited.
     </h2>
     <br>
-    <%= link_to "Login anonymously via Facebook!*", "/auth/facebook", id: "sign_in", 
+    <%= link_to "Login  via Facebook* (but stay anonymous)", "/auth/facebook", id: "sign_in", 
                                 class: "btn btn-large btn-primary" %>
 
 <br>
-  *None of your actions here will ever be visible on Facebook
+   *Facebook login is needed to ensure that you are a real person.
   </div>
   <%end%>
 	<%= render "profiles/filter_table"%>	

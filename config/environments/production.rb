@@ -51,7 +51,7 @@ Tapcv::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => "polar-scrubland-3781.herokuapp.com" }
+  config.action_mailer.default_url_options = { :host => "www.tapcv.com" }
 
   ActionMailer::Base.smtp_settings = {
   :address        => 'smtp.sendgrid.net',
@@ -59,7 +59,7 @@ Tapcv::Application.configure do
   :authentication => :plain,
   :user_name      => 'app15585103@heroku.com',
   :password       => '6tinkcup',
-  :domain         => 'heroku.com',
+  :domain         => 'tapcv.com',
   :enable_starttls_auto => true
 }
 
