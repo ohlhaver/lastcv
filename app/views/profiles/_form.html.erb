@@ -31,13 +31,13 @@
 		  	<%= job_form.input :contract, collection: [["Full-time",1], ["Part-time",2]], prompt: "Select contract", label: 'Full-time or part-time?' %>
 		  	<%= job_form.input :annual_salary, label: 'Annual salary if full-time', placeholder: 'e.g. "65000"', hint: 'Annual salary (in USD)' %>
 		  	<%= job_form.input :hourly_salary, label: 'Hourly salary if part-time', placeholder: 'e.g. "50"', hint: 'Hourly salary (in USD)' %>
-		  	<h4><%= job_form.link_to_remove "[-] Remove the above work experience" %></h4>
+		  	<p><%= job_form.link_to_remove "[-] Remove the above work experience" %></p>
 		  	<br><br>
 		<div class ="slim_module"></div>
 
 		<% end %>
 
-		<h4><%= f.link_to_add "[+] Add a work experience", :jobs %></h4>
+		<p><%= f.link_to_add "[+] Add a work experience", :jobs %></p>
 
 		<div class ="module"></div>
 		<b>Education</b><br><br>
@@ -47,11 +47,11 @@
 		<%= degree_form.association :subject, collection: Subject.order('name'), prompt: "Select subject", label: "Your major/main subject" %>
 		<%= degree_form.input :gpa, label: "Your GPA", placeholder: 'e.g. "3,65"' %>
 
-		  	<h4><%= degree_form.link_to_remove "[-] Remove the above degree" %></h4>
+		  	<p><%= degree_form.link_to_remove "[-] Remove the above degree" %></p>
 		  	  	<br><br>
 		<div class ="slim_module"></div>
 		<% end %>
-		<h4><%= f.link_to_add "[+] Add a degree", :degrees %></h4>
+		<p><%= f.link_to_add "[+] Add a degree", :degrees %></p>
 <div class ="module"></div>
 <b> Standardized test scores </b>
 <br><br>
@@ -59,11 +59,11 @@
 		  	<%= test_score_form.input :test_type, collection: [["SAT math",1], ["SAT critical reading",2], ["SAT writing",3], ["ACT English",4], ["ACT math",5], ["ACT reading",6], ["ACT science",7]], prompt: "Select test type", label: 'Test type' %>
 		<%= test_score_form.input :score, label: "Score", placeholder: 'e.g. "501"'  %>
 		
-		  	<h4><%= test_score_form.link_to_remove "[-] Remove the above test score" %></h4>
+		  	<p><%= test_score_form.link_to_remove "[-] Remove the above test score" %></p>
 		  	  	<br><br>
 		<div class ="slim_module"></div>
 		<% end %>
-		<h4><%= f.link_to_add "[+] Add a test score", :test_scores %></h4>
+		<p><%= f.link_to_add "[+] Add a test score", :test_scores %></p>
 <div class ="module"></div>
 	
 <b>	Confirm accuracy </b>

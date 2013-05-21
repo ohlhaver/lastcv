@@ -1,6 +1,7 @@
 Tapcv::Application.routes.draw do
   
   get "password_resets/new"
+  get 'candidate_new_password_reset', to: 'password_resets#candidate_new', as: 'candidate_new_password_reset'
 
   get "static_pages/home"
 
@@ -12,6 +13,7 @@ Tapcv::Application.routes.draw do
 
   get "sessions/new"
   resources :users
+  resources :candidates
   resources :sessions
   resources :queries
   resources :profiles
@@ -47,6 +49,10 @@ Tapcv::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
+
+  get 'edit_candidate', to: 'candidates#edit', as: 'edit'
+  get 'signup_candidate', to: 'candidates#new', as: 'candidate_signup'
+  get 'candidate_login', to: 'sessions#candidate_new', as: 'candidate_login'
   match 'auth/:provider/callback', to: 'sessions#candidate_create'
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#candidate_destroy', as: 'signout'

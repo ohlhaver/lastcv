@@ -2,23 +2,47 @@ class SessionsController < ApplicationController
 	def new
 	end
 
+    def candidate_new
+	end
+
 	def create
-	  user = User.find_by_email(params[:email])
-	  if user && user.authenticate(params[:password])
-	        if params[:remember_me]
-      			cookies.permanent[:auth_token] = user.auth_token
-    		else
-      			cookies[:auth_token] = user.auth_token
-    		end
-	    redirect_back_or(root_url)
-	  else
-	    flash.now.alert = "Email or password is invalid"
-	    render "new"
-	  end
+		if params[:login_type] == "candidate"
+	  
+		  candidate = Candidate.find_by_email(params[:email])
+		  	if candidate && candidate.authenticate(params[:password])
+		        if params[:remember_me]
+	      			session[:candidate_id] = candidate.id
+	    		else
+	      			session[:candidate_id] = candidate.id
+	    		end
+	    		redirect_back_or(root_url)
+	    	else
+			    flash.now.alert = "Email or password is invalid"
+			    render "candidate_new"
+	    	end
+		else
+		  user = User.find_by_email(params[:email])
+		  	if user && user.authenticate(params[:password])
+		        if params[:remember_me]
+	      			session[:user_id] = user.id
+	    		else
+	      			session[:user_id] = user.id
+	    		end
+	    		redirect_back_or(root_url)
+	    	else
+			    flash.now.alert = "Email or password is invalid"
+			    render "new"
+	    	end
+		end
+		  
+
+	    
+
 	end
 
 	def destroy
-	  cookies.delete(:auth_token)
+	  session[:user_id] = nil
+	  session[:candidate_id] = nil
 	  redirect_to root_url, notice: "Logged out!"
 	end
 

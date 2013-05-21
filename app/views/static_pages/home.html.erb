@@ -59,8 +59,13 @@
 			     <h2>
 			      Post your CV anonymously and get recruited.
 			    </h2>
-				    <br>
-				    <%= link_to "Login via Facebook", "/auth/facebook", id: "sign_in", 
+				    <br><%= link_to "Signup", candidate_signup_path, id: "sign_in", 
+                                class: "btn btn-large btn-info" %>
+
+<%= link_to "Login", candidate_login_path, id: "sign_in", 
+                                class: "btn btn-large btn-info" %>
+
+				    <%= link_to "Login via fb", "/auth/facebook", id: "sign_in", 
 				                                class: "btn btn-large btn-primary" %>
 
 					<br>
