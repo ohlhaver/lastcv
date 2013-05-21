@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130520005146) do
+ActiveRecord::Schema.define(:version => 20130521040439) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -249,6 +249,7 @@ ActiveRecord::Schema.define(:version => 20130520005146) do
     t.integer  "max_notice_period"
     t.boolean  "top_schools"
     t.float    "min_years"
+    t.boolean  "work_permit_required"
   end
 
   create_table "skills", :force => true do |t|
