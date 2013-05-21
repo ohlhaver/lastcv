@@ -25,22 +25,21 @@
           <br>
           
           <% if current_candidate %>
-            Candidate: Signed in as <strong><%= current_candidate.name %></strong>
+            Signed in as <strong><%= current_candidate.name %></strong>
             | <%= link_to "Sign out", signout_path, id: "sign_out" %>
-            <br>
             <% if current_candidate.profile %>
-              <%= link_to 'Edit your CV', edit_profile_path(current_candidate.profile) %> | 
+              | <%= link_to 'Edit your CV', edit_profile_path(current_candidate.profile) %> | 
               <%= link_to 'View', current_candidate.profile %>
               <%else%>
-              <%= link_to 'Post your CV', new_profile_path %>
+              | <%= link_to 'Post your CV', new_profile_path %>
             <%end%>
           <% elsif current_user %>
-             Recruiter: Logged in as <strong><%= current_user.email %></strong>.
-              <%= link_to "Log Out", logout_path %> or 
-              <%= link_to "Edit", edit_user_path(current_user) %>
+             Logged in as <strong><%= current_user.email %></strong>.
+              <%= link_to "Log Out", logout_path %> | 
+              <%= link_to "Settings", edit_user_path(current_user) %>
           <% else %>
-          Candidate: <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> |
-          Recruiter:
+          Candidates: <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> |
+          Companies:
               <%= link_to "Sign Up", signup_path %> or
               <%= link_to "Log In", login_path %>
             <% end %>
