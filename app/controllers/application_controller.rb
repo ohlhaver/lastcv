@@ -45,7 +45,7 @@ private
 
 	def authorize_candidate
 		store_location
-	  redirect_to "/auth/facebook", alert: "Not authorized" if current_candidate.nil?
+	  redirect_to candidate_login_path, alert: "Not authorized" if current_candidate.nil?
 	end
 
 	def first_profile
