@@ -74,7 +74,7 @@ module ProfilesHelper
 				"request approved"
 				
 			else
-				"request sent"
+				"request submitted"
 			end
 		else
 			"-"

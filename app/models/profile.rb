@@ -26,7 +26,7 @@ class Profile < ActiveRecord::Base
 
   after_save :generate_education_level
   after_save :generate_highest_position_id
-  validates_presence_of :silicon_valley, :notice_period, :general_min_yearly_salary, :confirmed, :ios_years
+  validates_presence_of :notice_period, :general_min_yearly_salary, :confirmed, :ios_years
   validates :ios_apps, :numericality => { :greater_than => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
   validates :ios_years, :numericality => { :greater_than => 0, :less_than_or_equal_to => 7 }
   validates :notice_period, :numericality => { :greater_than => 0, :less_than_or_equal_to => 52 }

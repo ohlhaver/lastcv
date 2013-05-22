@@ -10,12 +10,16 @@ class SessionsController < ApplicationController
 	  
 		  candidate = Candidate.find_by_email(params[:email])
 		  	if candidate && candidate.authenticate(params[:password])
-		        if params[:remember_me]
-	      			session[:candidate_id] = candidate.id
-	    		else
-	      			session[:candidate_id] = candidate.id
-	    		end
-	    		redirect_back_or(root_url)
+		        #if params[:remember_me]
+	      		session[:candidate_id] = candidate.id
+	    		#else
+	      		#	session[:candidate_id] = candidate.id
+	    		#end
+	    		if candidate.profile
+		    		redirect_back_or(root_url)
+		    	else
+		    		redirect_to new_profile_path
+		    	end
 	    	else
 			    flash.now.alert = "Email or password is invalid"
 			    render "candidate_new"
@@ -23,11 +27,11 @@ class SessionsController < ApplicationController
 		else
 		  user = User.find_by_email(params[:email])
 		  	if user && user.authenticate(params[:password])
-		        if params[:remember_me]
-	      			session[:user_id] = user.id
-	    		else
-	      			session[:user_id] = user.id
-	    		end
+		        #if params[:remember_me]
+	      		session[:user_id] = user.id
+	    		#else
+	      		#	session[:user_id] = user.id
+	    		#end
 	    		redirect_back_or(root_url)
 	    	else
 			    flash.now.alert = "Email or password is invalid"
@@ -56,8 +60,8 @@ class SessionsController < ApplicationController
     	end
   	end
 
-  	def candidate_destroy
-    	session[:candidate_id] = nil
-    	redirect_to root_url
-  	end
+  	#def candidate_destroy
+    #	session[:candidate_id] = nil
+    #	redirect_to root_url
+  	#end
 end

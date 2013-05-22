@@ -10,15 +10,9 @@
     <%= password_field_tag :password %>
   </div>
   <p><%= link_to "forgotten password?", candidate_new_password_reset_path %></p>
-<div class="field" >
-  <label class="checkbox">
-  <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-  <%= label_tag :remember_me %>
-</label>
-</div>
 <br>
 <%= hidden_field_tag "login_type", "candidate" %>
   <div class="actions"><%= submit_tag "Log In",:class => "btn btn-medium btn-primary" %></div>
 <% end %>
 
-<b><%= link_to "Sign up here", candidate_signup_path %></b>
+<b><%= link_to "Sign up here", candidate_signup_path %> | <%= link_to "Log In with Facebook", "/auth/facebook", id: "sign_in" %></b>

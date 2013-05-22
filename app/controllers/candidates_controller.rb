@@ -6,8 +6,12 @@ class CandidatesController < ApplicationController
 	def create
   		@candidate = Candidate.new(params[:candidate])
 	  if @candidate.save
-	    session[:candidate_id] = candidate.id
-	    redirect_back_or(root_url)
+	    session[:candidate_id] = @candidate.id
+	    if @candidate.profile
+    		redirect_back_or(root_url)
+    	else
+    		redirect_to new_profile_path
+    	end
 	  else
 	    render "new"
 	  end

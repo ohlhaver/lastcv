@@ -55,7 +55,7 @@ Tapcv::Application.routes.draw do
   get 'candidate_login', to: 'sessions#candidate_new', as: 'candidate_login'
   match 'auth/:provider/callback', to: 'sessions#candidate_create'
   match 'auth/failure', to: redirect('/')
-  match 'signout', to: 'sessions#candidate_destroy', as: 'signout'
+  #match 'signout', to: 'sessions#candidate_destroy', as: 'signout'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

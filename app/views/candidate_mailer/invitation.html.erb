@@ -20,7 +20,7 @@ Created:
 <%else%>
 	<%= link_to "Accept this request", accept_invitation_url(@invitation) %>
 	<br><br>
-	 If you accept, your name, email address, and Facebook url will be submitted to the contact person at <%= @invitation.user.company_name %>. 
+	 If you accept this request, your name and email address will be submitted to the contact person at <%= @invitation.user.company_name %>. 
 <%end%>
 
 

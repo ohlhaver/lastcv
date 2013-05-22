@@ -12,6 +12,14 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 <table class="table table-striped">
 
     <tbody>
+    	 <tr>
+			<td>Willing to work in the Bay Area: </b></td>
+			<td><% if @profile.work_permit == true %>Yes<%else%>No<% end %></td>
+		</tr>
+		<tr>
+			<td>U.S. work permit: </b></td>
+			<td><% if @profile.work_permit == true %>Yes<%else%>No<% end %></td>
+		</tr>
     	<tr>
       		<td> Notice period: </b></td>
   			<td><%= @profile.notice_period.to_s %> week(s) </td>
@@ -21,10 +29,6 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
   			<td>	<%= @profile.general_min_yearly_salary %> USD</td>
   		</tr>
 
-		<tr>
-			<td>U.S. work permit: </b></td>
-			<td><% if @profile.work_permit == true %>Yes<%else%>No<% end %></td>
-		</tr>
 		<tr>
 			<td>Number of self-built iOS apps in the app store: </b></td>
 			<td><%= @profile.ios_apps.to_s %></td>

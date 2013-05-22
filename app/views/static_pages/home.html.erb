@@ -32,9 +32,9 @@
 		<%end%>
 
 	<% end %>
-<% end %>
 
-<% if current_user %>
+
+<% elsif current_user %>
 	<% if @approved_invitations.any? %>
 	<h4>Your received contact details</h4>
 	<% @invitations = @approved_invitations %>
@@ -65,7 +65,7 @@
 <%= link_to "Login", candidate_login_path, id: "sign_in", 
                                 class: "btn btn-large btn-info" %>
 
-				    <%= link_to "Login via fb", "/auth/facebook", id: "sign_in", 
+				    <%= link_to "Login with fb", "/auth/facebook", id: "sign_in", 
 				                                class: "btn btn-large btn-primary" %>
 
 					<br>

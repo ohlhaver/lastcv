@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 	def create
   		@user = User.new(params[:user])
 	  if @user.save
-	    session[:user_id] = user.id
+	    session[:user_id] = @user.id
 	    redirect_back_or(root_url)
 	  else
 	    render "new"

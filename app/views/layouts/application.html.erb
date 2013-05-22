@@ -26,8 +26,8 @@
           <br>
           
           <% if current_candidate %>
-            Signed in as <strong><%= current_candidate.name %></strong>
-            | <%= link_to "Sign out", signout_path, id: "sign_out" %>
+            Logged in as <strong><%= current_candidate.name %></strong>
+            | <%= link_to "Log Out", logout_path, id: "sign_out" %>
             <% if current_candidate.profile %>
               | <%= link_to 'Edit your CV', edit_profile_path(current_candidate.profile) %> | 
               <%= link_to 'View', current_candidate.profile %>
@@ -39,7 +39,7 @@
               <%= link_to "Log Out", logout_path %> | 
               <%= link_to "Settings", edit_user_path(current_user) %>
           <% else %>
-          Candidates: <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> |
+          Candidates: <%= link_to "Log In with Facebook", "/auth/facebook", id: "sign_in" %> |
           Companies:
               <%= link_to "Sign Up", signup_path %> or
               <%= link_to "Log In", login_path %>

@@ -1,6 +1,8 @@
 <h3>Post your CV anonymously.</h3>
-<h4>Your identity remains completely hidden.</h4>
-
+<h4>Your identity remains completely hidden.
+<% if current_candidate.uid != nil %>
+None of this will ever be visible on Facebook.
+<%end%>
+</h4>
 <%= render 'form' %>
 
-<%= link_to 'Back', profiles_path %>
