@@ -9,6 +9,9 @@
 	</td>
 	<td>
 		<%= profile.ios_years %> years
+	</td>
+	<td>
+		<%= profile.ios_apps %> apps
 	</td>		
 	<td>
 		<%= display_education_level(profile.education_level) %>
@@ -16,11 +19,6 @@
 	<td>
 		<%= "yes" if profile.silicon_valley == true %>
 	</td>	
-
-
-	<td>
-		<%= time_ago_in_words(profile.updated_at)%> ago 
-	</td>
 	<td>
 		<%= status(profile) %>
 	</td>
