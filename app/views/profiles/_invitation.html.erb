@@ -1,24 +1,19 @@
 <tr onclick="location.href='<%=profile_path(invitation.candidate.profile)%>';" style="cursor:pointer">
 	
 
-	<td>
-		<%= invitation.candidate.profile.highest_position.name if invitation.candidate.profile.jobs.first %>
-	</td>
-
-	<td>
-	
-		<%= invitation.candidate.profile.platforms.map(&:name).join(", ") %>
+		<td>
+		<%= invitation.candidate.profile.jobs.first.biomed_title.name if invitation.candidate.profile.jobs.first && invitation.candidate.profile.jobs.first.biomed_title %>
 	</td>
 	<td>
-		<%= invitation.candidate.profile.ios_years %> years
-	</td>	
+		<%= invitation.candidate.profile.highest_position.name if invitation.candidate.profile.highest_position %>
+	</td>
 	<td>
-		<%= invitation.candidate.profile.ios_apps %> apps
-	</td>			
+		<%= invitation.candidate.profile.biomed_years %> years
+	</td>		
 	<td>
 		<%= display_education_level(invitation.candidate.profile.education_level) %>
 	</td>
 	<td>
-		<%= "yes" if invitation.candidate.profile.silicon_valley == true %>
-	</td>		
+		<% if invitation.candidate.profile.city == nil %>none<%else%><%= invitation.candidate.profile.city.name%><%end%>
+	</td>	
   </tr>

@@ -1,0 +1,20 @@
+<tr onclick="location.href='<%=profile_path(biomed_profile)%>';" style="cursor:pointer" title="Click to view full profile">
+	<td>
+		<%= biomed_profile.jobs.first.biomed_title.name if biomed_profile.jobs.first && biomed_profile.jobs.first.biomed_title %>
+	</td>
+	<td>
+		<%= biomed_profile.highest_position.name if biomed_profile.highest_position %>
+	</td>
+	<td>
+		<%= biomed_profile.biomed_years %> years
+	</td>		
+	<td>
+		<%= display_education_level(biomed_profile.education_level) %>
+	</td>
+	<td>
+		<% if biomed_profile.city == nil %>none<%else%><%=biomed_profile.city.name%><%end%>
+	</td>	
+	<td>
+		<%= status(biomed_profile) %>
+	</td>
+  </tr>

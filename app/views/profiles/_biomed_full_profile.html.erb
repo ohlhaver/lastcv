@@ -1,0 +1,173 @@
+<div class="row">
+<div class ="span6">
+	<% if correct_candidate? == true %>
+	<h4>Your anonymous CV</h4>
+	<%else%>
+<h4>TapCV</h4>
+<%end%>
+Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
+<br><br>
+<div class ="module"></div>  
+<h5>Job status</h5>
+<table class="table table-striped">
+
+    <tbody>
+    	 <tr>
+			<td>Geographical restrictions: </b></td>
+			<td><% if @profile.city == nil %>None<%else%>Restricted to <%=@profile.city.name%><% end %></td>
+		</tr>
+		<tr>
+			<td>U.S. work permit: </b></td>
+			<td><% if @profile.work_permit == true %>Yes<%else%>No<% end %></td>
+		</tr>
+    	<tr>
+      		<td> Notice period: </b></td>
+  			<td><%= @profile.notice_period.to_s %> week(s) </td>
+  		</tr>
+  		<tr>
+			<td> Min. desired annual salary: </b></td>	
+  			<td>	<%= @profile.general_min_yearly_salary %> USD</td>
+  		</tr>
+  		<% if @profile.general_min_hourly_salary %>
+  		 <tr>
+			<td> Min. desired hourly salary: </b></td>	
+  			<td>	 <%= @profile.general_min_hourly_salary %> USD</td>
+  		</tr>
+  		<%end%>
+
+		<tr>
+			<td>Experience as biomedical engineer: </b></td>
+			<td><%= @profile.biomed_years.to_s %> years</td>
+		</tr>
+	</tbody>
+</table>
+<% if @profile.jobs.any? %>
+	<div class ="module"></div>
+	<h5>Work experience</h5>
+		<% @profile.jobs.each do |job| %>
+				<table class="table table-striped">
+				  	<% if job.biomed_title %>
+						<tbody>
+								<tr>
+									<td><b>Title/Type:</b></td>
+									<td><b><%= job.biomed_title.name %></b></td>
+								</tr>
+							<% if job.biomed_position %>
+								<tr>
+									<td>Position:</td>
+									<td><%= job.biomed_position.name %></td>
+								</tr>
+							<% end %>
+								<tr>
+									<td>Employed skills:</b></td>
+						  			<td><%= job.biomed_skills.map(&:name).join(", ")%></td>
+						  		</tr>
+							<% if job.company_name != "" %>
+								<tr>
+									<td> Company name: </b></td>
+									<td><%= job.company_name %></td>
+								</tr>
+							<% end %>
+							<% if job.company_stage_id %> 
+								<tr>
+									<td>Company stage: </b></td>
+									<td><%= company_stage(job.company_stage_id) %> </td>
+								</tr>
+							<% end %>
+
+							<% if job.company_size %> 
+								<tr>
+									<td>Company size: </b></td>
+									<td><%= number_of_employees(job.company_size) %> employees </td>
+								</tr>
+							<% end %>
+							<% if job.team_size %>
+								<tr>
+									<td>Team size:</td>
+									<td></b><%= job.team_size %></td>
+								</tr>
+							<% end %>
+													<tr>
+								<td>Contract:</b></td>
+								<td><%= contract(job.contract) %></td>
+							</tr>
+							<% if job.annual_salary %>
+								<tr>
+									<td>Annual salary:</b></td>
+									<td> <%= job.annual_salary %> USD</td>
+								</tr>
+							<%end%>
+							
+							<% if job.hourly_salary %>
+								<tr>
+									<td>Hourly salary:</b></td>
+									<td><%= job.hourly_salary %> USD</td>
+								</tr>
+							<%end%>
+								<tr>
+									<td>Time period</td>
+									
+
+									<td><%= job.start_date %> till <% if job.current == true%> now<%else%><%= job.end_date %><%end%></td>
+								</tr>
+
+							
+
+
+						</tbody>
+					<%end%>
+				</table>
+				<% unless job == @profile.jobs.last %><div class ="slim_module"></div><%end%>
+		<%end%>
+<%end%>
+<% if @profile.degrees.any? %>
+	<div class ="module"></div>
+	<h5>Education</h5>
+		<% @profile.degrees.each do |degree| %>
+
+
+				<table class="table table-striped">
+					<tbody>
+							<tr>
+					      		<td><b>Degree:</b>
+								<td><b><%= display_education_level(degree.level) %></td>
+							</tr>
+							<tr>
+								<td>School/University:</b></td>
+								<td><%= degree.school_name %></b></td>
+							</tr>
+
+
+							<tr>
+								<td>Subject/Major:</td>
+								<td><%= degree.subject.name if degree.subject %></td>
+							</tr>
+							<tr>
+								<td>GPA:</td> 
+								<td><%= degree.gpa %></td>
+							</tr>
+					</tbody>
+				</table>
+				<% unless degree == @profile.degrees.last %><div class ="slim_module"></div><%end%>
+
+
+		<%end%>
+<%end%>		
+
+<% if @profile.test_scores.any? %>
+		<div class ="module"></div>
+		<h5>Standardized test scores</h5>
+
+		<table class="table table-striped">
+			<tbody>
+				<% @profile.test_scores.each do |test_score| %>
+			    		<tr>
+				      		<td><%= test_score_name(test_score.test_type) %> </td>
+				      		<td><%= test_score.score %></td>
+			      		</tr>
+			     <% end %>
+			</tbody>
+		</table>
+<%end%>
+</div>
+</div>

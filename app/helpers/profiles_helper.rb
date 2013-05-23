@@ -80,4 +80,12 @@ module ProfilesHelper
 			"-"
 		end
 	end
+
+	def company_stage(company_stage)
+		if company_stage == 1
+			return "pre-IPO"
+		elsif company_stage == 2
+			return "post-IPO"
+		end
+	end
 end

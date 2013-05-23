@@ -2,23 +2,21 @@
 	<td>
 		<% if accepted_invitation.approval.paid == true %><%= accepted_invitation.candidate.name %><%else%> Payment failed <%end%>
 	</td>
+
 	<td>
-		<%= accepted_invitation.candidate.profile.highest_position.name if accepted_invitation.candidate.profile.jobs.first %>
+		<%= accepted_invitation.candidate.profile.jobs.first.biomed_title.name if accepted_invitation.candidate.profile.jobs.first && accepted_invitation.candidate.profile.jobs.first.biomed_title %>
 	</td>
 	<td>
-		<%= accepted_invitation.candidate.profile.platforms.map(&:name).join(", ") %>
+		<%= accepted_invitation.candidate.profile.highest_position.name if accepted_invitation.candidate.profile.highest_position %>
 	</td>
 	<td>
-		<%= accepted_invitation.candidate.profile.ios_years %> years
-	</td>
-	<td>
-		<%= accepted_invitation.candidate.profile.ios_apps %> apps
-	</td>					
+		<%= accepted_invitation.candidate.profile.biomed_years %> years
+	</td>		
 	<td>
 		<%= display_education_level(accepted_invitation.candidate.profile.education_level) %>
 	</td>
 	<td>
-		<%= "yes" if accepted_invitation.candidate.profile.silicon_valley == true %>
-	</td>		
+		<% if accepted_invitation.candidate.profile.city == nil %>none<%else%><%=accepted_invitation.candidate.profile.city.name%><%end%>
+	</td>	
 
   </tr>

@@ -1,18 +1,17 @@
 <table class="table table-striped table-hover">
     <thead>
     <tr>
-      <th>Name</th>
       <th>Last title</th>
       <th>Highest position</th>
       <th>Experience</th>
       <th>Highest degree</th>
       <th>Geographical restrictions</th>
- 
-
+      <th>Your status</th>
       
     </tr>
   </thead>
     <tbody>
-      <%= render :partial => 'profiles/accepted_invitation', :collection => @invitations %>
+      <%= render :partial => 'profiles/biomed_profile', :collection => @profiles %>
     </tbody>
 </table>
+<%= paginate @profiles %>

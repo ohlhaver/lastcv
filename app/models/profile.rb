@@ -1,24 +1,16 @@
 class Profile < ActiveRecord::Base
 
-  attr_accessible :act_composite, :act_english, :act_math, :act_reading, :act_science, :applicant_id, 
-  :full_time, :highschool_name, :max_part_time_hours, :min_hourly_salary, :min_part_time_hours, :part_time, 
-  :percentile_in_highschool, :ranking_in_highschool, :sat_critical_reading, :sat_math,
-  :sat_total_new, :sat_total_old, :sat_writing, :profession_ids, :cfa, :general_min_yearly_salary, :general_min_hourly_salary, 
-  :latest_job_company_id, :latest_job_position_id, :latest_job_start_date, :latest_job_end_date, :latest_job_current, 
-  :previous_job_position_id, :previous_job_start_date, :previous_job_end_date, 
-  :postgrad_institution_id, :postgrad_subject_id, :postgrad_gpa, :grad_institution_id, :grad_subject_id, 
-  :grad_gpa, :undergrad_institution_id, :undergrad_subject_id, :undergrad_gpa, :language_ids, :postgrad_degree, :grad_degree,
-  :undergrad_degree, :highschool_diploma, :silicon_valley, :work_permit, :notice_period, :current_platform_ids, :current_skill_ids, :latest_job_contract, 
-  :latest_job_annual_salary, :latest_job_hourly_salary, :previous_platform_ids, :previous_skill_ids, :previous_job_contract, 
-  :previous_job_annual_salary, :previous_job_hourly_salary, :latest_job_company_name, :latest_job_company_size, :previous_job_company_name, 
-  :previous_job_company_size, :postgrad_number_of_recommendations, :ios_apps, :references, :confirmed, 
-  :latest_job_team_size, :previous_job_team_size, :ios_years, :jobs_attributes, :degrees_attributes, :test_scores_attributes
-  
+  attr_accessible :full_time, :max_part_time_hours, :min_hourly_salary, :min_part_time_hours, 
+  :part_time, :general_min_yearly_salary, :general_min_hourly_salary, 
+  :silicon_valley, :work_permit, :notice_period, :ios_apps, :references, :confirmed, 
+  :ios_years, :jobs_attributes, :degrees_attributes, :test_scores_attributes, :biomed_years, :city_id
+
   has_many :jobs
   has_many :degrees
   has_many :test_scores
   has_one :candidate
-  belongs_to :highest_position, class_name: "Position"
+  belongs_to :highest_position, class_name: "BiomedPosition"
+  belongs_to :city
 
   accepts_nested_attributes_for :jobs, :allow_destroy => true
   accepts_nested_attributes_for :degrees, :allow_destroy => true
@@ -26,7 +18,7 @@ class Profile < ActiveRecord::Base
 
   after_save :generate_education_level
   after_save :generate_highest_position_id
-  validates_presence_of :notice_period, :general_min_yearly_salary, :confirmed, :ios_years
+  validates_presence_of :notice_period, :general_min_yearly_salary, :confirmed, :ios_years, :biomed_years
   validates :ios_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
   validates :ios_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 7 }
   validates :notice_period, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 52 }
@@ -60,10 +52,10 @@ class Profile < ActiveRecord::Base
       hp = self.highest_position_id
       if jobs.any?
 
-        self.highest_position_id = jobs.first.position_id
+        self.highest_position_id = jobs.first.biomed_position_id
         jobs.each do |job|
 
-          self.highest_position_id = job.position_id unless job.position.value < Position.find(self.highest_position_id).value
+          self.highest_position_id = job.biomed_position_id unless job.biomed_position.value < BiomedPosition.find(self.highest_position_id).value
         end
       else
 

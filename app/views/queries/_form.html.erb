@@ -2,7 +2,7 @@
   <%= f.error_notification %>
   <div class="form-inputs">
 
-  	<%= f.input :search_term, placeholder: 'e.g. "iOS" or "Stanford"', label: "Search term" %>
+  	<%= f.input :search_term, placeholder: 'e.g. "Devices" or "Stanford"', label: "Search term" %>
 
     <%= f.association :min_highest_position, :include_blank => "None", prompt: "Select position", label: "Min. highest achieved position" %>
   	<%= f.input :min_degree,:include_blank => "None", collection: [["Undergraduate/College",2], ["Graduate",3], ["Postgraduate", 4]], prompt: "Select minimum degree", label: 'Minimum degree' %>
