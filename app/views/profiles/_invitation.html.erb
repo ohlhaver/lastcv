@@ -8,6 +8,9 @@
 		<%= invitation.candidate.profile.highest_position.name if invitation.candidate.profile.highest_position %>
 	</td>
 	<td>
+		<%= invitation.candidate.profile.jobs.first.field.name if invitation.candidate.profile.jobs.first && invitation.candidate.profile.jobs.first.field %>
+	</td>
+	<td>
 		<%= invitation.candidate.profile.biomed_years %> years
 	</td>		
 	<td>

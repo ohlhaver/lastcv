@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130523071655) do
+ActiveRecord::Schema.define(:version => 20130523223343) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -151,6 +151,12 @@ ActiveRecord::Schema.define(:version => 20130523071655) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "fields", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "institution_tiers", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -210,6 +216,7 @@ ActiveRecord::Schema.define(:version => 20130523071655) do
     t.integer  "biomed_position_id"
     t.integer  "biomed_title_id"
     t.integer  "company_stage_id"
+    t.integer  "field_id"
   end
 
   create_table "languages", :force => true do |t|

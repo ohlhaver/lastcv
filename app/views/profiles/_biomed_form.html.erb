@@ -19,7 +19,8 @@
 		  	<%= job_form.input :company_name, label: 'Company name (optional)' %>
 		  	<%= job_form.input :company_size, collection: [["myself only",1], ["2-10",2], ["11-50", 3],["51-200", 4],["201-500", 5],["501-1,000", 6],["1,001-5,000", 7],["5,001-10,000", 8],["10,001+",9]], prompt: "Select number of employees", label: 'Company size' %>
 		  	<%= job_form.input :company_stage_id, collection: [["pre-IPO",1], ["post-IPO",2]], prompt: "Select company's stage", label: 'Company stage (when you started)' %>
-		  	<%= job_form.association :biomed_title, label: 'Title/Field', prompt: "Select title/field" %>
+		  	<%= job_form.association :field, label: 'Field', prompt: "Select most appropriate field" %>
+		  	<%= job_form.association :biomed_title, label: 'Title', prompt: "Select most appropriate title" %>
 		  	<%= job_form.association :biomed_position, label: 'Position', prompt: "Select position" %>
 		  	<%= job_form.input :team_size, label: 'Number of people led by you', placeholder: 'e.g. "5"' %>
 		  	<%= job_form.association :biomed_skills, as: :check_boxes, label: 'Skills applied by you' %>

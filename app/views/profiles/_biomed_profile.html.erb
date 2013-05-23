@@ -6,6 +6,9 @@
 		<%= biomed_profile.highest_position.name if biomed_profile.highest_position %>
 	</td>
 	<td>
+		<%= biomed_profile.jobs.first.field.name if biomed_profile.jobs.first && biomed_profile.jobs.first.field %>
+	</td>
+	<td>
 		<%= biomed_profile.biomed_years %> years
 	</td>		
 	<td>
