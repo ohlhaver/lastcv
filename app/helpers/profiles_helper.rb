@@ -2,11 +2,11 @@ module ProfilesHelper
 
 	def display_education_level(el)
 		if el == 4
-			return "Postgraduate/PhD"
+			return "Postgraduate"
 		elsif el == 3
-			return "Graduate/Master"
+			return "Graduate"
 		elsif el == 2
-			return "Undergraduate/College"
+			return "Undergraduate"
 		elsif el == 1
 			return "Highschool"	
 		elsif el == 0 
@@ -78,6 +78,40 @@ module ProfilesHelper
 			end
 		else
 			"-"
+		end
+	end
+
+	def willingness(fulltime, parttime)
+		if fulltime == true
+			if parttime == true
+				return "full-time & part-time"
+			else
+				return "only full-time"
+			end
+		else
+			if parttime == true
+				return "only part-time"
+			else
+				return "no"
+			end
+
+		end
+	end
+
+	def short_willingness(fulltime, parttime)
+		if fulltime == true
+			if parttime == true
+				return "full-time part-time"
+			else
+				return "full-time"
+			end
+		else
+			if parttime == true
+				return "part-time"
+			else
+				return "no"
+			end
+
 		end
 	end
 end

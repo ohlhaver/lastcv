@@ -4,16 +4,24 @@
   	<div class="form-inputs">
   		<div class ="module"></div>
 		<b>Your job status</b><br><br>
-			<%= f.input :silicon_valley, label: "Location", inline_label: 'I am willing to work in the Bay Area (Silion Valley).' %>
-			<%= f.input :work_permit, label: 'Permit', inline_label: 'I am currently permitted to work in the US.' %>
+			<%= f.input :silicon_valley, label: "Location full-time", inline_label: 'I am willing to work full-time in the Bay Area (Silion Valley).' %>
+			<%= f.input :silicon_valley_part_time, label: "Location part-time", inline_label: 'I am willing to work part-time/project based in the Bay Area (Silion Valley).' %>
 			<%= f.input :general_min_yearly_salary, label: 'Minimum annual salary', placeholder: 'e.g. "65000"', hint: 'Your minimum desired annual salary (in USD)' %>
+
+			<%= f.input :general_min_hourly_salary, label: 'Minimum hourly salary', placeholder: 'e.g. "65"', hint: 'Your minimum desired hourly compensation (in USD)' %>
 		  	<%= f.input :notice_period, label: 'Notice period', placeholder: 'e.g. "3"', hint: 'How quickly could you start (in weeks)?'%>
+		  	<%= f.input :work_permit, label: 'Permit', inline_label: 'I am currently permitted to work in the US.' %>
 		 
 		<div class ="module"></div>
 		<b> Your iOS apps </b>
 		<br><br> 
-		<%= f.input :ios_apps, label: 'Apps in the app-store', hint: 'Number of iOS apps that you built yourself, not in a team.' %>
+		<%= f.input :ios_apps, label: 'Apps in the App Store', hint: 'Number of iOS apps that you built yourself, not in a team.' %>
 		<%= f.input :ios_years, label: 'Experience', placeholder: 'e.g. "2.5"', hint: 'How long have you been programming iOS apps (in years)?' %>
+		<div class ="module"></div>
+		<b> Your Android apps </b>
+		<br><br> 
+		<%= f.input :android_apps, label: 'Apps in the Play Store', hint: 'Number of Android apps that you built yourself, not in a team.' %>
+		<%= f.input :android_years, label: 'Experience', placeholder: 'e.g. "2.5"', hint: 'How long have you been programming Android apps (in years)?' %>
 		<div class ="module"></div>
 		<b>Work experience (start with your last/current job)</b><br><br>
 

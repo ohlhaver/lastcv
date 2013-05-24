@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521184547) do
+ActiveRecord::Schema.define(:version => 20130524202922) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -66,6 +66,25 @@ ActiveRecord::Schema.define(:version => 20130521184547) do
     t.boolean  "paid"
   end
 
+  create_table "biomed_positions", :force => true do |t|
+    t.string   "name"
+    t.integer  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "biomed_skills", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "biomed_titles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "candidates", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
@@ -84,6 +103,12 @@ ActiveRecord::Schema.define(:version => 20130521184547) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+  end
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "current_job_platforms", :force => true do |t|
@@ -126,6 +151,12 @@ ActiveRecord::Schema.define(:version => 20130521184547) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "fields", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "institution_tiers", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -146,6 +177,13 @@ ActiveRecord::Schema.define(:version => 20130521184547) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "job_biomed_skills", :force => true do |t|
+    t.integer  "job_id"
+    t.integer  "biomed_skill_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "job_platforms", :force => true do |t|
     t.integer  "job_id"
     t.integer  "platform_id"
@@ -163,8 +201,8 @@ ActiveRecord::Schema.define(:version => 20130521184547) do
   create_table "jobs", :force => true do |t|
     t.integer  "profile_id"
     t.string   "company_name"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "contract"
     t.integer  "hourly_salary"
     t.integer  "annual_salary"
@@ -175,6 +213,10 @@ ActiveRecord::Schema.define(:version => 20130521184547) do
     t.date     "end_date"
     t.boolean  "current"
     t.integer  "team_size"
+    t.integer  "biomed_position_id"
+    t.integer  "biomed_title_id"
+    t.integer  "company_stage_id"
+    t.integer  "field_id"
   end
 
   create_table "languages", :force => true do |t|
@@ -210,6 +252,20 @@ ActiveRecord::Schema.define(:version => 20130521184547) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "profile_biomed_skills", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "biomed_skill_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "profile_cities", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "city_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "profile_languages", :force => true do |t|
     t.integer  "language_id"
     t.integer  "profile_id"
@@ -238,6 +294,12 @@ ActiveRecord::Schema.define(:version => 20130521184547) do
     t.boolean  "references"
     t.float    "ios_years"
     t.integer  "highest_position_id"
+    t.boolean  "biomed"
+    t.float    "biomed_years"
+    t.integer  "city_id"
+    t.boolean  "relocate"
+    t.boolean  "silicon_valley_part_time"
+    t.float    "android_years"
   end
 
   create_table "queries", :force => true do |t|

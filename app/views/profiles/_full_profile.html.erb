@@ -14,27 +14,64 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
     <tbody>
     	 <tr>
 			<td>Willing to work in the Bay Area: </b></td>
-			<td><% if @profile.work_permit == true %>Yes<%else%>No<% end %></td>
+			<td><%= willingness(@profile.silicon_valley, @profile.silicon_valley_part_time) %></td>
 		</tr>
 		<tr>
-			<td>U.S. work permit: </b></td>
-			<td><% if @profile.work_permit == true %>Yes<%else%>No<% end %></td>
-		</tr>
+			<td> Min. desired annual salary: </b></td>	
+  			<td>	<%= @profile.general_min_yearly_salary %> USD</td>
+  		</tr>
+  		<tr>
+			<td> Min. desired hourly compensation: </b></td>	
+  			<td>	<%= @profile.general_min_hourly_salary %> USD</td>
+  		</tr>
     	<tr>
       		<td> Notice period: </b></td>
   			<td><%= @profile.notice_period.to_s %> week(s) </td>
   		</tr>
   		<tr>
-			<td> Min. desired annual salary: </b></td>	
-  			<td>	<%= @profile.general_min_yearly_salary %> USD</td>
-  		</tr>
-
-		<tr>
-			<td>Number of self-built iOS apps in the app store: </b></td>
-			<td><%= @profile.ios_apps.to_s %></td>
+			<td>U.S. work permit: </b></td>
+			<td><% if @profile.work_permit == true %>Yes<%else%>No<% end %></td>
 		</tr>
 	</tbody>
 </table>
+
+
+<% if @profile.ios_years || @profile.ios_apps %>
+<div class ="module"></div>  
+<h5>iOS experience</h5>
+<table class="table table-striped">
+    <tbody>
+		<tr>
+			<td>Number of self-built iOS apps in the App Store: </b></td>
+			<td><%= @profile.ios_apps.to_s %></td>
+		</tr>
+		<tr>
+			<td>Number years bulding iOS apps: </b></td>
+			<td><%= @profile.ios_years.to_s %> years</td>
+		</tr>
+	</tbody>
+</table>
+<%end%>
+
+<% if @profile.android_years || @profile.android_apps %>
+<div class ="module"></div>  
+<h5>Android experience</h5>
+<table class="table table-striped">
+    <tbody>
+		<tr>
+			<td>Number of self-built Android apps in the Play Store: </b></td>
+			<td><%= @profile.android_apps.to_s %></td>
+		</tr>
+		<tr>
+			<td>Number years bulding Android apps: </b></td>
+			<td><%= @profile.android_years.to_s %> years</td>
+		</tr>
+	</tbody>
+</table>
+<%end%>
+
+
+
 <% if @profile.jobs.any? %>
 	<div class ="module"></div>
 	<h5>Work experience</h5>

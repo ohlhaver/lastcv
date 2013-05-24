@@ -17,7 +17,7 @@
 		<%= display_education_level(profile.education_level) %>
 	</td>
 	<td>
-		<%= "yes" if profile.silicon_valley == true %>
+		<%= short_willingness(profile.silicon_valley, profile.silicon_valley_part_time) %>
 	</td>	
 	<td>
 		<%= status(profile) %>
