@@ -1,6 +1,6 @@
 <tr onclick="location.href='<%=profile_path(profile)%>';" style="cursor:pointer" title="Click to view full profile">
 	<td>
-		<%= profile.highest_position.name if profile.jobs.first %>
+		<%= profile.highest_position.name if profile.highest_position %>
 	</td>
 
 	<td>
