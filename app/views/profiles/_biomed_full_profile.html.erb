@@ -64,10 +64,6 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 						  			<td><%= job.field.name%></td>
 						  		</tr>
 						  	<% end %>
-								<tr>
-									<td>Employed skills:</b></td>
-						  			<td><%= job.biomed_skills.map(&:name).join(", ")%></td>
-						  		</tr>
 							<% if job.company_name != "" %>
 								<tr>
 									<td> Company name: </b></td>
