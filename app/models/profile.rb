@@ -20,7 +20,7 @@ class Profile < ActiveRecord::Base
   after_save :generate_highest_position_id
   validates_presence_of :notice_period, :general_min_yearly_salary, :confirmed, :biomed_years
   validates :ios_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
-  validates :biomed_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 7 }
+  validates :biomed_years, :numericality => { :greater_than_or_equal => 0 }
   validates :notice_period, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 52 }
   validates :general_min_yearly_salary, :numericality => { :greater_than => 0}
 
