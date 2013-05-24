@@ -8,10 +8,10 @@
 		<%= profile.platforms.map(&:name).join(", ") %>
 	</td>
 	<td>
-		<%= profile.ios_years %> years
+		<%= app_years(profile.ios_years, profile.android_years)  %>
 	</td>
 	<td>
-		<%= profile.ios_apps %> apps
+		<%= apps_sum(profile.ios_apps, profile.android_apps) %>
 	</td>		
 	<td>
 		<%= display_education_level(profile.education_level) %>

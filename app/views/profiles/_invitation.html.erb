@@ -10,15 +10,15 @@
 		<%= invitation.candidate.profile.platforms.map(&:name).join(", ") %>
 	</td>
 	<td>
-		<%= invitation.candidate.profile.ios_years %> years
-	</td>	
+		<%= app_years(invitation.candidate.profile.ios_years, invitation.candidate.profile.android_years)  %>
+	</td>
 	<td>
-		<%= invitation.candidate.profile.ios_apps %> apps
+		<%= apps_sum(invitation.candidate.profile.ios_apps, invitation.candidate.profile.android_apps) %>
 	</td>			
 	<td>
 		<%= display_education_level(invitation.candidate.profile.education_level) %>
 	</td>
 	<td>
-		<%= "yes" if invitation.candidate.profile.silicon_valley == true %>
+		<%= short_willingness(invitation.candidate.profile.silicon_valley, invitation.candidate.profile.silicon_valley_part_time) %>
 	</td>		
   </tr>

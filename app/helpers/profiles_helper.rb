@@ -101,7 +101,7 @@ module ProfilesHelper
 	def short_willingness(fulltime, parttime)
 		if fulltime == true
 			if parttime == true
-				return "full-time part-time"
+				return "full-time, part-time"
 			else
 				return "full-time"
 			end
@@ -112,6 +112,30 @@ module ProfilesHelper
 				return "no"
 			end
 
+		end
+	end
+
+	def app_years(ios, android)
+
+		android = 0 if android == nil
+		ios = 0 if ios == nil
+		greater = [ios,android].max
+		if greater > 0
+			return greater.to_s + " years"
+		else
+			return nil
+		end
+
+	end
+
+	def apps_sum(ios,android)
+		android = 0 if android == nil
+		ios = 0 if ios == nil
+		sum = ios + android
+		if sum > 0
+			return sum.to_s
+		else
+			return nil
 		end
 	end
 end

@@ -14,11 +14,20 @@ Highest achieved position: <b><%= @profile.highest_position.name if @profile.hig
 Platforms: 
 <b><%= @profile.platforms.map(&:name).join(", ") %>
 </b>
+<% if @profile.ios_years %>
 <br>
 iOS experience: 
 <b>
 		<%= @profile.ios_years %> years
 </b>
+<% end %>
+<% if @profile.android_years %>
+<br>
+Android experience: 
+<b>
+		<%= @profile.android_years %> years
+</b>
+<%end%>
 <br>
 Degree: 
 <b>
