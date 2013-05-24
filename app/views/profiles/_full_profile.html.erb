@@ -20,10 +20,12 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 			<td> Min. desired annual salary: </b></td>	
   			<td>	<%= @profile.general_min_yearly_salary %> USD</td>
   		</tr>
+  		<% if @profile.general_min_hourly_salary %>
   		<tr>
 			<td> Min. desired hourly compensation: </b></td>	
   			<td>	<%= @profile.general_min_hourly_salary %> USD</td>
   		</tr>
+  		<% end %>
     	<tr>
       		<td> Notice period: </b></td>
   			<td><%= @profile.notice_period.to_s %> week(s) </td>
@@ -163,15 +165,18 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 								<td><%= degree.school_name %></b></td>
 							</tr>
 
-
+							<% if degree.subject %>
 							<tr>
 								<td>Subject/Major:</td>
 								<td><%= degree.subject.name if degree.subject %></td>
 							</tr>
+							<% end %>
+							<% if degree.gpa %>
 							<tr>
 								<td>GPA:</td> 
 								<td><%= degree.gpa %></td>
 							</tr>
+							<%end%>
 					</tbody>
 				</table>
 				<% unless degree == @profile.degrees.last %><div class ="slim_module"></div><%end%>
