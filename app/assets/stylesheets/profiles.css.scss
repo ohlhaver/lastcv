@@ -3,6 +3,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
 
+body {
+	font-family: Courier;
+}
+
+.logo {
+
+	a {
+
+	color: #000;
+	font-weight: bold;
+	font-size: 1.38462em;
+	&:hover {
+    
+    text-decoration: none;
+  }
+}
+}
+
 
 .container {
     
