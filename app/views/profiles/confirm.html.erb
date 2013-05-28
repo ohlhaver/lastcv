@@ -1,13 +1,13 @@
 <h4>Please confirm your request!</h4>
 	
 <% if current_user.customer_id %>
-If this candidate approves, your credit card ( <%= @cu.active_card.type%>, ending in <%= @cu.active_card.last4 %> | <%= link_to "use different card", edit_user_path(current_user)%> )<br>
+<b>If this candidate approves</b>, your credit card ( <%= @cu.active_card.type%>, ending in <%= @cu.active_card.last4 %> | <%= link_to "use different card", edit_user_path(current_user)%> )<br>
 will be charged <b>$4.95 USD</b> and you will receive this candidate's <br><b>full name</b> and <b>email address</b>.
 <br><br>
 <%= button_to "Confirm request", {:action => "invite"}, {:class => "btn btn-large btn-primary"} %>
 
 <%else%>
-If the candidate approves, you will be charged <b>$4.95 USD</b> <br> and you will receive the candidate's <b>full name</b> and <b>email address</b>.
+<b>If the candidate approves</b>, you will be charged <b>$4.95 USD</b> <br> and you will receive the candidate's <b>full name</b> and <b>email address</b>.
 <br><br>
 <%= simple_form_for(current_user) do |f| %>
 
