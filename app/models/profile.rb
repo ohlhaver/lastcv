@@ -104,7 +104,7 @@ class Profile < ActiveRecord::Base
       jobs.each do |job|
         unless job.platforms.where(:name => "iOS").empty?
           if job.current == true
-            end_date = Time.now
+            end_date = Time.now.to_date
           else
             end_date = job.end_date
           end
@@ -135,7 +135,7 @@ class Profile < ActiveRecord::Base
       jobs.each do |job|
         unless job.platforms.where(:name => "Android").empty?
           if job.current == true
-            end_date = Time.now
+            end_date = Time.now.to_date
           else
             end_date = job.end_date
           end
@@ -166,7 +166,7 @@ class Profile < ActiveRecord::Base
       app_jobs.each do |job|
         
           if job.current == true
-            end_date = Time.now
+            end_date = Time.now.to_date
           else
             end_date = job.end_date
           end
