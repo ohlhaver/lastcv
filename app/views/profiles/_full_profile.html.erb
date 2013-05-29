@@ -34,6 +34,12 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 			<td>U.S. work permit: </b></td>
 			<td><% if @profile.work_permit == true %>Yes<%else%>No<% end %></td>
 		</tr>
+		<% if @profile.app_years %>
+		<tr>
+			<td>Number years bulding apps: </b></td>
+			<td><%= @profile.app_years.to_s %> years</td>
+		</tr>
+		<% end %>
 	</tbody>
 </table>
 

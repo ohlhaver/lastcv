@@ -13,15 +13,12 @@
 		  	<%= f.input :work_permit, label: 'Permit', inline_label: 'I am currently permitted to work in the US.' %>
 		 
 		<div class ="module"></div>
-		<b> Your iOS apps </b>
-		<br><br> 
-		<%= f.input :ios_apps, label: 'Apps in the App Store', hint: 'Number of iOS apps that you built yourself, not in a team.' %>
-		<%= f.input :ios_years, label: 'Experience', placeholder: 'e.g. "2.5"', hint: 'How long have you been programming iOS apps (in years)?' %>
-		<div class ="module"></div>
-		<b> Your Android apps </b>
-		<br><br> 
-		<%= f.input :android_apps, label: 'Apps in the Play Store', hint: 'Number of Android apps that you built yourself, not in a team.' %>
-		<%= f.input :android_years, label: 'Experience', placeholder: 'e.g. "2.5"', hint: 'How long have you been programming Android apps (in years)?' %>
+		<b> Your apps </b>
+		<br><br>
+		<%= f.input :ios_apps, label: 'iOS apps in the App Store', hint: 'Number of iOS apps that you built yourself, not in a team.' %>
+		<div class ="slim_module"></div>
+		
+		<%= f.input :android_apps, label: 'Android apps in the Play Store', hint: 'Number of Android apps that you built yourself, not in a team.' %>
 		<div class ="module"></div>
 		<b>Work experience (start with your last/current job)</b><br><br>
 
@@ -33,8 +30,8 @@
 		  	<%= job_form.input :team_size, label: 'Number of people led by you', placeholder: 'e.g. "5"' %>
 		  	<%= job_form.association :platforms, as: :check_boxes, label: 'Mobile platform' %>
 		  	<%= job_form.association :skills, as: :check_boxes, label: 'Skills applied by you' %>
-		  	<%= job_form.input :start_date, label: 'Start date' %>
-		  	<%= job_form.input :end_date, label: 'End date' %>
+		  	<%= job_form.input :start_date, label: 'Start date', :discard_day => true %>
+		  	<%= job_form.input :end_date, label: 'End date', :discard_day => true %>
 		  	<%= job_form.input :current, label: false, inline_label: 'I\'m currently holding this job (overwrites the end date)' %>
 		  	<%= job_form.input :contract, collection: [["Full-time",1], ["Part-time",2]], prompt: "Select contract", label: 'Full-time or part-time?' %>
 		  	<%= job_form.input :annual_salary, label: 'Annual salary if full-time', placeholder: 'e.g. "65000"', hint: 'Annual salary (in USD)' %>

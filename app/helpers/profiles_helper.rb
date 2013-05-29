@@ -115,13 +115,11 @@ module ProfilesHelper
 		end
 	end
 
-	def app_years(ios, android)
+	def app_years(years)
 
-		android = 0 if android == nil
-		ios = 0 if ios == nil
-		greater = [ios,android].max
-		if greater > 0
-			return greater.to_s + " years"
+		years = 0 if years == nil
+		if years > 0
+			return years.to_s + " years"
 		else
 			return nil
 		end
