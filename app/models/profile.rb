@@ -106,7 +106,7 @@ class Profile < ActiveRecord::Base
           if job.current == true
             end_date = Time.now.to_date
           else
-            end_date = job.end_date
+            end_date = job.end_date.to_date
           end
           start_dates += Array.wrap(job.start_date)
           end_dates += Array.wrap(end_date)
@@ -137,7 +137,7 @@ class Profile < ActiveRecord::Base
           if job.current == true
             end_date = Time.now.to_date
           else
-            end_date = job.end_date
+            end_date = job.end_date.to_date
           end
           start_dates += Array.wrap(job.start_date)
           end_dates += Array.wrap(end_date)
@@ -168,7 +168,7 @@ class Profile < ActiveRecord::Base
           if job.current == true
             end_date = Time.now.to_date
           else
-            end_date = job.end_date
+            end_date = job.end_date.to_date
           end
           start_dates += Array.wrap(job.start_date)
           end_dates += Array.wrap(end_date)
