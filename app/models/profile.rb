@@ -104,12 +104,12 @@ class Profile < ActiveRecord::Base
       jobs.each do |job|
         unless job.platforms.where(:name => "iOS").empty?
           if job.current == true
-            end_date = Time.now.to_date
+            end_date = Time.now
           else
-            end_date = job.end_date.to_date
+            end_date = job.end_date
           end
-          start_dates += Array.wrap(job.start_date)
-          end_dates += Array.wrap(end_date)
+          start_dates += Array.wrap(job.start_date.to_date)
+          end_dates += Array.wrap(end_date.to_date)
         end
       end
       if end_dates.any? && start_dates.any?
@@ -135,12 +135,12 @@ class Profile < ActiveRecord::Base
       jobs.each do |job|
         unless job.platforms.where(:name => "Android").empty?
           if job.current == true
-            end_date = Time.now.to_date
+            end_date = Time.now
           else
-            end_date = job.end_date.to_date
+            end_date = job.end_date
           end
-          start_dates += Array.wrap(job.start_date)
-          end_dates += Array.wrap(end_date)
+          start_dates += Array.wrap(job.start_date.to_date)
+          end_dates += Array.wrap(end_date.to_date)
         end
       end
       if end_dates.any? && start_dates.any?
@@ -166,12 +166,12 @@ class Profile < ActiveRecord::Base
       app_jobs.each do |job|
         
           if job.current == true
-            end_date = Time.now.to_date
+            end_date = Time.now
           else
-            end_date = job.end_date.to_date
+            end_date = job.end_date
           end
-          start_dates += Array.wrap(job.start_date)
-          end_dates += Array.wrap(end_date)
+          start_dates += Array.wrap(job.start_date.to_date)
+          end_dates += Array.wrap(end_date.to_date)
       end
       duration = ((((end_dates).max.to_time.to_i - (start_dates).min.to_time.to_i).to_f)/3600/24/365).round(1)
     else
