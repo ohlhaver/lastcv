@@ -1,7 +1,7 @@
 class Query < ActiveRecord::Base
   attr_accessible :min_degree, :min_gpa, :min_highest_position_id, 
   :min_highest_salary, :min_salary, :search_term, :subject_id, :latest_availability, :max_salary, :max_notice_period, 
-  :top_schools, :min_years, :work_permit_required
+  :top_schools, :min_years, :work_permit_required, :full_time
   belongs_to :targeted_profession, class_name: "Profession"
   belongs_to :past_profession, class_name: "Profession"
   belongs_to :past_company, class_name: "Company"
@@ -9,6 +9,7 @@ class Query < ActiveRecord::Base
   belongs_to :min_institution_tier, class_name: "InstitutionTier"
   belongs_to :min_highest_position, class_name: "Position"
   belongs_to :min_company_tier, class_name: "CompanyTier"
+  after_initialize :set_defaults
 
   def get_profiles
       unless search_term == "" || search_term == nil
@@ -28,8 +29,17 @@ class Query < ActiveRecord::Base
 
         @profiles = @profiles.select {|i| i.work_permit == true } if work_permit_required == true
 
+        @profiles = @profiles.select {|i| i.silicon_valley == true } if full_time == true
+
         @profiles = @profiles.sort_by(&:updated_at).reverse
 
         return @profiles  
-      end
+  end
+
+  private
+  def set_defaults
+      self.full_time = true if self.new_record?
+      #self.time = Time.now if self.new_record?
+  end 
+
 end

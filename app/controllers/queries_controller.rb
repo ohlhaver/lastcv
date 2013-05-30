@@ -89,6 +89,7 @@ class QueriesController < ApplicationController
     @query.min_highest_position_id = nil
     @query.min_degree = nil
     @query.work_permit_required = nil
+    @query.full_time = true
     @query.save
     redirect_to profiles_path, :notice => "Your query has been reset."
   end
