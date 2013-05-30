@@ -13,14 +13,14 @@
 		  	<%= f.input :work_permit, label: 'Permit', inline_label: 'I am currently permitted to work in the US.' %>
 		 
 		<div class ="module"></div>
-		<b> Your apps </b>
+		<b> Your mobile apps </b>
 		<br><br>
 		<%= f.input :ios_apps, label: 'iOS apps in the App Store', hint: 'Number of iOS apps that you built yourself, not in a team.' %>
 		<div class ="slim_module"></div>
 		
 		<%= f.input :android_apps, label: 'Android apps in the Play Store', hint: 'Number of Android apps that you built yourself, not in a team.' %>
 		<div class ="module"></div>
-		<b>Work experience (start with your last/current job)</b><br><br>
+		<b>Mobile app work experience (start with your last/current job)</b><br><br>
 
 		<%= f.fields_for :jobs do |job_form| %>
 		
