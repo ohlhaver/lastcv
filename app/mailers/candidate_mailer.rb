@@ -22,6 +22,12 @@ class CandidateMailer < ActionMailer::Base
     mail :to => user.email, :subject => "Password Reset"
   end
 
+  def verify(profile)
+    @profile = profile
+    @subject = "Profile " + @profile.id.to_s + " needs to be verified"
+    mail :to => "ohlhaver@gmail.com", :subject => @subject
+  end
+
 
 
 

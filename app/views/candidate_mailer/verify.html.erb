@@ -1,0 +1,10 @@
+<%= "Profile " + @profile.id.to_s + " needs to be verified" %>
+
+<% if @profile.help && @profile.help == true %>
+	<br><br>
+	The owner requests assistance.
+	<br><br>
+	Name: <%= @profile.candidate.name %>
+	<br>
+	Email: <%= @profile.candidate.email %>
+<%end%>

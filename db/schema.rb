@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530221225) do
+ActiveRecord::Schema.define(:version => 20130530230200) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -301,6 +301,8 @@ ActiveRecord::Schema.define(:version => 20130530221225) do
     t.boolean  "silicon_valley_part_time"
     t.float    "android_years"
     t.float    "app_years"
+    t.boolean  "help"
+    t.boolean  "verified"
   end
 
   create_table "queries", :force => true do |t|
