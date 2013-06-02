@@ -5,10 +5,7 @@
   		<div class ="module"></div>
 		<b>Your job status</b><br><br>
 			<%= f.input :silicon_valley, label: "Location full-time", inline_label: 'I am willing to work full-time in the SF Bay Area.' %>
-			<%= f.input :silicon_valley_part_time, label: "Location part-time", inline_label: 'I am willing to work part-time/project based in the SF Bay Area.' %>
 			<%= f.input :general_min_yearly_salary, label: 'Minimum annual salary', placeholder: 'e.g. "65000"', hint: 'Your minimum desired annual salary (in USD)' %>
-
-			<%= f.input :general_min_hourly_salary, label: 'Minimum hourly salary', placeholder: 'e.g. "65"', hint: 'Your minimum desired hourly compensation (in USD)' %>
 		  	<%= f.input :notice_period, label: 'Notice period', placeholder: 'e.g. "3"', hint: 'How quickly could you start (in weeks)?'%>
 		  	<%= f.input :work_permit, label: 'Permit', inline_label: 'I am currently permitted to work in the US.' %>
 		 
@@ -23,13 +20,9 @@
 		<b>Mobile app work experience (start with your last/current job)</b><br><br>
 
 		<%= f.fields_for :jobs do |job_form| %>
-		
-		  	<%= job_form.input :company_name, label: 'Company name (optional)' %>
 		  	<%= job_form.input :company_size, collection: [["myself only",1], ["2-10",2], ["11-50", 3],["51-200", 4],["201-500", 5],["501-1,000", 6],["1,001-5,000", 7],["5,001-10,000", 8],["10,001+",9]], prompt: "Select number of employees", label: 'Company size' %>
 		  	<%= job_form.association :position, label: 'Position', prompt: "Select position" %>
-		  	<%= job_form.input :team_size, label: 'Number of people led by you', placeholder: 'e.g. "5"' %>
 		  	<%= job_form.association :platforms, as: :check_boxes, label: 'Mobile platform' %>
-		  	<%= job_form.association :skills, as: :check_boxes, label: 'Other languages used by you' %>
 		  	<%= job_form.input :start_date, label: 'Start date', :discard_day => true %>
 		  	<%= job_form.input :end_date, label: 'End date', :discard_day => true %>
 		  	<%= job_form.input :current, label: false, inline_label: 'I\'m currently holding this job (overwrites the end date)' %>
@@ -75,13 +68,6 @@
 <br><br>
 
 <%= f.input :confirmed, label: false, inline_label: 'All my responses above are 100% true and I am able to provide reference material if needed.' %>	
-
-<div class ="module"></div>
-  <b>	Help needed? </b>
-<br><br>
-
-<%= f.input :help, label: false, inline_label: 'Check this if you would like TapCV to contact you to help you optimize your CV.' %>	
-  </div>
 
   <div class="form-actions">
     <%= f.button :submit, "Save", :class => "btn btn-large btn-primary" %>

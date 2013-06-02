@@ -4,14 +4,14 @@
 
   <div class="form-inputs">
 
-    <%= f.input :email, label: "Email" %>
+    <%= f.input :email, label: "Email (remains hidden)" %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
-    <%= f.input :name, label: "Your real full name (first and last name)" %>
+    <%= f.input :name, label: "Your real full name (remains hidden)" %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign Up", :class => "btn btn-medium btn-primary" %>
+    <%= f.button :submit, "Sign Up Anonymously", :class => "btn btn-medium btn-primary" %>
   </div>
 
 <% end %>

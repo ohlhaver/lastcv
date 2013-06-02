@@ -6,8 +6,10 @@ class Candidate < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   after_create :email_welcome
   has_secure_password
-  validates_uniqueness_of :email
+  validates :email, presence: true,
+                    uniqueness: { case_sensitive: false }
   validates_presence_of :name
+
 
 
   def email_welcome

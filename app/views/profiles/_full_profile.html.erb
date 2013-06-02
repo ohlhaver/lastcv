@@ -10,7 +10,6 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 <div class ="module"></div>  
 <h5>Job status</h5>
 <table class="table table-striped">
-
     <tbody>
     	 <tr>
 			<td>Willing to work in the Bay Area: </b></td>
@@ -36,8 +35,8 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 		</tr>
 		<% if @profile.app_years %>
 		<tr>
-			<td>Number years bulding apps: </b></td>
-			<td><%= @profile.app_years.to_s %> years</td>
+			<td>Number of years bulding apps: </b></td>
+			<td><%= app_years(@profile.app_years)%></td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -54,8 +53,8 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 			<td><%= @profile.ios_apps.to_s %></td>
 		</tr>
 		<tr>
-			<td>Number years bulding iOS apps: </b></td>
-			<td><%= @profile.ios_years.to_s %> years</td>
+			<td>Number of years bulding iOS apps: </b></td>
+			<td><%= app_years(@profile.ios_years)%></td>
 		</tr>
 	</tbody>
 </table>
@@ -71,8 +70,8 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 			<td><%= @profile.android_apps.to_s %></td>
 		</tr>
 		<tr>
-			<td>Number years bulding Android apps: </b></td>
-			<td><%= @profile.android_years.to_s %> years</td>
+			<td>Number of years bulding Android apps: </b></td>
+			<td><%= app_years(@profile.android_years)%> </td>
 		</tr>
 	</tbody>
 </table>
@@ -94,21 +93,13 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 								</tr>
 							<% end %>
 							<tr>
+									<td>Time period</td>		
+									<td><%= job.start_date %> till <% if job.current == true%> now<%else%><%= job.end_date %><%end%></td>
+							</tr>
+							<tr>
 									<td>Platforms:</b></td>
 									<td><%= job.platforms.map(&:name).join(", ")%></td>
 					  			</tr> 
-
-								<tr>
-									<td>Employed skills:</b></td>
-						  			<td><%= job.skills.map(&:name).join(", ")%></td>
-						  		</tr>
-							<% if job.company_name != "" %>
-								<tr>
-									<td> Company name: </b></td>
-									<td><%= job.company_name %></td>
-								</tr>
-							<% end %>
-
 							<% if job.company_size %> 
 								<tr>
 									<td>Company size: </b></td>
@@ -138,16 +129,6 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 									<td><%= job.hourly_salary %> USD</td>
 								</tr>
 							<%end%>
-								<tr>
-									<td>Time period</td>
-									
-
-									<td><%= job.start_date %> till <% if job.current == true%> now<%else%><%= job.end_date %><%end%></td>
-								</tr>
-
-							
-
-
 						</tbody>
 					<%end%>
 				</table>

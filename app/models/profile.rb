@@ -116,10 +116,10 @@ class Profile < ActiveRecord::Base
       if end_dates.any? && start_dates.any?
       ios_duration = ((((end_dates).max.to_time.to_i - (start_dates).min.to_time.to_i).to_f)/3600/24/365).round(1)
       else
-        ios_duration = 0
+        ios_duration = nil
       end
     else
-      ios_duration = 0
+      ios_duration = nil
     end
     self.ios_years=ios_duration
     if self.ios_years != ios_d
@@ -147,10 +147,10 @@ class Profile < ActiveRecord::Base
       if end_dates.any? && start_dates.any?
         android_duration = ((((end_dates).max.to_time.to_i - (start_dates).min.to_time.to_i).to_f)/3600/24/365).round(1)
       else
-        android_duration = 0
+        android_duration = nil
       end
     else
-      android_duration = 0
+      android_duration = nil
     end
     self.android_years=android_duration
     if self.android_years != android_d

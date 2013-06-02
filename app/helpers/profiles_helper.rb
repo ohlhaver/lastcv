@@ -86,11 +86,11 @@ module ProfilesHelper
 			if parttime == true
 				return "full-time & part-time"
 			else
-				return "only full-time"
+				return "full-time"
 			end
 		else
 			if parttime == true
-				return "only part-time"
+				return "part-time"
 			else
 				return "no"
 			end
@@ -121,7 +121,7 @@ module ProfilesHelper
 		if years > 0
 			return years.to_s + " years"
 		else
-			return nil
+			return "-"
 		end
 
 	end
@@ -133,7 +133,8 @@ module ProfilesHelper
 		if sum > 0
 			return sum.to_s
 		else
-			return nil
+			return 0
 		end
 	end
+
 end
