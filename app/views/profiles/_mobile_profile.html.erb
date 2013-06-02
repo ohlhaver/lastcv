@@ -1,0 +1,15 @@
+<tr onclick="location.href='<%=profile_path(mobile_profile)%>';" style="cursor:pointer" title="Click to view full profile">
+	<td>
+		<%= mobile_profile.highest_position.name if mobile_profile.highest_position %>
+	</td>
+
+	<td>
+	
+		<%= mobile_profile.platforms.map(&:name).join(", ") %>
+	</td>
+	<td>
+		<%= app_years(mobile_profile.app_years)  %>
+	</td>
+		
+
+  </tr>

@@ -1,3 +1,4 @@
+ <div class ="hidden-phone">
 <table class="table table-striped table-hover">
     <thead>
     <tr>
@@ -5,18 +6,41 @@
       <th>Highest position</th>
       <th>Platform</th>
       <th>App building experience</th>
-      <th>Total apps</th>
-      
-      <th><div class ="hidden-phone">Highest degree</div></th>
-      <th><div class ="hidden-phone">Bay Area</div></th>
-      <th><div class ="hidden-phone">Your status</div></th>
+      <th>Total apps</div></th> 
+      <th>Highest degree</div></th>
+      <th>Bay Area</div></th>
+      <th>Your status</div></th>
 
       
     </tr>
+  
   </thead>
     <tbody>
-      <%= render @profiles %>
+     <%= render @profiles %>
     </tbody>
+    
 </table>
 <%= paginate @profiles %>
 
+</div>
+
+<div class ="visible-phone">
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+
+      <th>Highest position</th>
+      <th>Platform</th>
+      <th>App building experience</th>
+      
+    </tr>
+  
+  </thead>
+    <tbody>
+     <%= render :partial => 'profiles/mobile_profile', :collection => @profiles %>
+    </tbody>
+    
+</table>
+<%= paginate @profiles %>
+
+</div>

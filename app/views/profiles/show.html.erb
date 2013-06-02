@@ -13,8 +13,13 @@
 			<%else%>
 			<b>You requested contact details from this candidate <%= time_ago_in_words(find_invitation(@profile).created_at)%> ago.</b>
 			<%end%>
-	<%else%>
+	<%else%><div class ="hidden-phone">
 			<br><br><%= button_to "Request contact details from this candidate", {:id => @profile.id, :action => "confirm"}, {:class => "btn btn-large btn-primary"} %>
+			</div>
+			<div class ="visible-phone">
+				<%= button_to "Request contact details from this candidate", {:id => @profile.id, :action => "confirm"}, {:class => "btn btn-small btn-primary"} %>
+			</div>
+			
 	<% end %>
 <% end %>
 
@@ -22,6 +27,11 @@
 <% unless current_candidate %>
 <% unless ( current_user && find_invitation(@profile)) %>
 <br>
-<br><%= button_to "Request contact details from this candidate", {:id => @profile.id, :action => "confirm"}, {:class => "btn btn-large btn-primary"} %>
+<div class ="hidden-phone">
+			<br><br><%= button_to "Request contact details from this candidate", {:id => @profile.id, :action => "confirm"}, {:class => "btn btn-large btn-primary"} %>
+			</div>
+			<div class ="visible-phone">
+				<%= button_to "Request contact details from this candidate", {:id => @profile.id, :action => "confirm"}, {:class => "btn btn-small btn-primary"} %>
+			</div>
 <%end%>
 <%end%>
