@@ -52,3 +52,10 @@ footer {
 .fb_disclaimer {
 	font-size: 14px;
 }
+
+.hero-unit {
+      @media (max-width: 979px) { 
+        padding: 20px;
+        padding-bottom: 32px;        
+}
+}

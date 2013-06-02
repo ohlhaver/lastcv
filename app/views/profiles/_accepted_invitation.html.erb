@@ -9,7 +9,8 @@
 		<%= accepted_invitation.candidate.profile.platforms.map(&:name).join(", ") %>
 	</td>
 	<td>
-		<%= app_years(accepted_invitation.candidate.profile.app_years)  %>
+		<div class ="hidden-phone">
+		<%= app_years(accepted_invitation.candidate.profile.app_years)  %></div>
 	</td>
 	<td>
 		<div class ="hidden-phone"><%= apps_sum(accepted_invitation.candidate.profile.ios_apps, accepted_invitation.candidate.profile.android_apps) %></div>
