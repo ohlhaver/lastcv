@@ -12,16 +12,18 @@
 	</td>
 	<td>
 		<%= apps_sum(profile.ios_apps, profile.android_apps) %>
-	</td>		
+	</td>
+			
 	<td>
-		<%= display_education_level(profile.education_level) %>
+		<div class ="hidden-phone"><%= display_education_level(profile.education_level) %></div>
 	</td>
 	<td>
-		<%= short_willingness(profile.silicon_valley, profile.silicon_valley_part_time) %>
+		<div class ="hidden-phone"><%= short_willingness(profile.silicon_valley, profile.silicon_valley_part_time) %></div>
 	</td>	
 	<td>
-		<%= status(profile) %>
+		<div class ="hidden-phone"><%= status(profile) %></div>
 	</td>
+
   </tr>
 
 

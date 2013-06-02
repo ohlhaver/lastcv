@@ -12,13 +12,13 @@
 		<%= app_years(accepted_invitation.candidate.profile.app_years)  %>
 	</td>
 	<td>
-		<%= apps_sum(accepted_invitation.candidate.profile.ios_apps, accepted_invitation.candidate.profile.android_apps) %>
+		<div class ="hidden-phone"><%= apps_sum(accepted_invitation.candidate.profile.ios_apps, accepted_invitation.candidate.profile.android_apps) %></div>
 	</td>						
 	<td>
-		<%= display_education_level(accepted_invitation.candidate.profile.education_level) %>
+		<div class ="hidden-phone"><%= display_education_level(accepted_invitation.candidate.profile.education_level) %></div>
 	</td>
 	<td>
-		<%= short_willingness(accepted_invitation.candidate.profile.silicon_valley, accepted_invitation.candidate.profile.silicon_valley_part_time) %>
+		<div class ="hidden-phone"><%= short_willingness(accepted_invitation.candidate.profile.silicon_valley, accepted_invitation.candidate.profile.silicon_valley_part_time) %></div>
 	</td>		
 
   </tr>
