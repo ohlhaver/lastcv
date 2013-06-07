@@ -17,12 +17,12 @@
 		
 		<%= f.input :android_apps, collection: [["None", 0],["1", 1],["2", 2],["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10+", 10],["15+", 15],["20+", 20],["30+", 30],["50+", 50],["100+", 100]], prompt: "Select number of apps", label: 'Android apps in the Play Store', hint: 'Number of Android apps that you built yourself, not in a team.' %>
 		<div class ="module"></div>
-		<b>Mobile app work experience (start with your last/current job)</b><br><br>
+		<b>Work experience (start with your last/current job)</b><br><br>
 
 		<%= f.fields_for :jobs do |job_form| %>
 		  	<%= job_form.input :company_size, collection: [["myself only",1], ["2-10",2], ["11-50", 3],["51-200", 4],["201-500", 5],["501-1,000", 6],["1,001-5,000", 7],["5,001-10,000", 8],["10,001+",9]], prompt: "Select number of employees", label: 'Company size' %>
 		  	<%= job_form.association :position, label: 'Position', prompt: "Select position" %>
-		  	<%= job_form.association :platforms, as: :check_boxes, label: 'Mobile platform' %>
+		  	<%= job_form.association :platforms, collection: Platform.order('name'), as: :check_boxes, label: 'Platform/language' %>
 		  	<%= job_form.input :start_date, label: 'Start date', :discard_day => true %>
 		  	<%= job_form.input :end_date, label: 'End date', :discard_day => true %>
 		  	<%= job_form.input :current, label: false, inline_label: 'I\'m currently holding this job (overwrites the end date)' %>
@@ -38,7 +38,7 @@
 		<p><%= f.link_to_add "[+] Add a work experience", :jobs %></p>
 
 		<div class ="module"></div>
-		<b>Education</b><br><br>
+		<b>Education (include programms your are currently enrolled in)</b><br><br>
 		<%= f.simple_fields_for :degrees do |degree_form| %>
 		  	<%= degree_form.input :level, collection: [["Highschool",1], ["College/Undergraduate",2], ["Master/Graduate",3], ["Postgraduate/PhD",4]], prompt: "Select degree", label: 'Degree' %>
 		<%= degree_form.input :school_name, label: "School/university", placeholder: 'e.g. "University of California, Berkeley"'  %>

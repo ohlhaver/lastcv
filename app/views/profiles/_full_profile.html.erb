@@ -102,7 +102,7 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 									<td><%= job.start_date %> till <% if job.current == true%> now<%else%><%= job.end_date %><%end%></td>
 							</tr>
 							<tr>
-									<td>Platforms:</b></td>
+									<td>Platforms/languages:</b></td>
 									<td><%= job.platforms.map(&:name).join(", ")%></td>
 					  			</tr> 
 							<% if job.company_size %> 
