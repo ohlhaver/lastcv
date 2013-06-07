@@ -38,7 +38,7 @@
 		<p><%= f.link_to_add "[+] Add a work experience", :jobs %></p>
 
 		<div class ="module"></div>
-		<b>Education (include programms your are currently enrolled in)</b><br><br>
+		<b>Education (include programs your are currently enrolled in)</b><br><br>
 		<%= f.simple_fields_for :degrees do |degree_form| %>
 		  	<%= degree_form.input :level, collection: [["Highschool",1], ["College/Undergraduate",2], ["Master/Graduate",3], ["Postgraduate/PhD",4]], prompt: "Select degree", label: 'Degree' %>
 		<%= degree_form.input :school_name, label: "School/university", placeholder: 'e.g. "University of California, Berkeley"'  %>
