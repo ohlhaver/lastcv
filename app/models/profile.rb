@@ -33,7 +33,6 @@ class Profile < ActiveRecord::Base
   define_index do
     indexes jobs.position.name, :as => :jobs_position_name
     indexes jobs.platforms.name, :as => :jobs_platforms_name
-    indexes jobs.skills.name, :as => :jobs_skills_name
     indexes jobs.company_name, :as => :jobs_company_name
     indexes degrees.school_name, :as => :degress_school_name
     indexes degrees.subject.name, :as => :degrees_subject_name
