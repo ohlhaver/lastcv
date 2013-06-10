@@ -123,7 +123,7 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 							<% end %>
 							<tr>
 									<td>Time period</td>		
-									<td><%= job.start_date.strftime("%B %d, %Y") %> to <% if job.current == true%> now<%else%><%= job.end_date.strftime("%B %d, %Y") %><%end%></td>
+									<td><%= job.start_date.strftime("%m/%Y") %> to <% if job.current == true%> now<%else%><%= job.end_date.strftime("%m/%Y") %><%end%></td>
 							</tr>
 							<% if job.company_name %> 
 								<tr>
