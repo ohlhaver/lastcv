@@ -1,11 +1,11 @@
 <div class="row">
-<div class ="span6">
+<div class ="span8">
 	<% if correct_candidate? == true %>
-	<h4>
-		Sit back and relax. 
-		<br>Interested companies will message you.
-		<br>You decide whether to reveal your identity and connect.
-	</h4>
+	<h3>
+		Sit back and relax. </h3>
+		<h4>Interested companies will message you.
+		<br>You decide whether to reveal your identity and connect.</h4>
+	
 
 	<%else%>
 <h4>Anonymous CV</h4>
@@ -17,16 +17,16 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 <table class="table table-striped">
     <tbody>
     	 <tr>
-			<td>Desired type of employment: </b></td>
+			<td>Desired employment: </b></td>
 			<td><%= willingness(@profile.full_time, @profile.part_time) %></td>
 		</tr>
 		<tr>
-			<td> Min. desired annual salary: </b></td>	
+			<td> Minimum annual salary: </b></td>	
   			<td>	<%= @profile.general_min_yearly_salary %> USD</td>
   		</tr>
   		<% if @profile.general_min_hourly_salary %>
   		<tr>
-			<td> Min. desired hourly compensation: </b></td>	
+			<td> Minimum hourly wage: </b></td>	
   			<td>	<%= @profile.general_min_hourly_salary %> USD</td>
   		</tr>
   		<% end %>
