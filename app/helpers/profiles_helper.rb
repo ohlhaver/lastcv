@@ -31,6 +31,10 @@ module ProfilesHelper
 			return "ACT reading"
 		elsif type_id == 7
 			return "ACT science"
+		elsif type_id == 8
+			return "GMAT"
+		elsif type_id == 9
+			return "LSAT"
 		else
 			return ""
 		end
@@ -109,7 +113,7 @@ module ProfilesHelper
 			if parttime == true
 				return "part-time"
 			else
-				return "no"
+				return "none"
 			end
 
 		end

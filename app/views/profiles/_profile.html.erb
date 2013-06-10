@@ -1,23 +1,15 @@
 <tr onclick="location.href='<%=profile_path(profile)%>';" style="cursor:pointer" title="Click to view full profile">
 	<td>
-		<%= profile.highest_position.name if profile.highest_position %>
-	</td>
-
-	<td>
-	
-		<%= profile.platforms.map(&:name).join(", ") %>
+		<%= display_education_level(profile.highest_degree.level) if profile.highest_degree %>
 	</td>
 	<td>
-		<%= app_years(profile.app_years)  %>
+		<%= profile.highest_degree.subject.name if profile.highest_degree && profile.highest_degree.subject %>
 	</td>
 	<td>
-		<%= apps_sum(profile.ios_apps, profile.android_apps) %>
-	</td>		
-	<td>
-		<%= display_education_level(profile.education_level) %>
+		<%= profile.highest_degree.school.name if profile.highest_degree && profile.highest_degree.school %>
 	</td>
 	<td>
-		<%= short_willingness(profile.silicon_valley, profile.silicon_valley_part_time) %>
+		<%= profile.highest_degree.year if profile.highest_degree %>
 	</td>	
 	<td>
 		<%= status(profile) %>

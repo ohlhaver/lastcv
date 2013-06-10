@@ -13,12 +13,12 @@
 Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 <br><br>
 <div class ="module"></div>  
-<h5>Job status</h5>
+<h5>Job preferences</h5>
 <table class="table table-striped">
     <tbody>
     	 <tr>
-			<td>Willing to work in the Bay Area: </b></td>
-			<td><%= willingness(@profile.silicon_valley, @profile.silicon_valley_part_time) %></td>
+			<td>Desired type of employment: </b></td>
+			<td><%= willingness(@profile.full_time, @profile.part_time) %></td>
 		</tr>
 		<tr>
 			<td> Min. desired annual salary: </b></td>	
@@ -40,7 +40,7 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 		</tr>
 		<% if @profile.app_years %>
 		<tr>
-			<td>Number of years bulding apps: </b></td>
+			<td>Professional work experience: </b></td>
 			<td><%= app_years(@profile.app_years)%></td>
 		</tr>
 		<% end %>
@@ -48,40 +48,64 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 </table>
 
 
-<% if @profile.ios_years || @profile.ios_apps %>
-<div class ="module"></div>  
-<h5>iOS experience</h5>
-<table class="table table-striped">
-    <tbody>
-		<tr>
-			<td>Number of self-built iOS apps in the App Store: </b></td>
-			<td><%= @profile.ios_apps.to_s %></td>
-		</tr>
-		<tr>
-			<td>Number of years bulding iOS apps: </b></td>
-			<td><%= app_years(@profile.ios_years)%></td>
-		</tr>
-	</tbody>
-</table>
-<%end%>
+<% if @profile.degrees.any? %>
+	<div class ="module"></div>
+	<h5>Education</h5>
+		<% @profile.degrees.each do |degree| %>
 
-<% if @profile.android_years || @profile.android_apps %>
-<div class ="module"></div>  
-<h5>Android experience</h5>
-<table class="table table-striped">
-    <tbody>
-		<tr>
-			<td>Number of self-built Android apps in the Play Store: </b></td>
-			<td><%= @profile.android_apps.to_s %></td>
-		</tr>
-		<tr>
-			<td>Number of years bulding Android apps: </b></td>
-			<td><%= app_years(@profile.android_years)%> </td>
-		</tr>
-	</tbody>
-</table>
-<%end%>
 
+				<table class="table table-striped">
+					<tbody>
+							<tr>
+					      		<td><b>Degree:</b>
+								<td><b><%= display_education_level(degree.level) %></td>
+							</tr>
+							<% if degree.school %>
+							<tr>
+								<td>School/University:</b></td>
+								<td><%= degree.school.name %></td>
+							</tr>
+							<% end %>
+
+							<% if degree.subject %>
+							<tr>
+								<td>Subject/Major:</td>
+								<td><%= degree.subject.name if degree.subject %></td>
+							</tr>
+							<% end %>
+							<% if degree.gpa %>
+							<tr>
+								<td>GPA:</td> 
+								<td><%= degree.gpa %></td>
+							</tr>
+							<%end%>
+							<tr>
+								<td>Year:</b></td>
+								<td><%= degree.year %></b></td>
+							</tr>
+					</tbody>
+				</table>
+				<% unless degree == @profile.degrees.last %><div class ="slim_module"></div><%end%>
+
+
+		<%end%>
+<%end%>		
+
+<% if @profile.test_scores.any? %>
+		<div class ="module"></div>
+		<h5>Standardized test scores</h5>
+
+		<table class="table table-striped">
+			<tbody>
+				<% @profile.test_scores.each do |test_score| %>
+			    		<tr>
+				      		<td><%= test_score_name(test_score.test_type) %> </td>
+				      		<td><%= test_score.score %></td>
+			      		</tr>
+			     <% end %>
+			</tbody>
+		</table>
+<%end%>
 
 
 <% if @profile.jobs.any? %>
@@ -91,30 +115,26 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 				<table class="table table-striped">
 				  	<% if job.platforms %>
 						<tbody>
-							<% if job.position %>
+							<% if job.position_name%>
 								<tr>
 									<td><b>Position:</b></td>
-									<td><b><%= job.position.name %></b></td>
+									<td><b><%= job.position_name %></b></td>
 								</tr>
 							<% end %>
 							<tr>
 									<td>Time period</td>		
 									<td><%= job.start_date %> till <% if job.current == true%> now<%else%><%= job.end_date %><%end%></td>
 							</tr>
-							<tr>
-									<td>Platforms/languages:</b></td>
-									<td><%= job.platforms.map(&:name).join(", ")%></td>
-					  			</tr> 
+							<% if job.company_name %> 
+								<tr>
+									<td>Company: </b></td>
+									<td><%= job.company_name %></td>
+								</tr>
+							<% end %>
 							<% if job.company_size %> 
 								<tr>
 									<td>Company size: </b></td>
 									<td><%= number_of_employees(job.company_size) %> employees </td>
-								</tr>
-							<% end %>
-							<% if job.team_size %>
-								<tr>
-									<td>Team size:</td>
-									<td></b><%= job.team_size %></td>
 								</tr>
 							<% end %>
 													<tr>
@@ -140,57 +160,7 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 				<% unless job == @profile.jobs.last %><div class ="slim_module"></div><%end%>
 		<%end%>
 <%end%>
-<% if @profile.degrees.any? %>
-	<div class ="module"></div>
-	<h5>Education</h5>
-		<% @profile.degrees.each do |degree| %>
 
 
-				<table class="table table-striped">
-					<tbody>
-							<tr>
-					      		<td><b>Degree:</b>
-								<td><b><%= display_education_level(degree.level) %></td>
-							</tr>
-							<tr>
-								<td>School/University:</b></td>
-								<td><%= degree.school_name %></b></td>
-							</tr>
-
-							<% if degree.subject %>
-							<tr>
-								<td>Subject/Major:</td>
-								<td><%= degree.subject.name if degree.subject %></td>
-							</tr>
-							<% end %>
-							<% if degree.gpa %>
-							<tr>
-								<td>GPA:</td> 
-								<td><%= degree.gpa %></td>
-							</tr>
-							<%end%>
-					</tbody>
-				</table>
-				<% unless degree == @profile.degrees.last %><div class ="slim_module"></div><%end%>
-
-
-		<%end%>
-<%end%>		
-
-<% if @profile.test_scores.any? %>
-		<div class ="module"></div>
-		<h5>Standardized test scores</h5>
-
-		<table class="table table-striped">
-			<tbody>
-				<% @profile.test_scores.each do |test_score| %>
-			    		<tr>
-				      		<td><%= test_score_name(test_score.test_type) %> </td>
-				      		<td><%= test_score.score %></td>
-			      		</tr>
-			     <% end %>
-			</tbody>
-		</table>
-<%end%>
 </div>
 </div>

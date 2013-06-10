@@ -19,7 +19,7 @@ class Query < ActiveRecord::Base
          @profiles = Profile.all.select {|i| i.candidate }
       end
 
-        @profiles = @profiles.select {|i| i.highest_position != nil && i.highest_position.value >= min_highest_position.value } if min_highest_position 
+        #@profiles = @profiles.select {|i| i.highest_position != nil && i.highest_position.value >= min_highest_position.value } if min_highest_position 
 
         @profiles = @profiles.select {|i| i.education_level != nil && i.education_level >= min_degree } if min_degree 
 
@@ -29,7 +29,7 @@ class Query < ActiveRecord::Base
 
         @profiles = @profiles.select {|i| i.work_permit == true } if work_permit_required == true
 
-        @profiles = @profiles.select {|i| i.silicon_valley == true } if full_time == true
+        @profiles = @profiles.select {|i| i.full_time == true } if full_time == true
 
         @profiles = @profiles.sort_by(&:updated_at).reverse
 

@@ -3,13 +3,11 @@
   <div class="form-inputs">
 
   	<%= f.input :search_term, placeholder: 'e.g. "iOS" or "Stanford"', label: "Search term" %>
-
-    <%= f.association :min_highest_position, :include_blank => "None", prompt: "Select position", label: "Min highest achieved position" %>
   	<%= f.input :min_degree,:include_blank => "None", collection: [["Undergraduate/College",2], ["Graduate",3], ["Postgraduate", 4]], prompt: "Select minimum degree", label: 'Minimum degree' %>
 
     <%= f.input :max_salary, placeholder: 'e.g. "100000"', label: 'Max expected annual salary (USD)' %>
     <%= f.input :max_notice_period, placeholder: 'e.g. "6"', label: 'Maximum notice period (in weeks)' %>
-    <%= f.input :full_time, label: 'Full-time availability in Bay Area required',:wrapper => :inline_checkbox %>
+    <%= f.input :full_time, label: 'Full-time availability required',:wrapper => :inline_checkbox %>
     <%= f.input :work_permit_required, label: 'Current work permit required',:wrapper => :inline_checkbox %>
 
   </div>

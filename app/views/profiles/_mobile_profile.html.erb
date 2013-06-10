@@ -1,14 +1,15 @@
 <tr onclick="location.href='<%=profile_path(mobile_profile)%>';" style="cursor:pointer" title="Click to view full profile">
 	<td>
-		<%= mobile_profile.highest_position.name if mobile_profile.highest_position %>
-	</td>
-
-	<td>
-	
-		<%= mobile_profile.platforms.map(&:name).join(", ") %>
+		<%= display_education_level(mobile_profile.highest_degree.level) if mobile_profile.highest_degree %>
 	</td>
 	<td>
-		<%= app_years(mobile_profile.app_years)  %>
+		<%= mobile_profile.highest_degree.subject.name if mobile_profile.highest_degree && mobile_profile.highest_degree.subject %>
+	</td>
+	<td>
+		<%= mobile_profile.highest_degree.school.name if mobile_profile.highest_degree && mobile_profile.highest_degree.school %>
+	</td>
+	<td>
+		<%= mobile_profile.highest_degree.year if mobile_profile.highest_degree %>
 	</td>
 		
 

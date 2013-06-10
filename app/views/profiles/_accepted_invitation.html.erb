@@ -1,25 +1,19 @@
 <tr onclick="location.href='<%=profile_path(accepted_invitation.candidate.profile)%>';" style="cursor:pointer">
+
 	<td>
 		<% if accepted_invitation.approval.paid == true %><%= accepted_invitation.candidate.name %><%else%> Payment failed <%end%>
 	</td>
 	<td>
-		<%= accepted_invitation.candidate.profile.highest_position.name if accepted_invitation.candidate.profile.highest_position %>
+		<%= display_education_level(accepted_invitation.candidate.profile.highest_degree.level) if accepted_invitation.candidate.profile.highest_degree %>
 	</td>
 	<td>
-		<%= accepted_invitation.candidate.profile.platforms.map(&:name).join(", ") %>
+		<%= accepted_invitation.candidate.profile.highest_degree.subject.name if accepted_invitation.candidate.profile.highest_degree && accepted_invitation.candidate.profile.highest_degree.subject %>
 	</td>
 	<td>
-		<div class ="hidden-phone">
-		<%= app_years(accepted_invitation.candidate.profile.app_years)  %></div>
+		<%= accepted_invitation.candidate.profile.highest_degree.school.name if accepted_invitation.candidate.profile.highest_degree && accepted_invitation.candidate.profile.highest_degree.school %>
 	</td>
 	<td>
-		<div class ="hidden-phone"><%= apps_sum(accepted_invitation.candidate.profile.ios_apps, accepted_invitation.candidate.profile.android_apps) %></div>
-	</td>						
-	<td>
-		<div class ="hidden-phone"><%= display_education_level(accepted_invitation.candidate.profile.education_level) %></div>
-	</td>
-	<td>
-		<div class ="hidden-phone"><%= short_willingness(accepted_invitation.candidate.profile.silicon_valley, accepted_invitation.candidate.profile.silicon_valley_part_time) %></div>
-	</td>		
+		<div class ="hidden-phone"><%= accepted_invitation.candidate.profile.highest_degree.year if accepted_invitation.candidate.profile.highest_degree %></div>
+	</td>			
 
   </tr>

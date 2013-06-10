@@ -1,4 +1,4 @@
-Congratulations! This hacker gave you access to her/his contact details:
+Congratulations! This graduate gave you access to her/his contact details:
 
 <br><br>
 Name: <b> <%= @candidate.name %></b>
@@ -6,35 +6,6 @@ Name: <b> <%= @candidate.name %></b>
 Email: <b> <%= @candidate.email %></b>
 <br>
 <br>
-
-<b><u>Profile summary</u></b>
-<br>
-Highest achieved position: <b><%= @profile.highest_position.name if @profile.highest_position %></b>
-<br>
-Platforms: 
-<b><%= @profile.platforms.map(&:name).join(", ") %>
-</b>
-<% if @profile.ios_years %>
-<br>
-iOS experience: 
-<b>
-		<%= @profile.ios_years %> years
-</b>
-<% end %>
-<% if @profile.android_years %>
-<br>
-Android experience: 
-<b>
-		<%= @profile.android_years %> years
-</b>
-<%end%>
-<br>
-Degree: 
-<b>
-		<%= display_education_level(@profile.education_level) %>
-</b>
-	
-<br><br>
 <%= link_to "View full profile", profile_url(@profile) %>
 <br><br>
 Yours,

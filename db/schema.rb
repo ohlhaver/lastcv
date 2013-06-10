@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130530230200) do
+ActiveRecord::Schema.define(:version => 20130610034122) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -133,6 +133,8 @@ ActiveRecord::Schema.define(:version => 20130530230200) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "profile_id"
+    t.integer  "year"
+    t.integer  "school_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -217,6 +219,8 @@ ActiveRecord::Schema.define(:version => 20130530230200) do
     t.integer  "biomed_title_id"
     t.integer  "company_stage_id"
     t.integer  "field_id"
+    t.string   "position_name"
+    t.integer  "sector_id"
   end
 
   create_table "languages", :force => true do |t|
@@ -274,6 +278,13 @@ ActiveRecord::Schema.define(:version => 20130530230200) do
     t.integer  "value"
   end
 
+  create_table "profile_roles", :force => true do |t|
+    t.integer  "profile_id"
+    t.integer  "role_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "profiles", :force => true do |t|
     t.boolean  "full_time"
     t.boolean  "part_time"
@@ -303,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20130530230200) do
     t.float    "app_years"
     t.boolean  "help"
     t.boolean  "verified"
+    t.integer  "highest_degree_id"
   end
 
   create_table "queries", :force => true do |t|
@@ -320,6 +332,24 @@ ActiveRecord::Schema.define(:version => 20130530230200) do
     t.float    "min_years"
     t.boolean  "work_permit_required"
     t.boolean  "full_time"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "schools", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sectors", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "skills", :force => true do |t|

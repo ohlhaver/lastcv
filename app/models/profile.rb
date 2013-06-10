@@ -11,21 +11,23 @@ class Profile < ActiveRecord::Base
   has_many :test_scores
   has_one :candidate
   belongs_to :highest_position, class_name: "Position"
-
+  belongs_to :highest_degree, class_name: "Degree"
+  has_many :profile_roles
+  has_many :roles, through: :profile_roles, source: :role
   accepts_nested_attributes_for :jobs, :allow_destroy => true
   accepts_nested_attributes_for :degrees, :allow_destroy => true
   accepts_nested_attributes_for :test_scores, :allow_destroy => true
   after_create :email_admin
 
   after_save :generate_education_level
-  after_save :generate_highest_position_id
-  after_save :generate_ios_years
-  after_save :generate_android_years
+  #after_save :generate_highest_position_id
+  #after_save :generate_ios_years
+  #after_save :generate_android_years
   after_save :generate_app_years
   validates_presence_of :notice_period, :general_min_yearly_salary, :confirmed
-  validates :ios_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
-  validates :ios_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 20 }, :allow_blank => true
-  validates :android_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
+  #validates :ios_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
+  #validates :ios_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 20 }, :allow_blank => true
+  #validates :android_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
   validates :android_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 20 }, :allow_blank => true
   validates :notice_period, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 52 }
   validates :general_min_yearly_salary, :numericality => { :greater_than => 0}
@@ -44,7 +46,10 @@ class Profile < ActiveRecord::Base
       el = self.education_level
       self.education_level = 0
       degrees.each do |degree|
-        self.education_level = degree.level if degree.level > self.education_level
+        if degree.level > self.education_level
+          self.education_level = degree.level
+          self.highest_degree = degree
+        end 
       end
 
       if self.education_level != el
@@ -159,11 +164,11 @@ class Profile < ActiveRecord::Base
 
   def generate_app_years
     app_d = self.app_years if self.app_years
-    app_jobs = jobs.select {|i| i.platforms.empty? == false} if jobs
+    
     start_dates = []
     end_dates = []
-    if app_jobs.any?
-      app_jobs.each do |job|
+    if jobs.any?
+      jobs.each do |job|
         
           if job.current == true
             end_date = Time.now
