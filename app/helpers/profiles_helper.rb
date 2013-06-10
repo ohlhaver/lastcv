@@ -96,7 +96,7 @@ module ProfilesHelper
 			if parttime == true
 				return "part-time"
 			else
-				return "no"
+				return "none"
 			end
 
 		end
