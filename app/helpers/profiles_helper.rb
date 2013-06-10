@@ -1,12 +1,20 @@
 module ProfilesHelper
 
 	def display_education_level(el)
-		if el == 4
-			return "Postgraduate"
+		if el == 8
+			return "PhD"
+		elsif el == 7
+			return "MD"	
+		elsif el == 6
+			return "JD"
+		elsif el == 5
+			return "MBA"
+		elsif el == 4
+			return "D.Phil"	
 		elsif el == 3
-			return "Graduate"
+			return "MA/MS"
 		elsif el == 2
-			return "Undergraduate"
+			return "BA/BS"
 		elsif el == 1
 			return "Highschool"	
 		elsif el == 0 

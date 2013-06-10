@@ -28,7 +28,7 @@ class Profile < ActiveRecord::Base
   #validates :ios_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
   #validates :ios_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 20 }, :allow_blank => true
   #validates :android_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
-  validates :android_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 20 }, :allow_blank => true
+  #validates :android_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 20 }, :allow_blank => true
   validates :notice_period, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 52 }
   validates :general_min_yearly_salary, :numericality => { :greater_than => 0}
 
