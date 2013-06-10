@@ -73,9 +73,9 @@ module ProfilesHelper
 
 	def contract(job_contract)
 		if job_contract == 1
-			return "full-time"
+			return "Full-time"
 		elsif job_contract == 2
-			return "part-time"
+			return "Part-time"
 		end
 	end
 
@@ -96,15 +96,15 @@ module ProfilesHelper
 	def willingness(fulltime, parttime)
 		if fulltime == true
 			if parttime == true
-				return "full-time & part-time"
+				return "Full-time & part-time"
 			else
-				return "full-time"
+				return "Full-time"
 			end
 		else
 			if parttime == true
-				return "part-time"
+				return "Part-time"
 			else
-				return "none"
+				return "None"
 			end
 
 		end
@@ -113,15 +113,15 @@ module ProfilesHelper
 	def short_willingness(fulltime, parttime)
 		if fulltime == true
 			if parttime == true
-				return "full-time, part-time"
+				return "Full-time, part-time"
 			else
-				return "full-time"
+				return "Full-time"
 			end
 		else
 			if parttime == true
-				return "part-time"
+				return "Part-time"
 			else
-				return "none"
+				return "None"
 			end
 
 		end

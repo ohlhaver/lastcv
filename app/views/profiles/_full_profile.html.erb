@@ -22,12 +22,12 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 		</tr>
 		<tr>
 			<td> Minimum annual salary: </b></td>	
-  			<td>	<%= @profile.general_min_yearly_salary %> USD</td>
+  			<td>	$<%= number_with_delimiter(@profile.general_min_yearly_salary, :delimiter => ',')  %></td>
   		</tr>
   		<% if @profile.general_min_hourly_salary %>
   		<tr>
 			<td> Minimum hourly wage: </b></td>	
-  			<td>	<%= @profile.general_min_hourly_salary %> USD</td>
+  			<td>	$<%= number_with_delimiter(@profile.general_min_hourly_salary, :delimiter => ',') %></td>
   		</tr>
   		<% end %>
     	<tr>
@@ -62,14 +62,14 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 							</tr>
 							<% if degree.school %>
 							<tr>
-								<td>School/University:</b></td>
+								<td>University/College:</b></td>
 								<td><%= degree.school.name %></td>
 							</tr>
 							<% end %>
 
 							<% if degree.subject %>
 							<tr>
-								<td>Subject/Major:</td>
+								<td>Subject:</td>
 								<td><%= degree.subject.name if degree.subject %></td>
 							</tr>
 							<% end %>
@@ -127,7 +127,7 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 							</tr>
 							<% if job.company_name %> 
 								<tr>
-									<td>Company: </b></td>
+									<td>Company/Organization: </b></td>
 									<td><%= job.company_name %></td>
 								</tr>
 							<% end %>
@@ -144,14 +144,14 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 							<% if job.annual_salary %>
 								<tr>
 									<td>Annual salary:</b></td>
-									<td> <%= job.annual_salary %> USD</td>
+									<td>$<%= job.annual_salary %></td>
 								</tr>
 							<%end%>
 							
 							<% if job.hourly_salary %>
 								<tr>
 									<td>Hourly salary:</b></td>
-									<td><%= job.hourly_salary %> USD</td>
+									<td>$<%= job.hourly_salary %></td>
 								</tr>
 							<%end%>
 						</tbody>
