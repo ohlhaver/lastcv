@@ -13,6 +13,8 @@ Tapcv::Application.routes.draw do
 
   get "static_pages/privacy"
 
+  get "static_pages/thanks"
+
   get "sessions/new"
   resources :users
   resources :candidates
@@ -50,7 +52,7 @@ Tapcv::Application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-
+  get 'thanks', to: 'static_pages#thanks', as: 'thanks'
   get 'privacy', to: 'static_pages#privacy', as: 'privacy'
   get 'edit_candidate', to: 'candidates#edit', as: 'edit'
   get 'signup_candidate', to: 'candidates#new', as: 'candidate_signup'

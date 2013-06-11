@@ -48,7 +48,15 @@
 		<%= render "profiles/invitations_table" %>
 	<% end %>
 	<br>
-	<%= render "profiles/filter_table"%>
+
+	<% if Time.now.to_i < 1372134542 %>
+
+<%= render "static_pages/opens_later"%>
+<%else%>
+
+<%= render "filter_table" %>
+
+<%end%>
 <% end %>
 
 <% unless current_candidate || current_user %>

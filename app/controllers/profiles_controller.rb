@@ -55,7 +55,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(params[:profile])
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+        format.html { redirect_to thanks_path, notice: 'Profile was successfully created.' }
         format.json { render json: @profile, status: :created, location: @profile }
         current_candidate.profile_id = @profile.id #unless current_candidate.profile
         current_candidate.save!
@@ -74,7 +74,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.update_attributes(params[:profile])
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to thanks_path, notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
