@@ -4,7 +4,7 @@
   	<div class="form-inputs">
   		<div class ="module"></div>
 		<b>Your job preferences</b><br><br>
-
+			<%= f.association :role, collection: Role.order('name'), prompt: "Select your favourite role", label: "Favourite role", :include_blank => "other", %>
 			<%= f.input :full_time, label: "Full-time", inline_label: 'I am looking for a full-time job.' %>
 			<%= f.input :general_min_yearly_salary, collection: [["$30,000", 30000], ["$40,000",40000], ["$50,000",50000],["$60,000",60000],["$70,000",70000],["$80,000",80000],["$90,000",90000],["$100,000",100000],["$120,000",120000],["$140,000",140000],["$160,000",160000],["$180,000",180000],["$200,000",200000],["$250,000",250000],["$300,000",300000],["$350,000",350000],["$400,000",400000],["$500,000",500000]], prompt: "Select your minimum salary", label: 'Minimum annual salary', placeholder: 'e.g. "65000"', hint: 'Your minimum desired annual salary (in USD)' %>
 			<%= f.input :part_time, label: "Part-time", inline_label: 'I am looking for a part-time job.' %>

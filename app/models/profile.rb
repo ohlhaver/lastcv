@@ -4,7 +4,7 @@ class Profile < ActiveRecord::Base
   :part_time, :general_min_yearly_salary, :general_min_hourly_salary, 
   :silicon_valley, :work_permit, :notice_period, :ios_apps, :references, :confirmed, 
   :ios_years, :jobs_attributes, :degrees_attributes, :test_scores_attributes,
-  :silicon_valley_part_time, :android_apps, :android_years, :help, :verified
+  :silicon_valley_part_time, :android_apps, :android_years, :help, :verified, :role_id
   
   has_many :jobs
   has_many :degrees
@@ -12,6 +12,7 @@ class Profile < ActiveRecord::Base
   has_one :candidate
   belongs_to :highest_position, class_name: "Position"
   belongs_to :highest_degree, class_name: "Degree"
+  belongs_to :role
   has_many :profile_roles
   has_many :roles, through: :profile_roles, source: :role
   accepts_nested_attributes_for :jobs, :allow_destroy => true

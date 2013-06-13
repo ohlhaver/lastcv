@@ -16,6 +16,12 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 <h5>Job preferences</h5>
 <table class="table table-striped">
     <tbody>
+    	<% if @profile.role %>
+    	 <tr>
+			<td>Favourite role: </b></td>
+			<td><%= @profile.role.name %></td>
+		</tr>
+		<%end%>
     	 <tr>
 			<td>Desired employment: </b></td>
 			<td><%= willingness(@profile.full_time, @profile.part_time) %></td>
