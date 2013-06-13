@@ -137,6 +137,12 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 									<td><%= job.company_name %></td>
 								</tr>
 							<% end %>
+							<% if job.sector %> 
+								<tr>
+									<td>Industry: </b></td>
+									<td><%= job.sector.name %></td>
+								</tr>
+							<% end %>
 							<% if job.company_size %> 
 								<tr>
 									<td>Company size: </b></td>
