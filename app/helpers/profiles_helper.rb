@@ -149,4 +149,20 @@ module ProfilesHelper
 		end
 	end
 
+	def ios_apps(number)
+		if number == nil || number == 0
+			return "-"
+		else
+			return number.to_s + " iOS apps"
+		end
+	end
+
+	def android_apps(number)
+				if number == nil || number == 0
+			return "-"
+		else
+			return number.to_s + " Android apps"
+		end
+	end
+
 end

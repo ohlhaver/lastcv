@@ -16,15 +16,9 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 <h5>Job preferences</h5>
 <table class="table table-striped">
     <tbody>
-    	<% if @profile.role %>
     	 <tr>
-			<td>Favourite role: </b></td>
-			<td><%= @profile.role.name %></td>
-		</tr>
-		<%end%>
-    	 <tr>
-			<td>Desired employment: </b></td>
-			<td><%= willingness(@profile.full_time, @profile.part_time) %></td>
+			<td>Willing to work in the Bay Area: </b></td>
+			<td><%= willingness(@profile.silicon_valley, @profile.silicon_valley_part_time) %></td>
 		</tr>
 		<tr>
 			<td> Minimum annual salary: </b></td>	
@@ -46,13 +40,90 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 		</tr>
 		<% if @profile.app_years %>
 		<tr>
-			<td>Professional work experience: </b></td>
+			<td>Professional hacking experience: </b></td>
 			<td><%= app_years(@profile.app_years)%></td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
 
+<% if (@profile.ios_years && @profile.ios_years > 0) || (@profile.ios_apps && @profile.ios_apps > 0) %>
+<div class ="module"></div>  
+<h5>iOS experience</h5>
+<table class="table table-striped">
+    <tbody>
+		<tr>
+			<td>Self-built iOS apps in the App Store: </b></td>
+			<td><%= ios_apps(@profile.ios_apps) %></td>
+		</tr>
+		<tr>
+			<td>Professional iOS experience: </b></td>
+			<td><%= app_years(@profile.ios_years)%></td>
+		</tr>
+	</tbody>
+</table>
+<%end%>
+
+<% if (@profile.android_years && @profile.android_years > 0) || (@profile.android_apps && @profile.android_apps > 0) %>
+<div class ="module"></div>  
+<h5>Android experience</h5>
+<table class="table table-striped">
+    <tbody>
+		<tr>
+			<td>Self-built Android apps in the Play Store: </b></td>
+			<td><%= android_apps(@profile.android_apps) %></td>
+		</tr>
+		<tr>
+			<td>Professional Android experience: </b></td>
+			<td><%= app_years(@profile.android_years)%> </td>
+		</tr>
+	</tbody>
+</table>
+<%end%>
+
+<% if @profile.jobs.any? %>
+	<div class ="module"></div>
+	<h5>Professional hacking experience</h5>
+		<% @profile.jobs.each do |job| %>
+				<table class="table table-striped">
+				  	<% if job.platforms %>
+						<tbody>
+							<% if job.position%>
+								<tr>
+									<td><b>Position:</b></td>
+									<td><b><%= job.position.name %></b></td>
+								</tr>
+							<% end %>
+							<tr>
+									<td>Time period</td>		
+									<td><%= job.start_date.strftime("%m/%Y") %> to <% if job.current == true%> now<%else%><%= job.end_date.strftime("%m/%Y") %><%end%></td>
+							</tr>
+							<tr>
+									<td>Platforms/languages:</b></td>
+									<td><%= job.platforms.map(&:name).join(", ")%></td>
+					  		</tr> 
+							<% if job.company_name && job.company_name != "" %> 
+								<tr>
+									<td>Company/Organization: </b></td>
+									<td><%= job.company_name %></td>
+								</tr>
+							<% end %>
+							<% if job.company_size %> 
+								<tr>
+									<td>Company size: </b></td>
+									<td><%= number_of_employees(job.company_size) %> employees </td>
+								</tr>
+							<% end %>
+							<tr>
+								<td>Contract:</b></td>
+								<td><%= contract(job.contract) %></td>
+							</tr>
+						</tbody>
+					<%end%>
+				</table>
+				<% unless job == @profile.jobs.last %><div class ="slim_module"></div><%end%>
+		<%end%>
+<%end%>
 
 <% if @profile.degrees.any? %>
 	<div class ="module"></div>
@@ -114,64 +185,7 @@ Last updated:</b> <%= time_ago_in_words(@profile.updated_at)%> ago
 <%end%>
 
 
-<% if @profile.jobs.any? %>
-	<div class ="module"></div>
-	<h5>Work experience</h5>
-		<% @profile.jobs.each do |job| %>
-				<table class="table table-striped">
-				  	<% if job.platforms %>
-						<tbody>
-							<% if job.position_name%>
-								<tr>
-									<td><b>Position:</b></td>
-									<td><b><%= job.position_name %></b></td>
-								</tr>
-							<% end %>
-							<tr>
-									<td>Time period</td>		
-									<td><%= job.start_date.strftime("%m/%Y") %> to <% if job.current == true%> now<%else%><%= job.end_date.strftime("%m/%Y") %><%end%></td>
-							</tr>
-							<% if job.company_name %> 
-								<tr>
-									<td>Company/Organization: </b></td>
-									<td><%= job.company_name %></td>
-								</tr>
-							<% end %>
-							<% if job.sector %> 
-								<tr>
-									<td>Industry: </b></td>
-									<td><%= job.sector.name %></td>
-								</tr>
-							<% end %>
-							<% if job.company_size %> 
-								<tr>
-									<td>Company size: </b></td>
-									<td><%= number_of_employees(job.company_size) %> employees </td>
-								</tr>
-							<% end %>
-													<tr>
-								<td>Contract:</b></td>
-								<td><%= contract(job.contract) %></td>
-							</tr>
-							<% if job.annual_salary %>
-								<tr>
-									<td>Annual salary:</b></td>
-									<td>$<%= job.annual_salary %></td>
-								</tr>
-							<%end%>
-							
-							<% if job.hourly_salary %>
-								<tr>
-									<td>Hourly salary:</b></td>
-									<td>$<%= job.hourly_salary %></td>
-								</tr>
-							<%end%>
-						</tbody>
-					<%end%>
-				</table>
-				<% unless job == @profile.jobs.last %><div class ="slim_module"></div><%end%>
-		<%end%>
-<%end%>
+
 
 
 </div>

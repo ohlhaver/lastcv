@@ -44,8 +44,8 @@
             Logged in as <strong><%= current_candidate.name %></strong>
             | <%= link_to "Log Out", logout_path, id: "sign_out" %>
             <% if current_candidate.profile %>
-              | <%= link_to 'Edit your CV', edit_profile_path(current_candidate.profile) %> | 
-              <%= link_to 'View', current_candidate.profile %>
+              | <%= link_to 'View your CV', current_candidate.profile %> | <%= link_to 'Edit', edit_profile_path(current_candidate.profile) %>
+              
               <%else%>
               | <%= link_to 'Post your CV', new_profile_path %>
             <%end%>
@@ -55,7 +55,7 @@
               <%= link_to "Settings", edit_user_path(current_user) %>
           <% else %>
           <div class ="hidden-phone">
-          <%= link_to "Student Log In", candidate_login_path %> |
+          <%= link_to "Hacker Log In", candidate_login_path %> |
               <%= link_to " Company Log In", login_path %>
             </div>
             <% end %>

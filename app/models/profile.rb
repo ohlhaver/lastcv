@@ -21,15 +21,15 @@ class Profile < ActiveRecord::Base
   after_create :email_admin
 
   after_save :generate_education_level
-  #after_save :generate_highest_position_id
-  #after_save :generate_ios_years
-  #after_save :generate_android_years
+  after_save :generate_highest_position_id
+  after_save :generate_ios_years
+  after_save :generate_android_years
   after_save :generate_app_years
   validates_presence_of :notice_period, :general_min_yearly_salary, :confirmed
-  #validates :ios_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
-  #validates :ios_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 20 }, :allow_blank => true
-  #validates :android_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
-  #validates :android_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 20 }, :allow_blank => true
+  validates :ios_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
+  validates :ios_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 20 }, :allow_blank => true
+  validates :android_apps, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 100 }, :allow_blank => true
+  validates :android_years, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 20 }, :allow_blank => true
   validates :notice_period, :numericality => { :greater_than_or_equal => 0, :less_than_or_equal_to => 52 }
   validates :general_min_yearly_salary, :numericality => { :greater_than => 0}
 
@@ -58,13 +58,13 @@ class Profile < ActiveRecord::Base
       end
    end
 
-  def generate_highest_position_id
+    def generate_highest_position_id
     
       hp = self.highest_position_id
       if jobs.any?
 
         self.highest_position_id = jobs.first.position_id
-        jobs.each do |job|
+        jobs.select {|i| i.position}.each do |job|
 
           self.highest_position_id = job.position_id unless job.position.value < Position.find(self.highest_position_id).value
         end
